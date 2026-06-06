@@ -1,0 +1,121 @@
+Create a premium “Interface Showcase” storytelling section for a product designer portfolio case study.
+
+This section is focused on presenting interface mockups in a cinematic and visually immersive way.
+
+Important:
+
+* Do NOT generate actual UI screens.
+* I will upload and replace all interface images and videos later.
+* Build only the presentation system, layouts, frames, placeholders, motion behavior, and visual styling.
+
+SECTION STRUCTURE
+
+1. Intro Block
+
+* Large section title
+* 2–3 line supporting explanation
+* Editorial typography
+* Spacious layout with strong hierarchy
+* Calm premium aesthetic
+
+2. Hero Mockup Presentation
+
+* Large visually pleasing web/laptop/browser mockup frame
+* Placeholder area for future uploaded image
+* Elegant rounded corners
+* Thin premium bezel/frame
+* Soft shadows and subtle gradients
+* Cinematic centered composition
+* Optional blurred/glass background surface behind mockup
+
+3. Supporting Explanation
+
+* Small 1–2 line explanation below the mockup
+* Keep readable width
+* Minimal and editorial
+
+4. Layered Stack Scroll Showcase (3 Mockups)
+   Create a stacked scroll storytelling interaction.
+
+Behavior:
+
+* Mockup 2 overlaps Mockup 1 during scroll
+* Mockup 3 overlaps Mockup 2
+* Previous mockup fades away smoothly as the next one becomes dominant
+* Sticky layered presentation feel
+* Cinematic transition between mockups
+* Large immersive mockup frames
+
+Each mockup should include:
+
+* Placeholder image area
+* Premium web app/browser presentation frame
+* Subtle gradient/glow treatment
+* Spacious composition
+
+This should feel like a premium product launch presentation, not a normal carousel.
+
+5. Additional Explanation Block
+
+* Short supporting text after the layered showcase
+* Clean editorial spacing
+
+6. Single Focus Mockup
+
+* One large centered mockup frame
+* Placeholder for uploaded image later
+* Strong visual emphasis
+* Soft lighting and premium framing
+
+7. CTA / Transition Block
+
+* One elegant button
+* Minimal arrow indicator
+* Directional storytelling feel
+* Example:
+  “View Workflow”
+  “Explore System”
+  “See Builder Flow”
+
+8. Video Showcase Section
+
+* Large framed video container
+* Placeholder for uploaded video later
+* Premium presentation styling
+* Browser/device-inspired frame
+* Clean playback presentation aesthetic
+* Large cinematic spacing around the video
+
+VISUAL STYLE
+
+Overall direction:
+
+* Premium SaaS presentation aesthetic
+* Editorial storytelling
+* Apple / Linear / Stripe inspired layouts
+* Minimal but immersive
+* Strong whitespace usage
+* Calm typography
+* Elegant motion feel
+
+DESIGN REQUIREMENTS
+
+* Consistent border radius system
+* Soft layered shadows
+* Gradient ambient backgrounds
+* Responsive behavior across screen sizes
+* Modular reusable showcase components
+* Placeholder content must be easily replaceable later
+
+AVOID
+
+* Creating actual dashboard UI
+* Generic portfolio templates
+* Heavy glassmorphism
+* Overdesigned gradients
+* Dense annotations
+* Complex charts
+* Cluttered layouts
+* Dribbble-style visuals
+
+The final section should feel like a cinematic interface presentation system designed for a senior product designer portfolio.

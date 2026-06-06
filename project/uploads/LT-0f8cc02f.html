@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en" style="">
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Fieldproxy Case Study - Location Tracking</title>
+<!-- Tailwind CSS v3 CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts: Newsreader and Inter -->
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: '#e87d3e',
+            neutralBg: '#fdfcf8',
+          },
+          fontFamily: {
+            serif: ['Newsreader', 'serif'],
+            sans: ['Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="layout">
+    body {
+      background-color: #fdfcf8; /* Soft cream background */
+      color: #333;
+      overflow-x: hidden;
+    }
+    .sticky-note {
+      position: relative;
+      padding-bottom: 20px;
+    }
+    .sticky-note::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 30px;
+      height: 30px;
+      background: linear-gradient(135deg, transparent 50%, rgba(0,0,0,0.1) 50%);
+    }
+    .material-symbols-outlined {
+      font-variation-settings:
+      'FILL' 0,
+      'wght' 400,
+      'GRAD' 0,
+      'opsz' 24
+    }
+  </style>
+</head>
+<body class="font-sans">
+<!-- BEGIN: HeroSection -->
+<section class="pt-16 pb-24 px-6 md:px-20" data-purpose="hero-section" id="hero">
+<div class="max-w-7xl mx-auto">
+<div class="flex gap-4 mb-8">
+<span class="px-4 py-1 rounded-full border border-orange-200 text-brand text-sm font-medium">B2b</span>
+<span class="px-4 py-1 rounded-full border border-orange-200 text-brand text-sm font-medium">Field Service Management</span>
+</div>
+<h1 class="font-serif text-5xl md:text-6xl text-slate-800 mb-6 leading-tight">
+        Location Tracking: Defining Real-Time Location Visibility in Fieldproxy.
+      </h1>
+<p class="text-xl text-slate-600 max-w-3xl mb-12">
+        Led the end-to-end design of a real-time location intelligence system that reduced dispatcher response time by 40% and increased first-time fix rates.
+      </p>
+<!-- Main Dashboard Preview -->
+<div class="rounded-3xl overflow-hidden shadow-2xl bg-white p-2">
+<img alt="Fieldproxy Dashboard Overview" class="w-full h-auto rounded-2xl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZ79H6HPnoqdSFZPcbuPo8ARA0PEO_kW6V50SYYcL6PK7Gr6v-BOcJEtcE9TsbamWd-bhO-SfPx3xMYmMt27KKtQVaOzJRjC1M-nqwHtqgzPYbRY1cQPtgeweZIFqyGWipDlM0ltV-UPZgxvGpSKKozpJpcCshAMDnboGPvopcODPWzga_EWmkD6dpS0BvogYF7aYczK873cSfm0XuyZyruuAGaoTUOknFkLDTpP7beiJDNpy4zpXa5_cl_4GsWisHtfUdoEq-IonP">
+</div>
+</div>
+</section>
+<!-- END: HeroSection -->
+<!-- BEGIN: Outcomes -->
+<section class="py-20 px-6 md:px-20" data-purpose="outcomes-summary" id="outcomes">
+<div class="max-w-7xl mx-auto bg-purple-50/50 rounded-[40px] p-12 md:p-20">
+<div class="max-w-5xl mx-auto mb-16 space-y-8">
+<p class="font-serif text-lg md:text-xl text-slate-700 leading-relaxed">
+    Introduced a real-time location tracking system within a field agent management application, that <span class="bg-[#e87d3e]/20 px-1 py-0.5 rounded">captures technician movement and on-site activity, enabling field transparency and accurate tracking of work hours along with their tasks</span> visibility across field operations.
+  </p>
+<p class="font-serif text-lg md:text-xl text-slate-700 leading-relaxed">
+    Led the end-to-end design of a real-time location intelligence system, defining data flows, user experience, and activity validation logic.
+  </p>
+</div><h2 class="font-serif text-3xl text-center mb-16 text-slate-800">Which resulted in</h2>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+<!-- Metric Card 1 -->
+<div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+<div class="text-blue-600 font-bold text-3xl mb-4">↑ 18%</div>
+<p class="text-slate-600 text-sm">Increase in daily active manager usage.</p>
+</div>
+<!-- Metric Card 2 -->
+<div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+<div class="text-blue-600 font-bold text-3xl mb-4">↑ 15%</div>
+<p class="text-slate-600 text-sm">Increase in upsell conversion</p>
+</div>
+<!-- Metric Card 3 -->
+<div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+<div class="text-blue-600 font-bold text-3xl mb-4">↓ 60%</div>
+<p class="text-slate-600 text-sm">Reduction in manual validation effort</p>
+</div>
+<!-- Metric Card 4 -->
+<div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+<div class="text-blue-600 font-bold text-3xl mb-4">↓ 35%</div>
+<p class="text-slate-600 text-sm">Decrease in field data discrepancies.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- END: Outcomes -->
+<!-- BEGIN: ContextUsers -->
+<section class="py-24 px-6 md:px-20 bg-white" data-purpose="context-and-users" id="context">
+<div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-20">
+<div>
+<h2 class="font-serif text-3xl text-slate-800 mb-8 underline decoration-brand/30 underline-offset-8 flex items-center gap-3">
+<span class="material-symbols-outlined text-brand">priority_high</span>
+          Why it matters
+        </h2>
+<p class="text-lg text-slate-600 mb-6 leading-relaxed">
+          As Fieldproxy expanded into larger enterprise accounts, clear visibility into field task execution became essential.
+        </p>
+<p class="text-lg text-slate-600 leading-relaxed">
+          Enterprise <span class="font-semibold text-slate-800">customers required reliable tracking</span> and <span class="font-semibold text-slate-800">limited transparency</span> perceived product value.
+        </p>
+</div>
+<div>
+<h2 class="font-serif text-3xl text-slate-800 mb-8">Who are the users?</h2>
+<div class="space-y-6 bg-purple-50/50 p-8 rounded-3xl border border-purple-100">
+<div class="flex items-center gap-6 bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
+<div class="w-12 h-12 flex-shrink-0 bg-orange-50 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-brand text-3xl">person</span>
+</div>
+<div>
+<div class="font-semibold text-slate-800">Operational Manager</div>
+<div class="text-sm text-slate-500">Who oversees the field agent activity</div>
+</div>
+</div>
+<div class="flex items-center gap-6 bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
+<div class="w-12 h-12 flex-shrink-0 bg-orange-50 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-brand text-3xl">engineering</span>
+</div>
+<div>
+<div class="font-semibold text-slate-800">Field Agent</div>
+<div class="text-sm text-slate-500">Who spends time in the field.</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: ContextUsers -->
+<!-- BEGIN: Research -->
+<section class="py-20 px-6 md:px-20" data-purpose="problem-breakdown" id="problem">
+<div class="max-w-7xl mx-auto bg-gradient-to-br from-purple-50 via-white to-orange-50 rounded-[60px] p-16 md:p-32 text-center border border-white">
+<span class="uppercase tracking-widest text-brand font-bold text-sm mb-4 block">PROBLEM STATEMENT</span>
+<h2 class="font-serif text-4xl text-slate-800 mb-10">What we needed to solve?</h2>
+<p class="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed italic">
+        "Field Operations lacked a reliable real-time system to track and validate technician workforce movement. Reliance on delayed reporting and manual updates led to discrepancies in field activity records, required manual verification, reduced accountability and weakened trust in operational data."
+      </p>
+</div>
+
+</section><section class="py-24 px-6 md:px-20" data-purpose="research-friction-points" id="research">
+<div class="max-w-7xl mx-auto">
+<div class="border-l-4 border-brand pl-8 mb-12">
+<span class="uppercase tracking-widest text-brand font-bold text-sm">RESEARCH</span>
+<h2 class="font-serif text-4xl text-slate-800 mt-2">Identifying the Friction Points</h2>
+</div>
+<p class="text-lg text-slate-600 max-w-3xl mb-20">
+        I validated the problem by synthesizing recurring feedback from customer success teams, reviewing client call recordings, and analyzing daily product usage.
+      </p>
+<div class="grid md:grid-cols-2 gap-12">
+<div class="text-center">
+<div class="mb-6 flex justify-center">
+<span class="material-symbols-outlined text-slate-300 text-[120px]">account_circle</span>
+</div>
+<h3 class="text-purple-700 font-semibold mb-2">Danny, Lead Manager</h3>
+<p class="text-slate-600 px-12">Oversees 47 field agents and is responsible for execution visibility and reporting accuracy.</p>
+</div>
+<div class="text-center">
+<div class="mb-6 flex justify-center">
+<span class="material-symbols-outlined text-slate-300 text-[120px]">face</span>
+</div>
+<h3 class="text-purple-700 font-semibold mb-2">Louis, Field Agent</h3>
+<p class="text-slate-600 px-12">Spends most of the day on-site executing tasks and updating every task details through the system.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- END: Research -->
+<!-- BEGIN: ProblemStatement -->
+
+<!-- END: ProblemStatement -->
+<!-- BEGIN: DiscussionQuestions -->
+<section class="py-24 px-6 md:px-20 bg-neutralBg" data-purpose="discussion-bubbles">
+<div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12">
+<!-- Manager Side Questions -->
+<div class="bg-amber-50/30 border border-amber-100 rounded-3xl p-12 space-y-6">
+<div class="bg-white p-4 rounded-xl shadow-sm inline-block max-w-[80%] border border-slate-100">Have agents logged in and started?</div>
+<div class="flex justify-end">
+<div class="bg-white p-4 rounded-xl shadow-sm inline-block max-w-[80%] border border-slate-100">Is the check-in happening from the correct location?</div>
+</div>
+<div class="bg-white p-4 rounded-xl shadow-sm inline-block max-w-[80%] border border-slate-100">Why does mileage look off?</div>
+<div class="bg-white p-4 rounded-xl shadow-sm inline-block max-w-[80%] border border-slate-100">Why do reports take so long to generate?</div>
+<div class="bg-white p-4 rounded-xl shadow-sm inline-block max-w-[80%] border border-slate-100">How many tasks were completed and when?</div>
+</div>
+<!-- Agent Side Questions -->
+<div class="bg-amber-50/30 border border-amber-100 rounded-3xl p-12 space-y-6 flex flex-col justify-center">
+<div class="flex justify-end">
+<div class="bg-white p-4 rounded-xl shadow-sm inline-block max-w-[80%] border border-slate-100">Why am I getting calls even after checking in?</div>
+</div>
+<div class="bg-white p-4 rounded-xl shadow-sm inline-block max-w-[80%] border border-slate-100">Why is my mileage and check-in being questioned?</div>
+<div class="bg-white p-4 rounded-xl shadow-sm inline-block max-w-[80%] border border-slate-100">Will incorrect logs affect my incentives?</div>
+</div>
+</div>
+</section><div class="max-w-5xl mx-auto py-20 px-6 md:px-20">
+<h3 class="text-slate-400 font-medium mb-12 text-2xl">These signals pointed to three systemic breakdown in field operations.</h3>
+<ul class="space-y-12">
+<li class="flex gap-6">
+<span class="text-slate-800 text-2xl">•</span>
+<p class="text-lg leading-relaxed"><span class="font-bold text-slate-800">Lack of real-time visibility:</span> <span class="text-slate-500">Managers could not clearly see agent activity in one place, leading to frequent calls and manual follow-ups.</span></p>
+</li>
+<li class="flex gap-6">
+<span class="text-slate-800 text-2xl">•</span>
+<p class="text-lg leading-relaxed"><span class="font-bold text-slate-800">Low trust in activity data:</span> <span class="text-slate-500">Check-ins and mileage were available but not reliable enough for reimbursement or accountability, creating friction between managers and agents.</span></p>
+</li>
+<li class="flex gap-6">
+<span class="text-slate-800 text-2xl">•</span>
+<p class="text-lg leading-relaxed"><span class="font-bold text-slate-800">Delayed decisions:</span> <span class="text-slate-500">Fragmented and hard-to-verify data slowed operational decisions and reduced confidence in day-to-day actions.</span></p>
+</li>
+</ul>
+</div>
+<!-- END: DiscussionQuestions -->
+<!-- BEGIN: DefineSection -->
+<section class="py-24 px-6 md:px-20" data-purpose="define-goals" id="define">
+<div class="max-w-7xl mx-auto">
+<div class="border-l-4 border-brand pl-8 mb-16">
+<span class="uppercase tracking-widest text-brand font-bold text-sm">DEFINE</span>
+<h2 class="font-serif text-4xl text-slate-800 mt-2">Setting the Product goal</h2>
+</div>
+<!-- Real time visibility group -->
+<div class="bg-slate-50 border-2 border-slate-100 border-dotted rounded-3xl p-12 mb-12">
+<h3 class="text-xl font-bold text-slate-700 mb-2">Real time visibility</h3>
+<p class="text-slate-500 mb-10">Make field activity understandable in the moment, not through calls or end of day reports.</p>
+<div class="grid md:grid-cols-3 gap-6">
+<div class="bg-green-100 p-8 rounded-sm shadow-md h-48 sticky-note italic flex flex-col justify-between">
+<div class="">Live technician state with contextual activity.</div>
+<span class="material-symbols-outlined text-brand/40 text-3xl">visibility</span>
+</div>
+<div class="bg-blue-100 p-8 rounded-sm shadow-md h-48 sticky-note italic flex flex-col justify-between">
+<div class="">Provide reliable signals, Task progression visible as it happens.</div>
+<span class="material-symbols-outlined text-brand/40 text-3xl">verified</span>
+</div>
+<div class="bg-amber-100 p-8 rounded-sm shadow-md h-48 sticky-note italic flex flex-col justify-between">
+<div class="">Historical data filtering by date range with downloadable activity reports.</div>
+<span class="material-symbols-outlined text-brand/40 text-3xl">archive</span>
+</div>
+</div>
+</div>
+<!-- Operational Efficiency group -->
+<div class="bg-slate-50 border-2 border-slate-100 border-dotted rounded-3xl p-12 mb-12">
+<h3 class="text-xl font-bold text-slate-700 mb-2">Operational Efficiency</h3>
+<p class="text-slate-500 mb-10">Reduce coordination overhead by synchronizing field activity with the backend in real time, eliminating manual updates.</p>
+<div class="grid md:grid-cols-3 gap-6">
+<div class="bg-green-100 p-8 rounded-sm shadow-md h-48 sticky-note italic flex flex-col justify-between">
+<div class="">Geo fence controlled task access to prevent unauthorized job start.</div>
+<span class="material-symbols-outlined text-brand/40 text-3xl">security</span>
+</div>
+<div class="bg-blue-100 p-8 rounded-sm shadow-md h-48 sticky-note italic flex flex-col justify-between">
+<div class="">Distance automatically calculated from location points travelled through</div>
+<span class="material-symbols-outlined text-brand/40 text-3xl">straighten</span>
+</div>
+<div class="bg-amber-100 p-8 rounded-sm shadow-md h-48 sticky-note italic flex flex-col justify-between">
+<div class="">Automatic synchronization of live task, location points, and activity metadata.</div>
+<span class="material-symbols-outlined text-brand/40 text-3xl">sync</span>
+</div>
+</div>
+</div>
+<!-- Frictionless Field Control group -->
+<div class="bg-slate-50 border-2 border-slate-100 border-dotted rounded-3xl p-12">
+<h3 class="text-xl font-bold text-slate-700 mb-2">Frictionless Field Control</h3>
+<p class="text-slate-500 mb-10">Ensure technician can focus on completing jobs, not proving they are working.</p>
+<div class="grid md:grid-cols-2 gap-6 max-w-4xl">
+<div class="bg-blue-100 p-8 rounded-sm shadow-md h-48 sticky-note italic flex flex-col justify-between">
+<div class="">Alerts only when outside job boundary.</div>
+<span class="material-symbols-outlined text-brand/40 text-3xl">priority_high</span>
+</div>
+<div class="bg-amber-100 p-8 rounded-sm shadow-md h-48 sticky-note italic flex flex-col justify-between">
+<div class="">Reduce cognitive load for technicians while preserving control.</div>
+<span class="material-symbols-outlined text-brand/40 text-3xl">lightbulb</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: DefineSection -->
+<!-- BEGIN: WireframeSection -->
+<section class="py-24 px-6 md:px-20 bg-white" data-purpose="wireframe-evolution" id="wireframe">
+<div class="max-w-7xl mx-auto">
+<div class="border-l-4 border-brand pl-8 mb-12">
+<span class="uppercase tracking-widest text-brand font-bold text-sm">WIREFRAME</span>
+<h2 class="font-serif text-4xl text-slate-800 mt-2">Translating insights into interface structure</h2>
+</div>
+<p class="text-lg text-slate-600 max-w-4xl mb-16 leading-relaxed">
+        The first iteration focused on structured activity logs list to improve reporting clarity and task traceability. However, it didn't surface where activity was happening in real time. Operational decisions required Visibility beyond chronological updates, which led to evolving the system into a spatial-first monitoring layer alongside the activity logs.
+      </p>
+<div class="bg-slate-50/50 rounded-[40px] p-12 border border-slate-100">
+<div class="grid md:grid-cols-2 gap-12 items-center">
+<div class="text-center">
+<span class="block text-slate-400 font-semibold mb-6">Activity logs list</span>
+<img alt="Wireframe List View" class="rounded-xl border border-slate-200" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4JiHqFkI7Ijl4QokbGWJqFrUZbnLjKcD7a4Dx8ZQHrYAOVDLsXvwAhUsAf9ZTSfm6jthXx7vD2vP-_diZLr1SRT0jJBKY9zyfgQu7a0SJnoaSi7loTXCONK9o2WndIfctW9reS-I06_0MG4WA29G8DuLA5mzYYRUFVUy07o9Cc-m3x_hF07H-gwuIT72jEylV4-de_ADgOQfPzCPsgeKXEESX4W_5yCjXouNwDNd78brMKoA7TBjbg69qrmohO8D3jcDfUbfTyT_3">
+</div>
+<div class="text-center relative">
+<div class="hidden md:block absolute -left-12 top-1/2 -translate-y-1/2 text-4xl text-slate-300">→</div>
+<span class="block text-slate-400 font-semibold mb-6">Spatial-First View</span>
+<img alt="Wireframe Map View" class="rounded-xl border border-slate-200" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4JiHqFkI7Ijl4QokbGWJqFrUZbnLjKcD7a4Dx8ZQHrYAOVDLsXvwAhUsAf9ZTSfm6jthXx7vD2vP-_diZLr1SRT0jJBKY9zyfgQu7a0SJnoaSi7loTXCONK9o2WndIfctW9reS-I06_0MG4WA29G8DuLA5mzYYRUFVUy07o9Cc-m3x_hF07H-gwuIT72jEylV4-de_ADgOQfPzCPsgeKXEESX4W_5yCjXouNwDNd78brMKoA7TBjbg69qrmohO8D3jcDfUbfTyT_3">
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: WireframeSection -->
+<!-- BEGIN: PrototypeSection -->
+<section class="py-24 px-6 md:px-20" data-purpose="prototype-intro" id="prototype">
+<div class="max-w-7xl mx-auto">
+<div class="border-l-4 border-brand pl-8 mb-12">
+<span class="uppercase tracking-widest text-brand font-bold text-sm">PROTOTYPE</span>
+<h2 class="font-serif text-4xl text-slate-800 mt-2">Interface Design</h2>
+</div>
+<p class="text-lg text-slate-600 mb-20">
+        This location tracking module became the core operational layer for real-time field visibility. As the primary workspace for managers,
+      </p>
+<!-- High Fidelity Preview -->
+<div class="bg-gradient-to-b from-purple-100 to-orange-100 p-10 rounded-[50px] shadow-sm">
+<img alt="Final Interface Design" class="w-full rounded-3xl shadow-2xl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBAeK-TJCkRO-0Rrdd_f3PdPu7qj8gN1JXqaqlEWxiyhtgCc3KmL4fPvBrre-JS0hcgfvfdHpagMLt9ey75CdkVGVCPMdKB3yqxmU1XPHwJyVkFeras1mSp1agYYYUK9wFLTKTYDndLbylpNXnBdhMFhtoHjo8zEHh1uwm113XyAGJuNK6JOjmpjeIVw0SOJSxDIrYU0UKKIbqMum5Gsox-PaSg538o-KE7KoQ0HMruuC7U6ByiOANz4AHtFx8GnYQBKbv4A--LeqGy">
+</div>
+</div>
+</section>
+<!-- END: PrototypeSection -->
+<!-- BEGIN: AgentsOverview -->
+<section class="py-24 px-6 md:px-20 bg-white" data-purpose="agents-overview-screen" id="agents-overview">
+<div class="max-w-7xl mx-auto">
+<h3 class="text-brand font-bold text-2xl mb-4">Agents overview Screen</h3>
+<p class="text-lg text-slate-600 max-w-3xl mb-16">
+        This is the primary operational layer for viewing agent field activity. It combines a real-time map with a synchronised activity list to give supervisors a parallel view of movement and work status.
+      </p>
+<div class="bg-purple-50/50 rounded-[40px] p-12 mb-16 border border-purple-100 flex items-center justify-center">
+<img alt="Agents Overview Main Screen" class="rounded-2xl max-w-full shadow-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwDStQjZ2X7kikm2bQfXXNkwAojDHiM1EOu4CZvRQBD8xOb5irRgL39hfw-l38TgrYtywmd16EnWb2_xwAGu0sNwn1-JIjRW6Iqa6uzxdFKCYCYKI3U3nOGdWYRd9Un1_EBGCFpN1uDFGYInvZwFeaO8Y9PSJx-gy4cy4Tuqc3-uJxN4gwKLNBT0E3Auv0MtjKkByFyW6IicRI_bD5sTThC8Jj8XL8i8quk7PE0RN--3h_mmqoik_gD9SWQjaRqfSepIzD_UbBzlyh">
+</div>
+<p class="text-lg text-slate-600 max-w-4xl mx-auto leading-relaxed">
+        A manager scans the list, and the map dynamically updates the agents. It highlights the relevant technician and their location, enabling the manager to quickly understand where work is taking place without interrupting the agents.
+      </p>
+</div>
+</section>
+<!-- END: AgentsOverview -->
+<!-- BEGIN: TechnicianActivity -->
+<section class="py-24 px-6 md:px-20" data-purpose="technician-activity-details" id="technician-activity">
+<div class="max-w-7xl mx-auto">
+<h3 class="text-brand font-bold text-2xl mb-4">Technician Activity</h3>
+<p class="text-lg text-slate-600 max-w-4xl mb-16">
+        This manager's view provides managers <span class="font-semibold text-slate-800">a clear view of what an agent did during the day, including the jobs handled, time spent, and the complete travel path between tasks.</span> It removes guesswork and reduces manual follow-ups by showing activity, travel path, and progress in one structured view.
+      </p>
+<div class="bg-purple-50/50 rounded-[40px] p-12 border border-purple-100 flex items-center justify-center">
+<img alt="Technician Path View" class="rounded-2xl max-w-full shadow-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0FXqWpVt81mH-DbEWS2bqT5b1jTW5C5JGRIsEPRGZJ80BmNFpys98Pw5N5IzutVyIaNem3tH_ToUfXKwUpwKr-OeHRG5FxNhjzxJidb3OWnrlS5zKZyGLij1SbAFvCQwMgpuazexztGLMgZSHRJZzTwyHjZ-W-EzHbiYO6sthuEcx1qiN92JRLoqFLapRkQs16Xx01FyviZi6cbeuPoHcfAO_2nCusWyW2j8A-IDON4gBkjAzp9eRvWwBFLZka0IQlVJSUXBxmhxQ">
+</div>
+</div>
+</section>
+<!-- END: TechnicianActivity -->
+<!-- BEGIN: CardPriorities -->
+<section class="py-24 px-6 md:px-20 bg-white" data-purpose="activity-card-priorities" id="card-priorities">
+<div class="max-w-7xl mx-auto">
+<p class="text-lg text-slate-600 max-w-4xl mb-20 leading-relaxed">
+        The real-time map displays the active locations of the technicians, while a synchronised activity list reflects each technician's status, including their active time, location, and access. This setup allows for a detailed drill-down into specific information.
+      </p>
+<div class="bg-purple-50/50 rounded-[40px] p-12 md:p-20 border border-purple-100 grid md:grid-cols-2 gap-16 items-center">
+<div class="bg-white p-4 rounded-3xl shadow-lg">
+<img alt="Activity Card Close-up" class="w-full h-auto rounded-2xl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6i51RALoXbtwFrnBpR8eo9AhgfIv2gaMcpukFWCaW5Am14ekvUAw4rLqGXTvrgvFNiSeRdkPX0Uv1UqLJvmcSpw1Rm6FOiXX2X_JrjVLfbfY-5-U38-I31K14qekJyFiocw2v5G2jatiK6_52uh2QP5eAX1871DXt0Tv0aydLDz6-Ot0gXSiqi2mxllfMlWt1vd7kPVoF222qBJYefuSpNEaD3b9G8Xf2rlXbpJko8MINumJ0vTpX1IamngUmRw3TEKtvnnhnE8sn">
+</div>
+<div class="space-y-10">
+<h4 class="text-2xl font-bold text-slate-800">The activity card prioritises:</h4>
+<ul class="space-y-8">
+<li class="flex gap-4">
+<span class="text-slate-400">•</span>
+<p class="text-slate-600 text-lg">Technician identity and work state are surfaced first, followed by time and location signals to validate real-time field activity.</p>
+</li>
+<li class="flex gap-4">
+<span class="text-slate-400">•</span>
+<p class="text-slate-600 text-lg">Status is dynamically calculated based on activity thresholds, updating when inactivity exceeds defined limits.</p>
+</li>
+<li class="flex gap-4">
+<span class="text-slate-400">•</span>
+<p class="text-slate-600 text-lg">A drill-down action allows deeper inspection of technician job level details.</p>
+</li>
+</ul>
+</div>
+</div>
+<p class="text-center text-lg text-slate-600 mt-20">
+        Selecting <span class="text-blue-600 font-semibold">"view"</span> moves from live field tracking into a focused breakdown of the <span class="font-bold text-slate-800">technician's activity view.</span>
+</p>
+</div>
+</section>
+<!-- END: CardPriorities -->
+<!-- BEGIN: TimelineSection -->
+<section class="py-24 px-6 md:px-20 bg-neutralBg" data-purpose="field-activity-timeline" id="timeline">
+<div class="max-w-7xl mx-auto bg-purple-50/50 rounded-[40px] p-12 md:p-20 border border-purple-100">
+<h3 class="text-blue-900 text-3xl font-bold text-center mb-16">Field Activity Timeline</h3>
+<div class="grid md:grid-cols-2 gap-16 items-center">
+<div class="bg-white p-4 rounded-2xl shadow-xl">
+<img alt="Timeline View Close-up" class="w-full h-auto rounded-xl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6444lTbAixfQEY6VUeatwhSeR-soLylvVTXfgoWJmRJgSU6OG-AJK07lcHr_mT8y8KcyqkCAyJrxyyLp0X3SR9u3CYjQ3XIQG2lYEA-mYlW9KHddjZE4MADEbMxMngdTuifbyus4esoZV0KkNmtebaOGRC6F3KIHs8VnL5fIzwMhet8XtXJhwZpBjkK6okEvT_orjKIBJaJjFVYi8slVBGVH2N5U-BZkdacTZUSSCxfvM-9pfCCFEo3TGXzQrf2FoIWEKtF5-SrWV">
+</div>
+<ul class="space-y-8">
+<li class="flex gap-4">
+<span class="text-slate-400">•</span>
+<p class="text-slate-600 text-lg">The timeline view <span class="font-bold text-slate-800">structures in chronological order based on task completion.</span></p>
+</li>
+<li class="flex gap-4">
+<span class="text-slate-400">•</span>
+<p class="text-slate-600 text-lg">Each entry records the timestamp, the task name, the status of the task, and the location, creating a traceable account of actual work unfolded.</p>
+</li>
+<li class="flex gap-4">
+<span class="text-slate-400">•</span>
+<p class="text-slate-600 text-lg">Aggregated daily metrics - <span class="font-bold text-slate-800">total duration, distance covered, and jobs completed</span> provide a quick field productivity.</p>
+</li>
+<li class="flex gap-4">
+<span class="text-slate-400">•</span>
+<p class="text-slate-600 text-lg">A <span class="font-bold text-slate-800">drill-down action allows task metadata</span>, allowing managers to drill down into details.</p>
+</li>
+</ul>
+</div>
+</div>
+</section>
+<!-- END: TimelineSection -->
+<!-- BEGIN: TaskDataSection -->
+<section class="py-24 px-6 md:px-20 bg-white" data-purpose="field-task-data" id="task-data">
+<div class="max-w-7xl mx-auto bg-purple-50/50 rounded-[40px] p-12 md:p-20 border border-purple-100">
+<h3 class="text-blue-900 text-3xl font-bold text-center mb-16">Field Task Data</h3>
+<div class="flex items-center justify-center mb-20">
+<div class="bg-white p-2 rounded-2xl shadow-2xl max-w-4xl">
+<img alt="Field Task Details Popup" class="w-full h-auto rounded-xl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXs-6zbYShu6UpO-Hk5TmajUFutlLaXiIPf8Y5p5DhBLIqGai9TidFpBInKa1JOINbIlIVq0oecqZ4ZdrktIY5rEdlTS9r5sUTyLD91AtalLSOCGbipt_MT-A4V2e9csdiHF_pUwDo9AxcvIEuY2zTUKGt3Qh84nWYVyXvgDy3oub0NpZ09Trl6djSSE2zWETQHJ_yd4EBkcx4kyhmE7QNUGztKbFVw6Qa7fHISiesdo6dsZUCJ0B4B4n6ZovkXj9nPeEFeS7xXcMH">
+</div>
+</div>
+<p class="text-lg text-slate-600 max-w-4xl mx-auto text-center leading-relaxed">
+        The task detail consolidates what was assigned, Completion timestamp and location, along with technician-submitted response metadata. Together, these elements form a clear and reliable record of the work performed.
+      </p>
+</div>
+</section>
+<!-- END: TaskDataSection -->
+<!-- BEGIN: ResultsRecap -->
+<section class="py-24 px-6 md:px-20" data-purpose="outcomes-recap" id="results-recap">
+<div class="max-w-7xl mx-auto bg-gradient-to-br from-purple-50 via-white to-orange-100 rounded-[50px] p-16 md:p-24 border border-white">
+<h3 class="font-serif text-3xl text-center mb-16 text-slate-800">Outcomes</h3>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-6xl mx-auto">
+<!-- Metric Cards (Repeat from top) -->
+<div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+<div class="text-blue-600 font-bold text-3xl mb-4">↑ 18%</div>
+<p class="text-slate-600 text-sm">Increase in daily active manager usage.</p>
+</div>
+<div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+<div class="text-blue-600 font-bold text-3xl mb-4">↑ 15%</div>
+<p class="text-slate-600 text-sm">Increase in upsell conversion</p>
+</div>
+<div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+<div class="text-blue-600 font-bold text-3xl mb-4">↓ 60%</div>
+<p class="text-slate-600 text-sm">Reduction in manual validation effort</p>
+</div>
+<div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+<div class="text-blue-600 font-bold text-3xl mb-4">↓ 35%</div>
+<p class="text-slate-600 text-sm">Decrease in field data discrepancies.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- END: ResultsRecap -->
+<!-- BEGIN: KeyLearnings -->
+<section class="py-24 px-6 md:px-20 bg-white" data-purpose="key-learnings" id="learnings">
+<div class="max-w-7xl mx-auto">
+<div class="border-l-4 border-brand pl-8 mb-16">
+<span class="uppercase tracking-widest text-brand font-bold text-sm">KEY LEARNINGS</span>
+<h2 class="font-serif text-4xl text-slate-800 mt-2">What did I learn while building real-time tracking?</h2>
+</div>
+<div class="space-y-12 text-lg text-slate-600 leading-relaxed max-w-6xl">
+<p class="">This project reinforced the importance of designing for data credibility, not just visibility. I learned how real-time systems reduce operational friction by minimizing manual verification and improving decision-making speed.</p>
+<p class="">I also designed for both technical and non-technical users, which required simplifying complex activity data into clear and actionable insights. Close collaboration with cross-functional teams, especially developers, helped me understand system logic and translate it effectively into user experiences.</p>
+<p class="">Moving forward, these insights will guide me in building scalable, data-driven systems that balance technical complexity with usability across diverse user groups.</p>
+</div>
+</div>
+</section>
+<!-- END: KeyLearnings -->
+<!-- BEGIN: FooterBadge -->
+<footer class="py-12 px-6 md:px-20 border-t border-slate-100" data-purpose="footer-branding">
+<div class="max-w-7xl mx-auto flex flex-wrap justify-between items-end gap-8">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-12 text-sm">
+<div>
+<span class="block text-slate-400 uppercase font-bold mb-4">ROLE</span>
+<p class="text-slate-800">Sole Product Design</p>
+</div>
+<div>
+<span class="block text-slate-400 uppercase font-bold mb-4">PROJECT DURATION</span>
+<p class="text-slate-800">6 months</p>
+</div>
+<div>
+<span class="block text-slate-400 uppercase font-bold mb-4">TEAMS</span>
+<p class="text-slate-800">Design, Development</p>
+</div>
+<div>
+<span class="block text-slate-400 uppercase font-bold mb-4">TOOLS</span>
+<p class="text-slate-800">Figma, Vercel, docs, Meet</p>
+</div>
+</div>
+<div class="bg-black text-white px-4 py-2 rounded-lg flex items-center gap-2 text-sm font-medium">
+<span class="">Made in Framer</span>
+</div>
+</div>
+</footer>
+<!-- END: FooterBadge -->
+
+
+</body></html>

@@ -1,0 +1,158 @@
+{
+  "timestamp": "2026-06-05T19:15:51.343Z",
+  "file": "Location tracking v2.html",
+  "mediaQueries": {
+    "tablet1024px": "@media (max-width: 1024px)",
+    "mobile768px": "@media (max-width: 768px)",
+    "smallMobile480px": "@media (max-width: 480px)",
+    "status": "All 3 breakpoints implemented"
+  },
+  "components": {
+    "navigation": {
+      "desktop": "Flex row with nav-brand, nav-spacer, nav-links, nav-cta",
+      "tablet768": "nav-links hidden or wrapped, nav-spacer display: none",
+      "mobile480": "nav-cta reduced padding, nav-brand smaller font",
+      "responsive": true
+    },
+    "heroSection": {
+      "desktop": "Full-width with padding: 0 var(--spacing-8)",
+      "tablet768": "Padding reduced to var(--spacing-4)",
+      "mobile480": "Padding reduced to var(--spacing-3)",
+      "responsive": true
+    },
+    "contentLayout": {
+      "desktop": "grid-template-columns: 240px 1fr (with TOC)",
+      "tablet768": "grid-template-columns: 1fr (TOC hidden)",
+      "mobile480": "grid-template-columns: 1fr (padding: 0 var(--spacing-3))",
+      "responsive": true
+    },
+    "impactGrid": {
+      "desktop": "grid-template-columns: repeat(4, 1fr)",
+      "tablet1024": "grid-template-columns: repeat(2, 1fr)",
+      "mobile768": "grid-template-columns: 1fr",
+      "responsive": true,
+      "metrics": {
+        "metricValue": "Scales from 5xl → 4xl → 2xl → base"
+      }
+    },
+    "problemCards": {
+      "desktop": "grid-template-columns: repeat(3, 1fr)",
+      "mobile768": "grid-template-columns: 1fr",
+      "responsive": true,
+      "cardPadding": {
+        "desktop": "var(--spacing-10)",
+        "mobile768": "var(--spacing-6)",
+        "mobile480": "var(--spacing-6)"
+      }
+    },
+    "goalFeatures": {
+      "desktop": "grid-template-columns: repeat(3, 1fr)",
+      "mobile768": "grid-template-columns: 1fr",
+      "responsive": true
+    },
+    "constraintCards": {
+      "desktop": "grid-template-columns: repeat(3, 1fr)",
+      "mobile768": "grid-template-columns: 1fr",
+      "responsive": true
+    },
+    "comparisonSlider": {
+      "desktop": "min-height: 450px",
+      "tablet1024": "min-height: 320px",
+      "mobile768": "min-height: 280px",
+      "mobile480": "min-height: 220px",
+      "responsive": true,
+      "handleSize": {
+        "desktop": "60px",
+        "mobile768": "50px",
+        "mobile480": "44px"
+      }
+    },
+    "userRoleSection": {
+      "metaGrid": {
+        "desktop": "grid-template-columns: 1fr 1fr",
+        "tablet1024": "grid-template-columns: 1fr",
+        "responsive": true
+      },
+      "userCard": {
+        "desktop": "flex, align-items: center, gap: var(--spacing-4)",
+        "mobile768": "flex, align-items: flex-start, gap: var(--spacing-3)",
+        "mobile480": "gap: var(--spacing-2), icon: 32px",
+        "responsive": true
+      },
+      "roleItem": {
+        "desktop": "gap: var(--spacing-6)",
+        "mobile768": "gap: var(--spacing-4)",
+        "mobile480": "gap: var(--spacing-3)",
+        "responsive": true
+      }
+    },
+    "typography": {
+      "headline": {
+        "desktop": "size-5xl",
+        "mobile768": "size-3xl",
+        "mobile480": "size-2xl",
+        "responsive": true
+      },
+      "lead": {
+        "desktop": "size-xl",
+        "mobile768": "size-lg",
+        "mobile480": "size-base",
+        "responsive": true
+      },
+      "sectionTitle": {
+        "desktop": "size-4xl",
+        "mobile768": "size-2xl",
+        "mobile480": "size-xl",
+        "responsive": true
+      }
+    }
+  },
+  "touchTargets": {
+    "minimumSize": "44px",
+    "userIcon": {
+      "desktop": "28px (size-2xl)",
+      "mobile768": "24px (size-lg)",
+      "mobile480": "16px (size-base) - NEEDS CHECK",
+      "status": "Most targets adequate, small mobile marginal"
+    },
+    "buttons": {
+      "toggle_buttons": "Min 44px height",
+      "nav_cta": "Flexible height",
+      "status": "OK"
+    }
+  },
+  "spacing": {
+    "horizontalPadding": {
+      "desktop": "var(--spacing-8) = 32px",
+      "tablet768": "var(--spacing-4) = 16px",
+      "mobile480": "var(--spacing-3) = 12px",
+      "status": "Adequate for mobile"
+    },
+    "verticalGaps": {
+      "cards": {
+        "desktop": "var(--spacing-6) to var(--spacing-10)",
+        "mobile": "var(--spacing-4) to var(--spacing-6)",
+        "status": "Reduced appropriately"
+      }
+    }
+  },
+  "layouts": {
+    "noHorizontalScroll": "All elements use max-width: 100%, box-sizing: border-box",
+    "overflowControl": "body has overflow-x: clip",
+    "viewportMeta": "width=device-width, initial-scale=1",
+    "status": "Properly configured"
+  },
+  "summary": {
+    "totalComponents": 15,
+    "fullyResponsive": 14,
+    "needsAttention": 1,
+    "issues": [
+      {
+        "component": "Small Mobile Icon Sizing",
+        "severity": "low",
+        "description": "At <480px, some icons scale to 16px (below 44px recommended)",
+        "recommendation": "Consider larger wrapper or padding"
+      }
+    ]
+  }
+}

@@ -1,0 +1,1793 @@
+<!doctype html>
+<html lang="en" data-dark="0">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Afrin — Design System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,300;1,6..72,400&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&family=Manrope:wght@400;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+/* ====================================================
+   DESIGN SYSTEM TOKENS  (source of truth)
+   ==================================================== */
+:root {
+  /* — Surfaces */
+  --bg:       #faf8f3;
+  --bg-2:     #f3f0e7;
+  /* — Ink */
+  --ink:      #0e0e0c;
+  --ink-2:    #2a2a26;
+  /* — Muted */
+  --mute:     #8a8780;
+  --mute-2:   #b8b4ab;
+  /* — Rules */
+  --rule:     #e6e1d4;
+  --rule-2:   #d8d2c1;
+  /* — Accent (teal) */
+  --accent:   #0F6E56;
+  --accent-hi:#138a6b;
+  --accent-ink:#ffffff;
+  /* — Semantic */
+  --warn:     #c2410c;
+
+  /* — Type */
+  --serif:  "Newsreader", ui-serif, Georgia, serif;
+  --sans:   "Geist", ui-sans-serif, system-ui, sans-serif;
+  --mono:   "Geist Mono", ui-monospace, Menlo, monospace;
+
+  /* — Spacing */
+  --pad-x:    clamp(20px, 4vw, 64px);
+  --section-y:clamp(80px, 12vw, 180px);
+  --measure:  62ch;
+
+  /* — Motion */
+  --ease: cubic-bezier(.2,.7,.2,1);
+}
+
+[data-dark="1"] {
+  --bg:       #0c0c0a;
+  --bg-2:     #161613;
+  --ink:      #f4f1e8;
+  --ink-2:    #d8d4c6;
+  --mute:     #8f8c83;
+  --mute-2:   #5c5a52;
+  --rule:     #26241f;
+  --rule-2:   #34322b;
+  --accent:   #4dd4d4;
+  --accent-hi:#7be8e8;
+  --accent-ink:#0c0c0a;
+}
+
+/* ====================================================
+   RESET & BASE
+   ==================================================== */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+html { background: var(--bg); color: var(--ink); scroll-behavior: smooth; }
+body {
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  background: var(--bg);
+  color: var(--ink);
+  font-feature-settings: "ss01","ss02","cv11";
+}
+::selection { background: var(--accent); color: var(--accent-ink); }
+a { color: inherit; text-decoration: none; }
+
+/* ====================================================
+   DOC LAYOUT
+   ==================================================== */
+.doc-nav {
+  position: sticky; top: 0; z-index: 50;
+  background: color-mix(in oklab, var(--bg) 88%, transparent);
+  backdrop-filter: saturate(160%) blur(12px);
+  -webkit-backdrop-filter: saturate(160%) blur(12px);
+  border-bottom: 1px solid var(--rule);
+  padding: 0 var(--pad-x);
+}
+.doc-nav-row {
+  display: flex; align-items: center; gap: 24px; height: 56px;
+}
+.doc-brand {
+  font-family: var(--serif);
+  font-size: 18px;
+  letter-spacing: -0.01em;
+  display: flex; align-items: baseline; gap: 8px;
+}
+.doc-brand .dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--accent);
+  display: inline-block; transform: translateY(-2px);
+}
+.doc-brand .label {
+  font-family: var(--mono);
+  font-size: 10px; color: var(--mute);
+  text-transform: uppercase; letter-spacing: 0.12em;
+}
+.doc-nav-links {
+  display: flex; gap: 4px; margin-left: auto; align-items: center;
+}
+.doc-nav-links a {
+  font-family: var(--mono);
+  font-size: 10.5px; color: var(--mute);
+  text-transform: uppercase; letter-spacing: 0.08em;
+  padding: 6px 10px; border-radius: 6px;
+  transition: color .2s var(--ease), background .2s var(--ease);
+}
+.doc-nav-links a:hover { color: var(--ink); background: var(--bg-2); }
+.doc-nav-links a.active { color: var(--accent); }
+
+.dark-toggle {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--mono); font-size: 10.5px; color: var(--mute);
+  text-transform: uppercase; letter-spacing: 0.08em;
+  padding: 6px 12px; border-radius: 999px;
+  border: 1px solid var(--rule-2);
+  background: transparent; cursor: pointer;
+  transition: all .2s var(--ease);
+}
+.dark-toggle:hover { color: var(--ink); border-color: var(--ink); }
+
+.doc-shell {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--pad-x);
+}
+
+/* Sidebar layout */
+.doc-layout {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 0;
+  min-height: 100vh;
+}
+.doc-sidebar {
+  border-right: 1px solid var(--rule);
+  padding: 48px 24px 48px 0;
+  position: sticky;
+  top: 56px;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+  align-self: start;
+}
+.sidebar-group { margin-bottom: 24px; }
+.sidebar-group-label {
+  font-family: var(--mono); font-size: 9.5px;
+  text-transform: uppercase; letter-spacing: 0.14em;
+  color: var(--mute-2); margin: 0 0 8px;
+}
+.sidebar-link {
+  display: block;
+  font-size: 13.5px; color: var(--mute);
+  padding: 5px 0;
+  border-left: 2px solid transparent;
+  padding-left: 10px;
+  margin-left: -10px;
+  transition: color .2s var(--ease), border-color .2s var(--ease);
+}
+.sidebar-link:hover { color: var(--ink); border-left-color: var(--rule-2); }
+.sidebar-link.active { color: var(--accent); border-left-color: var(--accent); }
+
+.doc-content {
+  padding: 64px 0 120px 64px;
+}
+
+/* ====================================================
+   SECTION CHROME
+   ==================================================== */
+.ds-section {
+  padding-bottom: 80px;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 80px;
+  scroll-margin-top: 72px;
+}
+.ds-section:last-child { border-bottom: 0; }
+
+.ds-section-head {
+  display: flex; align-items: baseline; gap: 16px;
+  margin-bottom: 40px;
+}
+.ds-section-num {
+  font-family: var(--mono); font-size: 11px;
+  color: var(--mute-2); letter-spacing: 0.08em;
+}
+.ds-section-title {
+  font-family: var(--serif);
+  font-size: clamp(28px, 3.5vw, 40px);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  margin: 0;
+}
+.ds-section-title em { font-style: italic; font-weight: 300; color: var(--accent); }
+
+.ds-sub {
+  font-family: var(--mono); font-size: 10px;
+  text-transform: uppercase; letter-spacing: 0.14em;
+  color: var(--accent); margin: 0 0 20px;
+}
+
+/* ====================================================
+   COVER / INTRO
+   ==================================================== */
+.doc-cover {
+  padding: clamp(64px,10vw,120px) 0 clamp(56px,8vw,100px);
+  border-bottom: 1px solid var(--ink);
+  margin-bottom: 0;
+}
+.doc-cover-eyebrow {
+  font-family: var(--mono); font-size: 11px; color: var(--mute);
+  text-transform: uppercase; letter-spacing: 0.14em; margin-bottom: 28px;
+  display: flex; align-items: center; gap: 10px;
+}
+.doc-cover-eyebrow::before {
+  content: ""; display: block;
+  width: 24px; height: 1px; background: var(--mute);
+}
+.doc-cover h1 {
+  font-family: var(--serif);
+  font-size: clamp(48px,8vw,112px);
+  font-weight: 400;
+  line-height: 0.92;
+  letter-spacing: -0.03em;
+  margin: 0 0 32px;
+}
+.doc-cover h1 em { font-style: italic; font-weight: 300; color: var(--accent); }
+.doc-cover-meta {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  gap: 32px;
+  justify-content: start;
+  padding-top: 32px;
+  border-top: 1px solid var(--rule);
+  margin-top: 48px;
+}
+.doc-cover-meta .m { display: flex; flex-direction: column; gap: 4px; }
+.doc-cover-meta .mk {
+  font-family: var(--mono); font-size: 10px;
+  text-transform: uppercase; letter-spacing: 0.1em; color: var(--mute);
+}
+.doc-cover-meta .mv { font-size: 13.5px; color: var(--ink-2); }
+.doc-cover-meta .mv strong { color: var(--ink); font-weight: 500; }
+
+/* ====================================================
+   COLOR SWATCHES
+   ==================================================== */
+.swatch-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 12px;
+  margin-bottom: 32px;
+}
+.swatch {
+  display: flex; flex-direction: column; gap: 0;
+  border-radius: 8px; overflow: hidden;
+  border: 1px solid var(--rule);
+}
+.swatch-color {
+  height: 72px;
+}
+.swatch-info {
+  padding: 10px 12px;
+  background: var(--bg);
+  border-top: 1px solid var(--rule);
+}
+.swatch-name {
+  font-family: var(--mono); font-size: 10px;
+  color: var(--mute); text-transform: uppercase; letter-spacing: 0.08em;
+}
+.swatch-hex {
+  font-family: var(--mono); font-size: 11.5px;
+  color: var(--ink); margin-top: 2px;
+}
+.swatch-token {
+  font-family: var(--mono); font-size: 10px;
+  color: var(--accent); margin-top: 1px;
+}
+
+.color-section-label {
+  font-family: var(--mono); font-size: 10px;
+  text-transform: uppercase; letter-spacing: 0.12em;
+  color: var(--mute); margin: 24px 0 12px;
+}
+
+/* ====================================================
+   TOKEN TABLE
+   ==================================================== */
+.token-table {
+  width: 100%; border-collapse: collapse;
+  font-size: 13.5px; margin-bottom: 32px;
+}
+.token-table th {
+  font-family: var(--mono); font-size: 10px;
+  text-transform: uppercase; letter-spacing: 0.1em;
+  color: var(--mute); font-weight: 500;
+  text-align: left; padding: 8px 12px 8px 0;
+  border-bottom: 1px solid var(--ink);
+}
+.token-table td {
+  padding: 12px 12px 12px 0;
+  border-bottom: 1px solid var(--rule);
+  vertical-align: top;
+}
+.token-table tr:last-child td { border-bottom: 0; }
+.token-table .token-name {
+  font-family: var(--mono); font-size: 12px; color: var(--accent);
+}
+.token-table .token-val {
+  font-family: var(--mono); font-size: 12px; color: var(--ink-2);
+}
+.token-table .token-desc { color: var(--mute); font-size: 13px; }
+.token-swatch-inline {
+  display: inline-block;
+  width: 12px; height: 12px; border-radius: 3px;
+  border: 1px solid var(--rule);
+  vertical-align: middle; margin-right: 6px;
+}
+
+/* ====================================================
+   TYPE SPECIMENS
+   ==================================================== */
+.type-specimen {
+  padding: 32px 0;
+  border-bottom: 1px solid var(--rule);
+}
+.type-specimen:last-child { border-bottom: 0; }
+.type-meta {
+  display: flex; gap: 24px; align-items: baseline;
+  margin-bottom: 12px; flex-wrap: wrap;
+}
+.type-meta-item {
+  font-family: var(--mono); font-size: 10.5px;
+  color: var(--mute); letter-spacing: 0.06em;
+}
+.type-meta-item strong { color: var(--ink-2); font-weight: 500; }
+.t-display {
+  font-family: var(--serif); font-weight: 400;
+  font-size: clamp(48px,9vw,112px);
+  line-height: 0.92; letter-spacing: -0.025em;
+  margin: 0;
+}
+.t-display em { font-style: italic; font-weight: 300; color: var(--accent); }
+.t-h1 {
+  font-family: var(--serif); font-size: clamp(40px,6vw,72px);
+  line-height: 0.98; letter-spacing: -0.02em; font-weight: 400; margin: 0;
+}
+.t-h2 {
+  font-family: var(--serif); font-size: clamp(28px,3.4vw,40px);
+  line-height: 1.05; letter-spacing: -0.015em; font-weight: 400; margin: 0;
+}
+.t-h3 {
+  font-family: var(--sans); font-size: 19px;
+  line-height: 1.3; font-weight: 500; letter-spacing: -0.005em; margin: 0;
+}
+.t-lede {
+  font-family: var(--serif); font-size: clamp(20px,2.1vw,26px);
+  line-height: 1.32; letter-spacing: -0.005em;
+  font-weight: 300; color: var(--ink-2); margin: 0;
+}
+.t-body { font-size: 17px; line-height: 1.6; color: var(--ink-2); margin: 0; max-width: 62ch; }
+.t-eyebrow {
+  font-family: var(--mono); font-size: 12px;
+  text-transform: uppercase; letter-spacing: 0.12em; color: var(--mute); font-weight: 500;
+}
+.t-mono { font-family: var(--mono); font-size: 13px; color: var(--ink-2); }
+
+/* Home-page variants */
+.t-manrope-display {
+  font-family: "Manrope", ui-sans-serif, sans-serif;
+  font-size: clamp(40px,7vw,88px);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.03em; margin: 0;
+}
+.t-manrope-body {
+  font-family: "Manrope", ui-sans-serif, sans-serif;
+  font-size: 17px; line-height: 1.6; color: var(--ink-2); margin: 0;
+}
+.t-dmmono {
+  font-family: "DM Mono", ui-monospace, monospace;
+  font-size: 12.5px; letter-spacing: 0.06em; color: var(--mute);
+}
+
+/* ====================================================
+   SPACING VIZ
+   ==================================================== */
+.spacing-grid {
+  display: flex; flex-direction: column; gap: 12px;
+  margin-bottom: 32px;
+}
+.spacing-row {
+  display: flex; align-items: center; gap: 16px;
+}
+.spacing-bar {
+  height: 32px; background: color-mix(in oklab, var(--accent) 18%, var(--bg));
+  border: 1px solid color-mix(in oklab, var(--accent) 30%, transparent);
+  border-radius: 4px; flex-shrink: 0;
+}
+.spacing-label {
+  font-family: var(--mono); font-size: 11px; color: var(--mute); letter-spacing: 0.06em;
+}
+.spacing-label strong { color: var(--ink-2); font-weight: 500; }
+
+.grid-demo {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 24px;
+  margin-bottom: 32px;
+}
+.grid-col {
+  height: 40px;
+  background: color-mix(in oklab, var(--accent) 12%, var(--bg));
+  border: 1px solid color-mix(in oklab, var(--accent) 25%, transparent);
+  border-radius: 3px;
+}
+
+/* ====================================================
+   MOTION
+   ==================================================== */
+.motion-demo {
+  display: flex; gap: 24px; flex-wrap: wrap; margin-bottom: 24px;
+}
+.motion-card {
+  padding: 20px 28px;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  font-size: 14px; color: var(--ink-2);
+  cursor: pointer;
+  transition: transform .35s var(--ease), box-shadow .35s var(--ease),
+              border-color .35s var(--ease), color .35s var(--ease);
+}
+.motion-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(0,0,0,.08);
+  border-color: var(--accent); color: var(--accent);
+}
+
+.ease-visual {
+  position: relative; height: 120px; width: 320px;
+  border-left: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+  margin-bottom: 16px;
+}
+.ease-visual svg { position: absolute; inset: 0; overflow: visible; }
+
+/* ====================================================
+   COMPONENT DEMOS
+   ==================================================== */
+.component-demo {
+  background: var(--bg-2);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  padding: 32px;
+  margin-bottom: 16px;
+}
+.component-label {
+  font-family: var(--mono); font-size: 10px;
+  text-transform: uppercase; letter-spacing: 0.12em;
+  color: var(--mute); margin-bottom: 20px;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 14px 22px; border-radius: 999px;
+  font-size: 14px; font-weight: 500; font-family: var(--sans);
+  border: 1px solid var(--ink);
+  transition: transform .2s var(--ease), background .2s var(--ease), color .2s var(--ease);
+  background: transparent; color: var(--ink); cursor: pointer;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn-primary { background: var(--ink); color: var(--bg); }
+.btn-primary:hover { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.btn-ghost { border-color: var(--rule-2); color: var(--ink-2); }
+.btn-ghost:hover { border-color: var(--ink); color: var(--ink); }
+.btn-row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+
+/* Badge / Tag */
+.tag {
+  font-family: var(--mono); font-size: 11px;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 6px 14px; border: 1px solid var(--rule-2);
+  border-radius: 999px; color: var(--ink-2);
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.tag.accent {
+  background: color-mix(in oklab, var(--accent) 12%, var(--bg));
+  color: var(--accent); border-color: var(--accent);
+}
+.tag .sw { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+
+/* Nav CTA */
+.nav-cta {
+  font-family: var(--sans); font-size: 13px; font-weight: 500;
+  padding: 8px 14px; background: var(--ink); color: var(--bg);
+  border-radius: 999px; border: 1px solid var(--ink);
+  display: inline-flex; align-items: center; gap: 8px;
+  transition: transform .2s var(--ease), background .2s var(--ease);
+  cursor: pointer;
+}
+.nav-cta:hover { transform: translateY(-1px); background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.pulse {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: #4ade80;
+  box-shadow: 0 0 0 0 rgba(74,222,128,.8);
+  animation: pulse 1.8s infinite;
+}
+@keyframes pulse {
+  0%   { box-shadow: 0 0 0 0   rgba(74,222,128,.6); }
+  70%  { box-shadow: 0 0 0 8px rgba(74,222,128,0); }
+  100% { box-shadow: 0 0 0 0   rgba(74,222,128,0); }
+}
+
+/* Eyebrow row */
+.eyebrow {
+  font-family: var(--mono); font-size: 12px;
+  text-transform: uppercase; letter-spacing: 0.12em;
+  color: var(--mute); font-weight: 500;
+}
+
+/* Section head */
+.section-head-demo {
+  display: grid; grid-template-columns: 1fr 2fr; gap: 32px;
+  padding-bottom: 32px; border-bottom: 1px solid var(--ink);
+  align-items: end;
+}
+.section-head-demo .num {
+  font-family: var(--mono); font-size: 11px;
+  color: var(--mute); letter-spacing: 0.1em; text-transform: uppercase;
+}
+.section-head-demo h2 {
+  font-family: var(--serif); font-size: 36px;
+  line-height: 1.05; letter-spacing: -0.015em; font-weight: 400; margin: 0;
+}
+.section-head-demo h2 em { font-style: italic; font-weight: 300; color: var(--accent); }
+.section-head-demo p { font-size: 14.5px; color: var(--ink-2); margin: 0; max-width: 30ch; }
+
+/* Work row */
+.work-row-demo {
+  display: grid;
+  grid-template-columns: 40px 1.4fr 1fr 1fr 24px;
+  gap: 24px; padding: 28px 0;
+  border-bottom: 1px solid var(--rule);
+  align-items: start; cursor: pointer;
+  transition: padding .35s var(--ease);
+}
+.work-row-demo:hover { padding-left: 8px; }
+.work-row-demo:hover .work-title-d { color: var(--accent); }
+.work-row-demo .rnum {
+  font-family: var(--mono); font-size: 12px; color: var(--mute); padding-top: 6px;
+}
+.work-title-d {
+  font-family: var(--serif); font-size: 32px;
+  line-height: 1.02; letter-spacing: -0.02em; font-weight: 400; margin: 0;
+  transition: color .25s var(--ease);
+}
+.work-title-d em { font-style: italic; font-weight: 300; }
+.work-meta-d { display: flex; flex-direction: column; gap: 5px; padding-top: 8px; }
+.work-meta-d .role { font-size: 13px; color: var(--ink-2); }
+.work-meta-d .stack {
+  font-family: var(--mono); font-size: 11px; color: var(--mute);
+  text-transform: uppercase; letter-spacing: 0.05em;
+}
+.work-out-d { display: flex; flex-direction: column; gap: 3px; padding-top: 8px; }
+.work-out-d .stat {
+  font-family: var(--serif); font-size: 20px; letter-spacing: -0.01em; line-height: 1.1;
+}
+.work-out-d .stat small {
+  font-family: var(--mono); font-size: 10px; color: var(--mute);
+  display: block; text-transform: uppercase; letter-spacing: 0.05em;
+}
+.arrow-d { padding-top: 12px; color: var(--ink-2); font-size: 16px; }
+
+/* Result stats */
+.results-demo {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 0; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink);
+}
+.r-cell {
+  padding: 24px 16px 24px 0;
+  border-right: 1px solid var(--rule);
+  display: flex; flex-direction: column; gap: 5px;
+}
+.r-cell:last-child { border-right: 0; }
+.r-big {
+  font-family: var(--serif); font-size: clamp(32px,4vw,48px);
+  line-height: 1; letter-spacing: -0.025em;
+}
+.r-big em { font-style: italic; font-weight: 300; color: var(--accent); }
+.r-lbl {
+  font-family: var(--mono); font-size: 10.5px; color: var(--mute);
+  text-transform: uppercase; letter-spacing: 0.08em; line-height: 1.35;
+}
+
+/* Code card */
+.codecard {
+  background: var(--bg-2); border: 1px solid var(--rule);
+  border-radius: 6px; overflow: hidden;
+}
+.codecard .head {
+  padding: 10px 16px; border-bottom: 1px solid var(--rule);
+  display: flex; gap: 10px; align-items: center;
+  font-family: var(--mono); font-size: 11px; color: var(--mute);
+  letter-spacing: 0.06em; text-transform: uppercase;
+}
+.codecard .lights { display: inline-flex; gap: 6px; }
+.codecard .lights span {
+  width: 9px; height: 9px; border-radius: 50%; background: var(--rule-2);
+}
+.codecard pre {
+  margin: 0; padding: 18px 20px;
+  font-family: var(--mono); font-size: 12.5px;
+  line-height: 1.6; color: var(--ink-2); overflow-x: auto;
+}
+.codecard .k { color: var(--accent); }
+.codecard .s { color: #a16207; }
+.codecard .c { color: var(--mute); }
+
+/* Placeholder */
+.ph {
+  position: relative;
+  background:
+    repeating-linear-gradient(135deg, var(--rule) 0 1px, transparent 1px 14px),
+    var(--bg-2);
+  border: 1px solid var(--rule-2);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--mono); font-size: 11px;
+  color: var(--mute); letter-spacing: 0.08em; text-transform: uppercase;
+  border-radius: 4px; overflow: hidden;
+  height: 140px;
+}
+.ph::before {
+  content: "";
+  position: absolute; inset: 12px;
+  border: 1px dashed var(--rule-2);
+  border-radius: 2px; pointer-events: none;
+}
+.ph .ph-label {
+  position: relative; background: var(--bg);
+  padding: 6px 10px;
+  border: 1px solid var(--rule-2);
+  border-radius: 999px; z-index: 1;
+}
+
+/* Before/After */
+.ba {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  border: 1px solid var(--rule); border-radius: 6px;
+  padding: 16px; background: var(--bg);
+}
+.ba .ba-col { display: flex; flex-direction: column; gap: 10px; }
+.ba .ba-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--mono); font-size: 10.5px; color: var(--mute);
+  text-transform: uppercase; letter-spacing: 0.08em;
+}
+.ba .ba-tag .sw { width: 8px; height: 8px; border-radius: 50%; background: var(--mute-2); }
+.ba .after .sw { background: var(--accent); }
+.ba .after .ba-tag { color: var(--accent); }
+.ba .ba-ph { height: 80px; }
+
+/* TOC */
+.toc-demo {
+  display: flex; flex-direction: column; gap: 0;
+  border-left: 1px solid var(--rule); width: 200px;
+}
+.toc-item-d {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 0 12px 16px;
+  border-left: 2px solid transparent; margin-left: -1px;
+  font-family: var(--mono); font-size: 11px;
+  text-transform: uppercase; letter-spacing: 0.08em; color: var(--mute);
+  transition: all .2s var(--ease);
+}
+.toc-item-d.active { border-left-color: var(--accent); color: var(--accent); }
+.toc-item-d:hover { color: var(--ink); border-left-color: var(--rule-2); }
+.toc-num-d { color: var(--mute-2); font-size: 10px; }
+
+/* Impact card */
+.impact-cards-demo {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+}
+.impact-card-d {
+  background: var(--bg); border: 1px solid var(--rule);
+  border-radius: 16px; padding: 24px;
+  display: flex; flex-direction: column; gap: 14px;
+  transition: all .4s var(--ease);
+}
+.impact-card-d:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 40px rgba(0,0,0,.07);
+  border-color: var(--accent);
+}
+.impact-icon-d {
+  width: 48px; height: 48px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+  background: color-mix(in oklab, var(--accent) 14%, var(--bg));
+}
+.impact-value-d {
+  font-family: var(--serif); font-size: 36px;
+  line-height: 1; letter-spacing: -0.02em; color: var(--accent);
+}
+.impact-label-d { font-size: 13px; color: var(--ink-2); font-weight: 500; line-height: 1.4; }
+
+/* Marquee */
+.marquee-demo {
+  border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink);
+  overflow: hidden; white-space: nowrap;
+  display: flex; padding: 16px 0;
+  pointer-events: none;
+}
+.marquee-track-d {
+  display: inline-flex; gap: 48px;
+  animation: scroll 30s linear infinite; padding-right: 48px;
+}
+.marquee-item-d {
+  font-family: var(--serif); font-style: italic; font-weight: 300;
+  font-size: clamp(22px,3vw,44px); letter-spacing: -0.02em; color: var(--ink);
+  display: inline-flex; align-items: center; gap: 48px;
+}
+.marquee-item-d::after {
+  content: "✦"; font-style: normal; color: var(--accent); font-size: 0.6em;
+}
+@keyframes scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* AI workflow dark section */
+.ai-section-demo {
+  background: #2D2826;
+  background-image:
+    linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+  border-radius: 8px; padding: 32px;
+  display: grid; grid-template-columns: repeat(4,1fr); gap: 16px;
+}
+.flow-step-d {
+  background: #FFDAB9; border-radius: 12px; padding: 18px;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.step-num-d {
+  width: 32px; height: 32px; border-radius: 50%;
+  background: #F4B481; color: #2D2826;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--sans); font-weight: 700; font-size: 13px;
+}
+.step-title-d { font-size: 12px; font-weight: 700; color: #0a0a0a; }
+.step-desc-d { font-size: 11px; line-height: 1.4; color: rgba(0,0,0,.65); }
+
+/* Blockquote */
+.blockquote-demo {
+  padding: 24px 28px;
+  border-left: 2px solid var(--accent);
+  background: var(--bg-2);
+  font-family: var(--serif); font-style: italic;
+  font-size: 20px; line-height: 1.35; color: var(--ink); max-width: 62ch;
+}
+.blockquote-demo cite {
+  display: block; margin-top: 10px;
+  font-family: var(--mono); font-style: normal;
+  font-size: 10.5px; color: var(--mute);
+  text-transform: uppercase; letter-spacing: 0.08em;
+}
+
+/* Decision log */
+.dec-demo { border-top: 1px solid var(--rule); }
+.dec-row-d {
+  display: grid;
+  grid-template-columns: 56px 1fr 1.6fr 90px;
+  gap: 20px; padding: 18px 0;
+  border-bottom: 1px solid var(--rule); align-items: start;
+}
+.dec-ix { font-family: var(--mono); font-size: 10.5px; color: var(--mute); padding-top: 3px; }
+.dec-what { font-family: var(--serif); font-size: 17px; line-height: 1.2; }
+.dec-why { font-size: 13.5px; color: var(--ink-2); line-height: 1.5; }
+.dec-tag {
+  font-family: var(--mono); font-size: 9.5px; color: var(--accent);
+  text-transform: uppercase; letter-spacing: 0.08em; padding-top: 4px;
+}
+
+/* ====================================================
+   HOME PAGE NOTE BOX
+   ==================================================== */
+.note-box {
+  padding: 20px 24px;
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--accent);
+  background: color-mix(in oklab, var(--accent) 6%, var(--bg));
+  border-radius: 0 6px 6px 0;
+  font-size: 14px; color: var(--ink-2); line-height: 1.55;
+  margin-bottom: 24px;
+}
+.note-box strong { color: var(--ink); font-weight: 500; }
+
+/* ====================================================
+   CODE SNIPPET
+   ==================================================== */
+.code-snippet {
+  background: var(--bg-2); border: 1px solid var(--rule);
+  border-radius: 6px; padding: 16px 20px;
+  font-family: var(--mono); font-size: 12px;
+  color: var(--ink-2); line-height: 1.65;
+  overflow-x: auto; margin-bottom: 16px;
+}
+.code-snippet .k { color: var(--accent); }
+.code-snippet .v { color: #a16207; }
+.code-snippet .c { color: var(--mute); }
+
+/* ====================================================
+   RESPONSIVE
+   ==================================================== */
+@media (max-width: 860px) {
+  .doc-layout { grid-template-columns: 1fr; }
+  .doc-sidebar { display: none; }
+  .doc-content { padding: 40px 0 80px; }
+  .results-demo { grid-template-columns: 1fr 1fr; }
+  .impact-cards-demo { grid-template-columns: 1fr 1fr; }
+  .ai-section-demo { grid-template-columns: 1fr 1fr; }
+  .dec-row-d { grid-template-columns: 1fr; gap: 6px; }
+  .section-head-demo { grid-template-columns: 1fr; }
+  .doc-cover-meta { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ======= TOP NAV ======= -->
+<header class="doc-nav">
+  <div class="doc-nav-row doc-shell">
+    <div class="doc-brand">
+      <span class="dot"></span>
+      Afrin
+      <span class="label">Design System</span>
+    </div>
+    <nav class="doc-nav-links">
+      <a href="#colors">Colors</a>
+      <a href="#typography">Type</a>
+      <a href="#spacing">Spacing</a>
+      <a href="#motion">Motion</a>
+      <a href="#components">Components</a>
+    </nav>
+    <button class="dark-toggle" onclick="toggleDark()" aria-label="Toggle dark mode">
+      <span id="dark-icon">☽</span> Dark
+    </button>
+  </div>
+</header>
+
+<div class="doc-shell">
+  <!-- ======= COVER ======= -->
+  <div class="doc-cover">
+    <div class="doc-cover-eyebrow">Design System · v2 · May 2026</div>
+    <h1>Afrin Portfolio<br><em>Design System</em></h1>
+    <p style="max-width:52ch; color:var(--ink-2); font-size:17px; line-height:1.6; margin:0;">
+      Tokens, typography, spacing, motion, and components that power the portfolio homepage and all case studies. Two font configurations depending on page context.
+    </p>
+    <div class="doc-cover-meta">
+      <div class="m"><span class="mk">Version</span><span class="mv"><strong>2.0</strong></span></div>
+      <div class="m"><span class="mk">Last updated</span><span class="mv"><strong>May 2026</strong></span></div>
+      <div class="m"><span class="mk">Pages</span><span class="mv"><strong>Homepage · 2 Case Studies</strong></span></div>
+      <div class="m"><span class="mk">Accent light</span><span class="mv"><strong style="color:#0F6E56">■</strong> Teal · #0F6E56</span></div>
+    </div>
+  </div>
+
+  <div class="doc-layout">
+
+    <!-- ======= SIDEBAR ======= -->
+    <aside class="doc-sidebar">
+      <div class="sidebar-group">
+        <div class="sidebar-group-label">Foundations</div>
+        <a class="sidebar-link" href="#colors">Colors</a>
+        <a class="sidebar-link" href="#typography">Typography</a>
+        <a class="sidebar-link" href="#spacing">Spacing & Layout</a>
+        <a class="sidebar-link" href="#motion">Motion</a>
+      </div>
+      <div class="sidebar-group">
+        <div class="sidebar-group-label">Components</div>
+        <a class="sidebar-link" href="#buttons">Buttons</a>
+        <a class="sidebar-link" href="#tags">Badges & Tags</a>
+        <a class="sidebar-link" href="#nav">Navigation</a>
+        <a class="sidebar-link" href="#section-head">Section Head</a>
+        <a class="sidebar-link" href="#work-row">Work Row</a>
+        <a class="sidebar-link" href="#impact-cards">Impact Cards</a>
+        <a class="sidebar-link" href="#results">Result Stats</a>
+        <a class="sidebar-link" href="#toc">Table of Contents</a>
+        <a class="sidebar-link" href="#code-card">Code Card</a>
+        <a class="sidebar-link" href="#blockquote">Blockquote</a>
+        <a class="sidebar-link" href="#before-after">Before / After</a>
+        <a class="sidebar-link" href="#decision-log">Decision Log</a>
+        <a class="sidebar-link" href="#placeholder">Placeholder</a>
+        <a class="sidebar-link" href="#marquee">Marquee</a>
+        <a class="sidebar-link" href="#ai-workflow">AI Workflow</a>
+      </div>
+    </aside>
+
+    <!-- ======= MAIN CONTENT ======= -->
+    <main class="doc-content">
+
+      <!-- ===========================
+           1. COLORS
+           =========================== -->
+      <section class="ds-section" id="colors">
+        <div class="ds-section-head">
+          <span class="ds-section-num">01</span>
+          <h2 class="ds-section-title">Color <em>Tokens</em></h2>
+        </div>
+
+        <div class="note-box">
+          <strong>Two accent contexts:</strong> Case studies and the v1 homepage use <code>--accent: #0F6E56</code> (forest teal). The v2 homepage (home.css) uses <code>--accent: #2563EB</code> (blue) light / <code>#2bc794</code> dark. Dark mode flips teal to <code>#4dd4d4</code>.
+        </div>
+
+        <p class="color-section-label">Surfaces & Ink</p>
+        <div class="swatch-grid">
+          <div class="swatch">
+            <div class="swatch-color" style="background:#faf8f3;border-bottom:1px solid var(--rule);"></div>
+            <div class="swatch-info">
+              <div class="swatch-name">Background</div>
+              <div class="swatch-hex">#faf8f3</div>
+              <div class="swatch-token">--bg</div>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#f3f0e7;"></div>
+            <div class="swatch-info">
+              <div class="swatch-name">Surface 2</div>
+              <div class="swatch-hex">#f3f0e7</div>
+              <div class="swatch-token">--bg-2</div>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#0e0e0c;"></div>
+            <div class="swatch-info">
+              <div class="swatch-name">Ink</div>
+              <div class="swatch-hex">#0e0e0c</div>
+              <div class="swatch-token">--ink</div>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#2a2a26;"></div>
+            <div class="swatch-info">
+              <div class="swatch-name">Ink 2</div>
+              <div class="swatch-hex">#2a2a26</div>
+              <div class="swatch-token">--ink-2</div>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#8a8780;"></div>
+            <div class="swatch-info">
+              <div class="swatch-name">Muted</div>
+              <div class="swatch-hex">#8a8780</div>
+              <div class="swatch-token">--mute</div>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#b8b4ab;"></div>
+            <div class="swatch-info">
+              <div class="swatch-name">Muted 2</div>
+              <div class="swatch-hex">#b8b4ab</div>
+              <div class="swatch-token">--mute-2</div>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#e6e1d4;"></div>
+            <div class="swatch-info">
+              <div class="swatch-name">Rule</div>
+              <div class="swatch-hex">#e6e1d4</div>
+              <div class="swatch-token">--rule</div>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#d8d2c1;"></div>
+            <div class="swatch-info">
+              <div class="swatch-name">Rule 2</div>
+              <div class="swatch-hex">#d8d2c1</div>
+              <div class="swatch-token">--rule-2</div>
+            </div>
+          </div>
+        </div>
+
+        <p class="color-section-label">Accents</p>
+        <div class="swatch-grid">
+          <div class="swatch">
+            <div class="swatch-color" style="background:#0F6E56;"></div>
+            <div class="swatch-info">
+              <div class="swatch-name">Accent (Case Studies)</div>
+              <div class="swatch-hex">#0F6E56</div>
+              <div class="swatch-token">--accent</div>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#138a6b;"></div>
+            <div class="swatch-info">
+              <div class="swatch-name">Accent Hi</div>
+              <div class="swatch-hex">#138a6b</div>
+              <div class="swatch-token">--accent-hi</div>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#4dd4d4;"></div>
+            <div class="swatch-info">
+              <div class="swatch-name">Accent Dark Mode</div>
+              <div class="swatch-hex">#4dd4d4</div>
+              <div class="swatch-token">--accent (dark)</div>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#2563EB;"></div>
+            <div class="swatch-info">
+              <div class="swatch-name">Accent Homepage v2</div>
+              <div class="swatch-hex">#2563EB</div>
+              <div class="swatch-token">home.css --accent</div>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#c2410c;"></div>
+            <div class="swatch-info">
+              <div class="swatch-name">Warn</div>
+              <div class="swatch-hex">#c2410c</div>
+              <div class="swatch-token">--warn</div>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#F4B481;"></div>
+            <div class="swatch-info">
+              <div class="swatch-name">AI Section Orange</div>
+              <div class="swatch-hex">#F4B481</div>
+              <div class="swatch-token">case-study.css</div>
+            </div>
+          </div>
+        </div>
+
+        <p class="color-section-label">Dark Mode Surfaces</p>
+        <div class="swatch-grid">
+          <div class="swatch">
+            <div class="swatch-color" style="background:#0c0c0a;"></div>
+            <div class="swatch-info">
+              <div class="swatch-name">BG Dark</div>
+              <div class="swatch-hex">#0c0c0a</div>
+              <div class="swatch-token">--bg (dark)</div>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#161613;"></div>
+            <div class="swatch-info">
+              <div class="swatch-name">Surface Dark 2</div>
+              <div class="swatch-hex">#161613</div>
+              <div class="swatch-token">--bg-2 (dark)</div>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#f4f1e8;border:1px solid #333;"></div>
+            <div class="swatch-info">
+              <div class="swatch-name">Ink Dark</div>
+              <div class="swatch-hex">#f4f1e8</div>
+              <div class="swatch-token">--ink (dark)</div>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#26241f;"></div>
+            <div class="swatch-info">
+              <div class="swatch-name">Rule Dark</div>
+              <div class="swatch-hex">#26241f</div>
+              <div class="swatch-token">--rule (dark)</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Token reference table -->
+        <p class="ds-sub" style="margin-top:32px;">Full Token Reference</p>
+        <table class="token-table">
+          <thead>
+            <tr>
+              <th>Token</th>
+              <th>Light</th>
+              <th>Dark</th>
+              <th>Usage</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="token-name">--bg</span></td>
+              <td class="token-val"><span class="token-swatch-inline" style="background:#faf8f3;"></span>#faf8f3</td>
+              <td class="token-val"><span class="token-swatch-inline" style="background:#0c0c0a;"></span>#0c0c0a</td>
+              <td class="token-desc">Page background</td>
+            </tr>
+            <tr>
+              <td><span class="token-name">--bg-2</span></td>
+              <td class="token-val"><span class="token-swatch-inline" style="background:#f3f0e7;"></span>#f3f0e7</td>
+              <td class="token-val"><span class="token-swatch-inline" style="background:#161613;"></span>#161613</td>
+              <td class="token-desc">Card surfaces, tinted sections</td>
+            </tr>
+            <tr>
+              <td><span class="token-name">--ink</span></td>
+              <td class="token-val"><span class="token-swatch-inline" style="background:#0e0e0c;"></span>#0e0e0c</td>
+              <td class="token-val"><span class="token-swatch-inline" style="background:#f4f1e8;border:1px solid #444;"></span>#f4f1e8</td>
+              <td class="token-desc">Primary text, borders on section dividers</td>
+            </tr>
+            <tr>
+              <td><span class="token-name">--ink-2</span></td>
+              <td class="token-val"><span class="token-swatch-inline" style="background:#2a2a26;"></span>#2a2a26</td>
+              <td class="token-val"><span class="token-swatch-inline" style="background:#d8d4c6;"></span>#d8d4c6</td>
+              <td class="token-desc">Secondary text, body paragraphs</td>
+            </tr>
+            <tr>
+              <td><span class="token-name">--mute</span></td>
+              <td class="token-val"><span class="token-swatch-inline" style="background:#8a8780;"></span>#8a8780</td>
+              <td class="token-val"><span class="token-swatch-inline" style="background:#8f8c83;"></span>#8f8c83</td>
+              <td class="token-desc">Labels, captions, placeholders</td>
+            </tr>
+            <tr>
+              <td><span class="token-name">--mute-2</span></td>
+              <td class="token-val"><span class="token-swatch-inline" style="background:#b8b4ab;"></span>#b8b4ab</td>
+              <td class="token-val"><span class="token-swatch-inline" style="background:#5c5a52;"></span>#5c5a52</td>
+              <td class="token-desc">Inactive dots, weak rule</td>
+            </tr>
+            <tr>
+              <td><span class="token-name">--rule</span></td>
+              <td class="token-val"><span class="token-swatch-inline" style="background:#e6e1d4;"></span>#e6e1d4</td>
+              <td class="token-val"><span class="token-swatch-inline" style="background:#26241f;"></span>#26241f</td>
+              <td class="token-desc">Hairlines between rows/sections</td>
+            </tr>
+            <tr>
+              <td><span class="token-name">--rule-2</span></td>
+              <td class="token-val"><span class="token-swatch-inline" style="background:#d8d2c1;"></span>#d8d2c1</td>
+              <td class="token-val"><span class="token-swatch-inline" style="background:#34322b;"></span>#34322b</td>
+              <td class="token-desc">Stronger rules, card borders</td>
+            </tr>
+            <tr>
+              <td><span class="token-name">--accent</span></td>
+              <td class="token-val"><span class="token-swatch-inline" style="background:#0F6E56;"></span>#0F6E56</td>
+              <td class="token-val"><span class="token-swatch-inline" style="background:#4dd4d4;"></span>#4dd4d4</td>
+              <td class="token-desc">Links, highlights, active states</td>
+            </tr>
+            <tr>
+              <td><span class="token-name">--warn</span></td>
+              <td class="token-val"><span class="token-swatch-inline" style="background:#c2410c;"></span>#c2410c</td>
+              <td class="token-val">—</td>
+              <td class="token-desc">Error / warning states</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- ===========================
+           2. TYPOGRAPHY
+           =========================== -->
+      <section class="ds-section" id="typography">
+        <div class="ds-section-head">
+          <span class="ds-section-num">02</span>
+          <h2 class="ds-section-title"><em>Typography</em></h2>
+        </div>
+
+        <div class="note-box">
+          <strong>Two font stacks:</strong> Case studies + v1 homepage use <strong>Newsreader</strong> (serif) + <strong>Geist</strong> (sans) + <strong>Geist Mono</strong>. The v2 homepage (home.css) uses <strong>Manrope</strong> (display + sans) + <strong>DM Mono</strong>.
+        </div>
+
+        <p class="ds-sub">Stack A — Case Studies (portfolio.css)</p>
+
+        <div class="type-specimen">
+          <div class="type-meta">
+            <span class="type-meta-item">Class: <strong>.display</strong></span>
+            <span class="type-meta-item">Font: <strong>Newsreader</strong></span>
+            <span class="type-meta-item">Weight: <strong>400 / 300 italic</strong></span>
+            <span class="type-meta-item">Size: <strong>clamp(48px → 156px)</strong></span>
+            <span class="type-meta-item">Leading: <strong>0.92</strong></span>
+          </div>
+          <p class="t-display">Design that <em>ships</em>.</p>
+        </div>
+
+        <div class="type-specimen">
+          <div class="type-meta">
+            <span class="type-meta-item">Class: <strong>.h1</strong></span>
+            <span class="type-meta-item">Font: <strong>Newsreader</strong></span>
+            <span class="type-meta-item">Weight: <strong>400</strong></span>
+            <span class="type-meta-item">Size: <strong>clamp(40px → 88px)</strong></span>
+            <span class="type-meta-item">Leading: <strong>0.98</strong></span>
+          </div>
+          <p class="t-h1">Enterprise products that work.</p>
+        </div>
+
+        <div class="type-specimen">
+          <div class="type-meta">
+            <span class="type-meta-item">Class: <strong>.h2</strong></span>
+            <span class="type-meta-item">Font: <strong>Newsreader</strong></span>
+            <span class="type-meta-item">Size: <strong>clamp(28px → 44px)</strong></span>
+            <span class="type-meta-item">Leading: <strong>1.05</strong></span>
+          </div>
+          <p class="t-h2">Two rebuilds that moved the numbers.</p>
+        </div>
+
+        <div class="type-specimen">
+          <div class="type-meta">
+            <span class="type-meta-item">Class: <strong>.h3</strong></span>
+            <span class="type-meta-item">Font: <strong>Geist</strong></span>
+            <span class="type-meta-item">Weight: <strong>500</strong></span>
+            <span class="type-meta-item">Size: <strong>19px</strong></span>
+          </div>
+          <p class="t-h3">I identify gaps before building.</p>
+        </div>
+
+        <div class="type-specimen">
+          <div class="type-meta">
+            <span class="type-meta-item">Class: <strong>.lede</strong></span>
+            <span class="type-meta-item">Font: <strong>Newsreader</strong></span>
+            <span class="type-meta-item">Weight: <strong>300</strong></span>
+            <span class="type-meta-item">Size: <strong>clamp(20px → 28px)</strong></span>
+          </div>
+          <p class="t-lede">Senior designer at Field Proxy. Independent, AI-native, technically deep.</p>
+        </div>
+
+        <div class="type-specimen">
+          <div class="type-meta">
+            <span class="type-meta-item">Class: <strong>.body / p</strong></span>
+            <span class="type-meta-item">Font: <strong>Geist</strong></span>
+            <span class="type-meta-item">Size: <strong>17px</strong></span>
+            <span class="type-meta-item">Leading: <strong>1.6</strong></span>
+            <span class="type-meta-item">Max-width: <strong>62ch</strong></span>
+          </div>
+          <p class="t-body">I worked alongside PMs and CTOs at Field Proxy to redirect product direction — not just execute briefs. I name the problem before I'm asked to design the solution.</p>
+        </div>
+
+        <div class="type-specimen">
+          <div class="type-meta">
+            <span class="type-meta-item">Class: <strong>.eyebrow</strong></span>
+            <span class="type-meta-item">Font: <strong>Geist Mono</strong></span>
+            <span class="type-meta-item">Size: <strong>12px</strong></span>
+            <span class="type-meta-item">Case: <strong>UPPERCASE</strong></span>
+            <span class="type-meta-item">Tracking: <strong>0.12em</strong></span>
+          </div>
+          <p class="t-eyebrow">§ Selected Work · 2024–2026</p>
+        </div>
+
+        <div class="type-specimen">
+          <div class="type-meta">
+            <span class="type-meta-item">Class: <strong>.mono</strong></span>
+            <span class="type-meta-item">Font: <strong>Geist Mono</strong></span>
+            <span class="type-meta-item">Size: <strong>12.5px</strong></span>
+          </div>
+          <p class="t-mono">ROLE / DESIGN · STRATEGY · AI · SYSTEMS</p>
+        </div>
+
+        <p class="ds-sub" style="margin-top:40px;">Stack B — Homepage v2 (home.css)</p>
+
+        <div class="type-specimen">
+          <div class="type-meta">
+            <span class="type-meta-item">Class: <strong>.hero-headline</strong></span>
+            <span class="type-meta-item">Font: <strong>Manrope</strong></span>
+            <span class="type-meta-item">Weight: <strong>800</strong></span>
+            <span class="type-meta-item">Size: <strong>clamp(48px → 140px)</strong></span>
+          </div>
+          <p class="t-manrope-display">Enterprise products that <span style="font-style:italic;font-weight:300">actually ship</span>.</p>
+        </div>
+
+        <div class="type-specimen">
+          <div class="type-meta">
+            <span class="type-meta-item">Font: <strong>Manrope</strong></span>
+            <span class="type-meta-item">Weight: <strong>400</strong></span>
+            <span class="type-meta-item">Size: <strong>17px · line-height 1.6</strong></span>
+          </div>
+          <p class="t-manrope-body">Senior designer at Field Proxy (YC W22). Independent, AI-native, technically deep.</p>
+        </div>
+
+        <div class="type-specimen">
+          <div class="type-meta">
+            <span class="type-meta-item">Font: <strong>DM Mono</strong></span>
+            <span class="type-meta-item">Size: <strong>12.5px</strong></span>
+          </div>
+          <p class="t-dmmono">SENIOR PRODUCT DESIGNER · BENGALURU</p>
+        </div>
+      </section>
+
+      <!-- ===========================
+           3. SPACING & LAYOUT
+           =========================== -->
+      <section class="ds-section" id="spacing">
+        <div class="ds-section-head">
+          <span class="ds-section-num">03</span>
+          <h2 class="ds-section-title">Spacing &amp; <em>Layout</em></h2>
+        </div>
+
+        <p class="ds-sub">Spacing Tokens</p>
+        <div class="spacing-grid">
+          <div class="spacing-row">
+            <div class="spacing-bar" style="width:64px;"></div>
+            <span class="spacing-label"><strong>--pad-x</strong> · clamp(20px, 4vw, 64px) — horizontal shell padding</span>
+          </div>
+          <div class="spacing-row">
+            <div class="spacing-bar" style="width:180px;"></div>
+            <span class="spacing-label"><strong>--section-y</strong> · clamp(80px, 12vw, 180px) — vertical section rhythm</span>
+          </div>
+          <div class="spacing-row">
+            <div class="spacing-bar" style="width:24px;"></div>
+            <span class="spacing-label"><strong>Column gap</strong> · 24px — 12-column grid gutter</span>
+          </div>
+          <div class="spacing-row">
+            <div class="spacing-bar" style="width:32px;"></div>
+            <span class="spacing-label"><strong>Nav height</strong> · 56px (portfolio) / 68px (homepage)</span>
+          </div>
+        </div>
+
+        <p class="ds-sub">12-Column Grid</p>
+        <div class="grid-demo">
+          <div class="grid-col"></div><div class="grid-col"></div>
+          <div class="grid-col"></div><div class="grid-col"></div>
+          <div class="grid-col"></div><div class="grid-col"></div>
+          <div class="grid-col"></div><div class="grid-col"></div>
+          <div class="grid-col"></div><div class="grid-col"></div>
+          <div class="grid-col"></div><div class="grid-col"></div>
+        </div>
+        <div class="code-snippet">
+<span class="k">.grid-12</span> {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: 24px;
+}
+
+<span class="k">.shell</span> {
+  padding-left: var(--pad-x);
+  padding-right: var(--pad-x);
+  max-width: 1480px;
+  margin: 0 auto;
+}
+
+<span class="c">/* Text measure cap */</span>
+--measure: 62ch;
+        </div>
+
+        <p class="ds-sub">Responsive Breakpoints</p>
+        <table class="token-table">
+          <thead><tr><th>Breakpoint</th><th>Value</th><th>Triggered changes</th></tr></thead>
+          <tbody>
+            <tr>
+              <td class="token-name">Mobile</td>
+              <td class="token-val">≤ 920px</td>
+              <td class="token-desc">Hero foot → 2-col, work row → 2-col, TOC inline, nav links hidden</td>
+            </tr>
+            <tr>
+              <td class="token-name">Tablet</td>
+              <td class="token-val">≤ 980px</td>
+              <td class="token-desc">Case study grid → 1-col, TOC hidden, impact cards → 2-col</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- ===========================
+           4. MOTION
+           =========================== -->
+      <section class="ds-section" id="motion">
+        <div class="ds-section-head">
+          <span class="ds-section-num">04</span>
+          <h2 class="ds-section-title">Motion &amp; <em>Easing</em></h2>
+        </div>
+
+        <p class="ds-sub">Easing Curve</p>
+        <div class="code-snippet">
+<span class="c">/* Primary easing — snappy deceleration */</span>
+<span class="k">--ease</span>: cubic-bezier(.2, .7, .2, 1);
+
+<span class="c">/* Homepage variant */</span>
+<span class="k">--ease</span>: cubic-bezier(.16, .84, .44, 1);
+        </div>
+
+        <p class="ds-sub">Hover States — interact below</p>
+        <div class="motion-demo">
+          <div class="motion-card">Hover: translateY(-3px)</div>
+          <div class="motion-card">Hover: border → accent</div>
+          <div class="motion-card">Hover: color → accent</div>
+        </div>
+
+        <p class="ds-sub">Durations</p>
+        <table class="token-table">
+          <thead><tr><th>Use</th><th>Duration</th><th>Property</th></tr></thead>
+          <tbody>
+            <tr><td class="token-desc">Micro (color, opacity)</td><td class="token-val">.2s</td><td class="token-desc">color, background, border-color</td></tr>
+            <tr><td class="token-desc">Interaction (lift)</td><td class="token-val">.25–.35s</td><td class="token-desc">transform, box-shadow</td></tr>
+            <tr><td class="token-desc">Layout shift</td><td class="token-val">.35s</td><td class="token-desc">padding (work row indent)</td></tr>
+            <tr><td class="token-desc">Scroll reveal</td><td class="token-val">.85s</td><td class="token-desc">opacity + translateY(18px) → none</td></tr>
+            <tr><td class="token-desc">Counter animate</td><td class="token-val">1.4–1.8s</td><td class="token-desc">number count-up on scroll enter</td></tr>
+            <tr><td class="token-desc">Pulse (available dot)</td><td class="token-val">1.8s ∞</td><td class="token-desc">box-shadow ring expand</td></tr>
+            <tr><td class="token-desc">Marquee scroll</td><td class="token-val">50s ∞</td><td class="token-desc">translateX(-50%)</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- ===========================
+           5. COMPONENTS
+           =========================== -->
+      <section class="ds-section" id="components">
+        <div class="ds-section-head">
+          <span class="ds-section-num">05</span>
+          <h2 class="ds-section-title"><em>Components</em></h2>
+        </div>
+        <p style="color:var(--mute);font-size:14px;">All components are pure CSS classes (no JS framework). Hover each demo to see live states.</p>
+      </section>
+
+      <!-- BUTTONS -->
+      <section class="ds-section" id="buttons">
+        <div class="ds-section-head">
+          <span class="ds-section-num">05.1</span>
+          <h2 class="ds-section-title">Buttons</h2>
+        </div>
+        <div class="component-demo">
+          <div class="component-label">Variants</div>
+          <div class="btn-row">
+            <button class="btn btn-primary">See the work →</button>
+            <button class="btn btn-ghost">Email</button>
+            <button class="btn">Default</button>
+            <button class="nav-cta"><span class="pulse"></span> Available · May '26</button>
+          </div>
+        </div>
+        <div class="code-snippet">
+<span class="c">/* Base */</span>
+<span class="k">.btn</span> { padding: 14px 22px; border-radius: 999px; font-weight: 500; border: 1px solid var(--ink); }
+
+<span class="k">.btn-primary</span>:hover { background: var(--accent); }
+<span class="k">.btn-ghost</span>   { border-color: var(--rule-2); color: var(--ink-2); }
+        </div>
+      </section>
+
+      <!-- BADGES & TAGS -->
+      <section class="ds-section" id="tags">
+        <div class="ds-section-head">
+          <span class="ds-section-num">05.2</span>
+          <h2 class="ds-section-title">Badges &amp; Tags</h2>
+        </div>
+        <div class="component-demo">
+          <div class="component-label">Variants</div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
+            <span class="tag">Platform</span>
+            <span class="tag">AI</span>
+            <span class="tag">Systems</span>
+            <span class="tag accent"><span class="sw"></span> Available</span>
+            <span class="eyebrow">§ Section Label</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- NAVIGATION -->
+      <section class="ds-section" id="nav">
+        <div class="ds-section-head">
+          <span class="ds-section-num">05.3</span>
+          <h2 class="ds-section-title">Navigation</h2>
+        </div>
+        <div class="component-demo" style="padding:0;background:var(--bg);border-radius:8px;overflow:hidden;">
+          <div style="background:color-mix(in oklab, var(--bg) 88%, transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--rule);padding:0 24px;">
+            <div style="display:flex;align-items:center;gap:32px;height:56px;">
+              <div style="font-family:var(--serif);font-size:18px;letter-spacing:-0.01em;display:flex;align-items:baseline;gap:8px;">
+                <span style="width:6px;height:6px;border-radius:50%;background:var(--accent);display:inline-block;transform:translateY(-2px);"></span>
+                Afrin
+                <small style="font-family:var(--mono);font-size:10px;color:var(--mute);text-transform:uppercase;letter-spacing:0.1em;">Senior Product Designer</small>
+              </div>
+              <nav style="display:flex;gap:24px;margin-left:auto;align-items:center;">
+                <span style="font-size:13.5px;color:var(--ink-2);">Work</span>
+                <span style="font-size:13.5px;color:var(--ink-2);">How I Work</span>
+                <span style="font-size:13.5px;color:var(--ink-2);">Contact</span>
+                <span class="nav-cta"><span class="pulse"></span> Available · May '26</span>
+              </nav>
+            </div>
+          </div>
+        </div>
+        <p style="font-size:13px;color:var(--mute);margin-top:12px;">Sticky · frosted glass backdrop-filter · height 56px (portfolio) / 68px (homepage) · hides nav links at 920px</p>
+      </section>
+
+      <!-- SECTION HEAD -->
+      <section class="ds-section" id="section-head">
+        <div class="ds-section-head">
+          <span class="ds-section-num">05.4</span>
+          <h2 class="ds-section-title">Section Head</h2>
+        </div>
+        <div class="component-demo">
+          <div class="section-head-demo">
+            <div>
+              <div class="eyebrow" style="margin-bottom:8px;">§ Selected Work · 2024–2026</div>
+              <h2>Two rebuilds that moved <em>the numbers</em>.</h2>
+            </div>
+            <p>Both case studies start from an enterprise pain point I named myself, and end with measurable churn and workload reductions.</p>
+          </div>
+        </div>
+        <p style="font-size:13px;color:var(--mute);margin-top:12px;">2-column grid (1fr 2fr). Right col capped at ~30ch. Bottom border: 1px solid <code>--ink</code>.</p>
+      </section>
+
+      <!-- WORK ROW -->
+      <section class="ds-section" id="work-row">
+        <div class="ds-section-head">
+          <span class="ds-section-num">05.5</span>
+          <h2 class="ds-section-title">Work Row</h2>
+        </div>
+        <div class="component-demo" style="padding:0 24px;">
+          <div class="component-label" style="padding-top:24px;">Hover to see indent animation</div>
+          <div class="work-row-demo">
+            <span class="rnum">01</span>
+            <h3 class="work-title-d">Field Proxy <em>Rebuild</em></h3>
+            <div class="work-meta-d">
+              <span class="role">Lead Product Designer</span>
+              <span class="stack">Platform · AI · Systems</span>
+            </div>
+            <div class="work-out-d">
+              <div class="stat">↓45%<small>Churn reduced</small></div>
+            </div>
+            <span class="arrow-d">→</span>
+          </div>
+          <div class="work-row-demo">
+            <span class="rnum">02</span>
+            <h3 class="work-title-d">Location <em>Tracking</em></h3>
+            <div class="work-meta-d">
+              <span class="role">Lead Product Designer</span>
+              <span class="stack">Mobile · Research · UX</span>
+            </div>
+            <div class="work-out-d">
+              <div class="stat">↓70%<small>Manual calls</small></div>
+            </div>
+            <span class="arrow-d">→</span>
+          </div>
+        </div>
+        <p style="font-size:13px;color:var(--mute);margin-top:12px;">Grid: 48px 1.4fr 1fr 1fr 24px. On hover: padding-left eases to 12px; title color → accent; arrow translateX(4px).</p>
+      </section>
+
+      <!-- IMPACT CARDS -->
+      <section class="ds-section" id="impact-cards">
+        <div class="ds-section-head">
+          <span class="ds-section-num">05.6</span>
+          <h2 class="ds-section-title">Impact Cards</h2>
+        </div>
+        <div class="component-demo">
+          <div class="impact-cards-demo">
+            <div class="impact-card-d">
+              <div class="impact-icon-d">📍</div>
+              <div class="impact-value-d">↓70%</div>
+              <div class="impact-label-d">Manual dispatch calls eliminated</div>
+            </div>
+            <div class="impact-card-d">
+              <div class="impact-icon-d">📊</div>
+              <div class="impact-value-d">3×</div>
+              <div class="impact-label-d">Faster deployment cycles</div>
+            </div>
+            <div class="impact-card-d">
+              <div class="impact-icon-d">✓</div>
+              <div class="impact-value-d">90%</div>
+              <div class="impact-label-d">System stability score</div>
+            </div>
+            <div class="impact-card-d">
+              <div class="impact-icon-d">↑</div>
+              <div class="impact-value-d">↑45%</div>
+              <div class="impact-label-d">Daily active usage growth</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- RESULT STATS -->
+      <section class="ds-section" id="results">
+        <div class="ds-section-head">
+          <span class="ds-section-num">05.7</span>
+          <h2 class="ds-section-title">Result Stats</h2>
+        </div>
+        <div class="component-demo" style="padding:0 24px;">
+          <div class="results-demo">
+            <div class="r-cell">
+              <div class="r-big">↓<em>45%</em></div>
+              <div class="r-lbl">Churn reduced</div>
+            </div>
+            <div class="r-cell">
+              <div class="r-big">3×</div>
+              <div class="r-lbl">Deployment speed</div>
+            </div>
+            <div class="r-cell">
+              <div class="r-big"><em>90%</em></div>
+              <div class="r-lbl">System stability</div>
+            </div>
+            <div class="r-cell">
+              <div class="r-big">↑50%</div>
+              <div class="r-lbl">Data integrity</div>
+            </div>
+          </div>
+        </div>
+        <p style="font-size:13px;color:var(--mute);margin-top:12px;">4-column grid. Top/bottom borders use <code>--ink</code> (strong). Inter-column uses <code>--rule</code>. Italic colored text = accent highlight.</p>
+      </section>
+
+      <!-- TOC -->
+      <section class="ds-section" id="toc">
+        <div class="ds-section-head">
+          <span class="ds-section-num">05.8</span>
+          <h2 class="ds-section-title">Table of Contents</h2>
+        </div>
+        <div class="component-demo" style="display:flex;gap:48px;">
+          <div>
+            <div class="component-label">Left TOC (case study sidebar)</div>
+            <div class="toc-demo">
+              <a class="toc-item-d" href="#"><span class="toc-num-d">01</span>Context</a>
+              <a class="toc-item-d active" href="#"><span class="toc-num-d">02</span>Problem</a>
+              <a class="toc-item-d" href="#"><span class="toc-num-d">03</span>Solution</a>
+              <a class="toc-item-d" href="#"><span class="toc-num-d">04</span>Results</a>
+            </div>
+          </div>
+        </div>
+        <p style="font-size:13px;color:var(--mute);margin-top:12px;">Sticky at top: 80px. Active item: left border 2px solid <code>--accent</code>. Monospace uppercase labels. Scroll-spy activates via IntersectionObserver.</p>
+      </section>
+
+      <!-- CODE CARD -->
+      <section class="ds-section" id="code-card">
+        <div class="ds-section-head">
+          <span class="ds-section-num">05.9</span>
+          <h2 class="ds-section-title">Code Card</h2>
+        </div>
+        <div class="codecard">
+          <div class="head">
+            <div class="lights"><span></span><span></span><span></span></div>
+            schema.json
+          </div>
+          <pre><span class="k">"fields"</span>: [
+  { <span class="k">"id"</span>: <span class="s">"location"</span>, <span class="k">"type"</span>: <span class="s">"geo"</span> },
+  { <span class="k">"id"</span>: <span class="s">"timestamp"</span>, <span class="k">"type"</span>: <span class="s">"datetime"</span> }
+] <span class="c">// proxy layer reads this at runtime</span></pre>
+        </div>
+        <p style="font-size:13px;color:var(--mute);margin-top:12px;">Token colours: <code>.k</code> = accent (key/property), <code>.s</code> = amber #a16207 (string), <code>.c</code> = muted (comment). Traffic-light dots are purely decorative (color: --rule-2).</p>
+      </section>
+
+      <!-- BLOCKQUOTE -->
+      <section class="ds-section" id="blockquote">
+        <div class="ds-section-head">
+          <span class="ds-section-num">05.10</span>
+          <h2 class="ds-section-title">Blockquote</h2>
+        </div>
+        <div class="blockquote-demo">
+          "The new builder reduced setup from three days to four hours. That's the only metric I care about."
+          <cite>— Field Operations Manager, pilot cohort</cite>
+        </div>
+        <p style="font-size:13px;color:var(--mute);margin-top:12px;">2px left border in <code>--accent</code>. Newsreader italic. Cite in Geist Mono uppercase.</p>
+      </section>
+
+      <!-- BEFORE/AFTER -->
+      <section class="ds-section" id="before-after">
+        <div class="ds-section-head">
+          <span class="ds-section-num">05.11</span>
+          <h2 class="ds-section-title">Before / After</h2>
+        </div>
+        <div class="ba">
+          <div class="ba-col">
+            <div class="ba-tag"><span class="sw"></span> Before</div>
+            <div class="ph ba-ph"><div class="ph-label">Old interface</div></div>
+          </div>
+          <div class="ba-col after">
+            <div class="ba-tag"><span class="sw"></span> After</div>
+            <div class="ph ba-ph"><div class="ph-label">New interface</div></div>
+          </div>
+        </div>
+        <p style="font-size:13px;color:var(--mute);margin-top:12px;">Before dot: <code>--mute-2</code>. After dot + label: <code>--accent</code>. Used in case study body sections.</p>
+      </section>
+
+      <!-- DECISION LOG -->
+      <section class="ds-section" id="decision-log">
+        <div class="ds-section-head">
+          <span class="ds-section-num">05.12</span>
+          <h2 class="ds-section-title">Decision Log</h2>
+        </div>
+        <div class="dec-demo">
+          <div class="dec-row-d">
+            <span class="dec-ix">D-01</span>
+            <span class="dec-what">Drop map pins for geo-fence nudges</span>
+            <span class="dec-why">Pins triggered anxiety in field techs during research. Nudges feel collaborative, not surveillant.</span>
+            <span class="dec-tag">Research</span>
+          </div>
+          <div class="dec-row-d">
+            <span class="dec-ix">D-02</span>
+            <span class="dec-what">JSON-based field config</span>
+            <span class="dec-why">Allows no-code editing by non-engineers without a bespoke GUI layer that would have taken 2 months.</span>
+            <span class="dec-tag">Engineering</span>
+          </div>
+        </div>
+        <p style="font-size:13px;color:var(--mute);margin-top:12px;">Grid: 60px 1fr 1.6fr 100px. Used in case study process sections to document design rationale.</p>
+      </section>
+
+      <!-- PLACEHOLDER -->
+      <section class="ds-section" id="placeholder">
+        <div class="ds-section-head">
+          <span class="ds-section-num">05.13</span>
+          <h2 class="ds-section-title">Placeholder</h2>
+        </div>
+        <div class="component-demo">
+          <div class="ph" style="aspect-ratio:16/9;height:auto;">
+            <div class="ph-label">16:9 image placeholder</div>
+          </div>
+        </div>
+        <p style="font-size:13px;color:var(--mute);margin-top:12px;">Repeating diagonal stripe at 135° using --rule. Dashed inner border inset 12px. Pill label centred. Used wherever imagery is pending.</p>
+      </section>
+
+      <!-- MARQUEE -->
+      <section class="ds-section" id="marquee">
+        <div class="ds-section-head">
+          <span class="ds-section-num">05.14</span>
+          <h2 class="ds-section-title">Marquee</h2>
+        </div>
+        <div class="marquee-demo">
+          <div class="marquee-track-d">
+            <span class="marquee-item-d">Strategic Thinking</span>
+            <span class="marquee-item-d">AI-Native Process</span>
+            <span class="marquee-item-d">Technical Depth</span>
+            <span class="marquee-item-d">Enterprise SaaS</span>
+            <span class="marquee-item-d">Strategic Thinking</span>
+            <span class="marquee-item-d">AI-Native Process</span>
+            <span class="marquee-item-d">Technical Depth</span>
+            <span class="marquee-item-d">Enterprise SaaS</span>
+          </div>
+        </div>
+        <p style="font-size:13px;color:var(--mute);margin-top:12px;">Newsreader italic 300. Top/bottom borders: 1px solid --ink. Scroll duration 50s linear infinite. Duplicate track for seamless loop.</p>
+      </section>
+
+      <!-- AI WORKFLOW -->
+      <section class="ds-section" id="ai-workflow">
+        <div class="ds-section-head">
+          <span class="ds-section-num">05.15</span>
+          <h2 class="ds-section-title">AI Workflow Section</h2>
+        </div>
+        <div class="component-demo" style="padding:0;">
+          <div class="ai-section-demo">
+            <div class="flow-step-d">
+              <div class="step-num-d">1</div>
+              <div class="step-title-d">Research &amp; Framing</div>
+              <div class="step-desc-d">User interviews, competitive audit, problem definition</div>
+            </div>
+            <div class="flow-step-d">
+              <div class="step-num-d">2</div>
+              <div class="step-title-d">AI-Assisted Ideation</div>
+              <div class="step-desc-d">Rapid prototyping with Claude, component generation</div>
+            </div>
+            <div class="flow-step-d">
+              <div class="step-num-d">3</div>
+              <div class="step-title-d">Validation Loops</div>
+              <div class="step-desc-d">User testing, iteration, stakeholder alignment</div>
+            </div>
+            <div class="flow-step-d">
+              <div class="step-num-d">4</div>
+              <div class="step-title-d">Handoff &amp; Ship</div>
+              <div class="step-desc-d">Spec docs, dev review, production launch</div>
+            </div>
+          </div>
+        </div>
+        <p style="font-size:13px;color:var(--mute);margin-top:12px;">Dark background #2D2826 with subtle grid overlay. Step cards in #FFDAB9 peach. Numbers in #F4B481. Used at end of case studies.</p>
+      </section>
+
+    </main>
+  </div><!-- /.doc-layout -->
+</div><!-- /.doc-shell -->
+
+<script>
+  function toggleDark() {
+    const r = document.documentElement;
+    const on = r.getAttribute('data-dark') === '1';
+    r.setAttribute('data-dark', on ? '0' : '1');
+    document.getElementById('dark-icon').textContent = on ? '☽' : '☀';
+    localStorage.setItem('ds-dark', on ? '0' : '1');
+  }
+
+  // Restore dark pref
+  const saved = localStorage.getItem('ds-dark');
+  if (saved === '1') {
+    document.documentElement.setAttribute('data-dark', '1');
+    const icon = document.getElementById('dark-icon');
+    if (icon) icon.textContent = '☀';
+  }
+
+  // Active sidebar links on scroll
+  const sections = document.querySelectorAll('.ds-section[id]');
+  const sidebarLinks = document.querySelectorAll('.sidebar-link');
+
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        sidebarLinks.forEach(l => {
+          l.classList.toggle('active', l.getAttribute('href') === '#' + e.target.id);
+        });
+      }
+    });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+
+  sections.forEach(s => obs.observe(s));
+</script>
+</body>
+</html>
