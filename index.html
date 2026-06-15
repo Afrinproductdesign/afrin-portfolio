@@ -3,13 +3,12 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
 <title>Afrin — Senior Product Designer · Enterprise SaaS &amp; AI</title>
 <meta name="description" content="Afrin — independent Senior Product Designer for B2B SaaS. Design systems and AI-assisted workflows that cut dev time and get enterprise platforms shipped. Relocating to the UAE — open to Dubai &amp; Abu Dhabi." />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Archivo:wght@500;600;700;800;900&family=Instrument+Serif:ital@0;1&family=Space+Mono:wght@400;700&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Archivo:wght@500;600;700;800;900&family=Instrument+Serif:ital@0;1&family=Space+Mono:wght@400;700&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
 <style>
 /* ============================================================
@@ -17,7 +16,7 @@
    Three directions (eclipse / atlas / vector) × light / dark
    ============================================================ */
 
-/* ---------- Base tokens ---------- */
+/* ---------- Base tokens (eclipse · dark = default) ---------- */
 :root {
   --body: "Hanken Grotesk", ui-sans-serif, system-ui, -apple-system, sans-serif;
   --display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
@@ -42,7 +41,7 @@
   --maxw: 1520px;
   --ease: cubic-bezier(.16, .84, .44, 1);
   --r: 18px;
-  --hero-scale: 1;
+  --hero-scale: 0.86;
 }
 
 /* ---------- Direction: ATLAS (warm editorial) ---------- */
@@ -550,6 +549,7 @@ em.emph {
   .email-row .em { font-size: 11.5px; }
   .card-media { height: clamp(180px, 48vw, 260px); }
 }
+
 @media (max-width: 768px) {
   .hero-headline {
     font-size: calc(clamp(46px, 11vw, 68px) * var(--hero-scale));
@@ -562,6 +562,7 @@ em.emph {
   .about-photo { max-width: 100%; }
   .sectors-track { font-size: clamp(13px, 3.8vw, 18px); }
 }
+
 @media (max-width: 580px) {
   .brand small { display: none; }
   .impact-grid { grid-template-columns: 1fr; }
@@ -611,6 +612,7 @@ em.emph {
   .card-body { padding: 20px; gap: 12px; }
   .chip { font-size: 10.5px; padding: 7px 11px; }
 }
+
 @media (max-width: 400px) {
   .hero-headline {
     font-size: calc(clamp(34px, 10vw, 42px) * var(--hero-scale));
@@ -625,15 +627,6 @@ em.emph {
   .cm .v { font-size: clamp(18px, 5vw, 24px); }
 }
 </style>
-
-<!-- Apply direction / mode / accent / scale before first paint -->
-<script>
-  (function () {
-    var r = document.documentElement;
-    r.style.setProperty('--accent', '#1447E6');
-    r.style.setProperty('--hero-scale', '0.86');
-  })();
-</script>
 </head>
 <body>
 
@@ -745,10 +738,10 @@ em.emph {
   </header>
 
   <div class="work-grid">
-    <a class="work-card reveal" href="project/case-studies/field-proxy-v2.html">
+    <a class="work-card reveal" href="case-studies/field-proxy-v2.html">
       <div class="card-media">
         <span class="card-arrow">→</span>
-        <img src="project/images/field-proxy-mockup.png" alt="Field Proxy enterprise platform rebuild" style="object-fit: cover; object-position: center; height: 263px; width: 480px" />
+        <img src="images/field-proxy-mockup.png" alt="Field Proxy enterprise platform rebuild" style="object-fit: cover; object-position: center; height: 263px; width: 480px" />
       </div>
       <div class="card-body">
         <div class="card-tags"><span class="t">Platform</span><span class="t">AI</span><span class="t">Design Systems</span><span class="t">0→1</span></div>
@@ -756,16 +749,16 @@ em.emph {
         <p class="card-desc">I identified the gap, convinced stakeholders, learned the JSON schema to understand buildability, redesigned the architecture, and owned delivery through engineering.</p>
         <div class="card-metrics">
           <div class="cm"><span class="v">3×</span><span class="l">Faster app deployment</span></div>
-          <div class="cm"><span class="v">80%</span><span class="l">System stability</span></div>
-          <div class="cm"><span class="v">↓35%</span><span class="l">Reduced churn risk</span></div>
+          <div class="cm"><span class="v">80%</span><span class="l">SYSTEM STABILITY</span></div>
+          <div class="cm"><span class="v">↓35%</span><span class="l">REDUCED CHURN RISK</span></div>
         </div>
       </div>
     </a>
 
-    <a class="work-card reveal" href="project/case-studies/Location tracking v2.html">
+    <a class="work-card reveal" href="case-studies/Location tracking v2.html">
       <div class="card-media">
         <span class="card-arrow">→</span>
-        <img src="project/images/location-tracking-mockup.png" alt="Zero-friction location tracking for field technicians" style="object-fit: cover" />
+        <img src="images/location-tracking-mockup.png" alt="Zero-friction location tracking for field technicians" style="object-fit: cover" />
       </div>
       <div class="card-body">
         <div class="card-tags"><span class="t">Mobile</span><span class="t">Research</span><span class="t">UX</span><span class="t">Owned</span></div>
@@ -774,7 +767,7 @@ em.emph {
         <div class="card-metrics">
           <div class="cm"><span class="v">↑45%</span><span class="l">Upsell</span></div>
           <div class="cm"><span class="v">↓60%</span><span class="l">Manual calls</span></div>
-          <div class="cm"><span class="v">↑35 DAU</span><span class="l">Adoption</span></div>
+          <div class="cm"><span class="v">↑35DAU</span><span class="l">Adoption</span></div>
         </div>
       </div>
     </a>
@@ -784,7 +777,7 @@ em.emph {
 <!-- =====================  ABOUT  ===================== -->
 <section class="section shell" id="about" style="padding: 0px 56px 101px">
   <div class="about-grid">
-    <img class="about-photo reveal" src="project/images/afrin-headshot.jpeg" alt="Afrin Shariff" style="border-radius:18px; width:100%; object-fit:cover; object-position:center 15%;" />
+    <img class="about-photo reveal" src="images/afrin-headshot.jpeg" alt="Afrin Shariff" style="border-radius:18px; width:100%; object-fit:cover; object-position:center 15%;" />
     <div class="about-copy reveal">
       <p class="eyebrow">About</p>
       <h2>I design systems that ship — not just interfaces.</h2>
@@ -866,7 +859,7 @@ em.emph {
     <figcaption class="quote-by">
       <span class="who">
         <b>Nandhini</b>
-        <span>SOLUTION ARCHITECT · FIELDPROXY</span>
+        <span>SOLUTION ARCHITECT · FIELDPROXY ·</span>
       </span>
     </figcaption>
   </figure>
@@ -899,141 +892,139 @@ em.emph {
 </footer>
 
 <script>
-/* Afrin — Portfolio v3 homepage interactions
-   Count-up numbers, live clock, smooth anchor scroll */
-(function () {
-  function start() {
-    // ---- Count-up numbers ----
-    var easeOut = function (t) { return 1 - Math.pow(1 - t, 3); };
-    function animateNumber(el) {
-      var target = parseFloat(el.getAttribute('data-target'));
-      if (isNaN(target)) return;
-      var dur = parseInt(el.getAttribute('data-duration') || '1500', 10);
-      var t0 = performance.now();
-      (function tick(now) {
-        var p = Math.min(1, (now - t0) / dur);
-        var v = easeOut(p) * target;
-        el.textContent = (target % 1 !== 0) ? v.toFixed(1) : Math.round(v).toString();
-        if (p < 1) requestAnimationFrame(tick);
-        else el.textContent = (target % 1 !== 0) ? target.toFixed(1) : Math.round(target).toString();
-      })(t0);
+  // Typewriter headline animation
+  document.addEventListener('DOMContentLoaded', function () {
+    var h = document.getElementById('af-headline');
+    if (!h) return;
+    var delay = 0;
+    var STEP = 26;
+
+    function makeChar(ch, emClass) {
+      var wd = document.createElement('span');
+      wd.className = 'wd';
+      wd.style.animationDelay = delay + 'ms';
+      delay += STEP;
+      if (emClass) {
+        var em = document.createElement('em');
+        em.className = emClass;
+        em.textContent = ch;
+        wd.appendChild(em);
+      } else {
+        wd.textContent = ch;
+      }
+      return wd;
     }
-    var counts = document.querySelectorAll('[data-target]');
-    if ('IntersectionObserver' in window && counts.length) {
-      var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (en) {
-          if (en.isIntersecting) { animateNumber(en.target); io.unobserve(en.target); }
+
+    var frags = [];
+    Array.from(h.childNodes).forEach(function (node) {
+      if (node.nodeType === 3) {
+        Array.from(node.textContent).forEach(function (ch) {
+          frags.push(makeChar(ch, null));
         });
-      }, { threshold: 0.4 });
-      counts.forEach(function (el) { io.observe(el); });
-      setTimeout(function () {
-        counts.forEach(function (el) { if (/^0?$/.test(el.textContent.trim())) animateNumber(el); });
-      }, 2800);
-    } else {
-      counts.forEach(animateNumber);
-    }
-
-    // ---- Local clock (Gulf Standard Time — UAE) ----
-    var clock = document.querySelector('[data-clock]');
-    if (clock) {
-      var paint = function () {
-        try {
-          var opts = { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'Asia/Dubai' };
-          clock.textContent = new Intl.DateTimeFormat('en-GB', opts).format(new Date()) + ' GST';
-        } catch (e) { clock.textContent = ''; }
-      };
-      paint(); setInterval(paint, 30000);
-    }
-
-    // ---- Smooth anchor scroll with sticky-nav offset ----
-    document.addEventListener('click', function (e) {
-      var a = e.target.closest && e.target.closest('a[href^="#"]');
-      if (!a) return;
-      var id = a.getAttribute('href');
-      if (id.length < 2) return;
-      var el = document.querySelector(id);
-      if (!el) return;
-      e.preventDefault();
-      var y = el.getBoundingClientRect().top + window.pageYOffset - 64;
-      window.scrollTo({ top: y, behavior: 'smooth' });
+      } else if (node.nodeName === 'BR') {
+        frags.push(document.createElement('br'));
+      } else if (node.nodeName === 'EM') {
+        Array.from(node.textContent).forEach(function (ch) {
+          frags.push(makeChar(ch, node.className));
+        });
+      } else {
+        frags.push(node);
+      }
     });
-  }
 
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start);
-  else start();
-})();
+    var cursor = document.createElement('span');
+    cursor.className = 'type-cursor';
+    frags.push(cursor);
+    setTimeout(function () { cursor.classList.add('done'); }, delay + 500);
+
+    h.innerHTML = '';
+    frags.forEach(function (n) { h.appendChild(n); });
+  });
 </script>
 
 <script>
-/* Typewriter headline animation */
-document.addEventListener('DOMContentLoaded', function () {
-  var h = document.getElementById('af-headline');
-  if (!h) return;
-  var delay = 0;
-  var STEP = 26;
-
-  function makeChar(ch, emClass) {
-    var wd = document.createElement('span');
-    wd.className = 'wd';
-    wd.style.animationDelay = delay + 'ms';
-    delay += STEP;
-    if (emClass) {
-      var em = document.createElement('em');
-      em.className = emClass;
-      em.textContent = ch;
-      wd.appendChild(em);
-    } else {
-      wd.textContent = ch;
-    }
-    return wd;
-  }
-
-  var frags = [];
-  Array.from(h.childNodes).forEach(function (node) {
-    if (node.nodeType === 3) {
-      Array.from(node.textContent).forEach(function (ch) {
-        frags.push(makeChar(ch, null));
+  // Hamburger toggle
+  (function () {
+    var burger = document.getElementById('nav-hamburger');
+    var drawer = document.getElementById('mobile-nav-drawer');
+    if (!burger || !drawer) return;
+    burger.addEventListener('click', function () {
+      var open = burger.classList.toggle('open');
+      drawer.classList.toggle('open', open);
+      burger.setAttribute('aria-expanded', open);
+    });
+    drawer.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () {
+        burger.classList.remove('open');
+        drawer.classList.remove('open');
+        burger.setAttribute('aria-expanded', 'false');
       });
-    } else if (node.nodeName === 'BR') {
-      frags.push(document.createElement('br'));
-    } else if (node.nodeName === 'EM') {
-      Array.from(node.textContent).forEach(function (ch) {
-        frags.push(makeChar(ch, node.className));
-      });
-    } else {
-      frags.push(node);
-    }
-  });
-
-  var cursor = document.createElement('span');
-  cursor.className = 'type-cursor';
-  frags.push(cursor);
-  setTimeout(function () { cursor.classList.add('done'); }, delay + 500);
-
-  h.innerHTML = '';
-  frags.forEach(function (n) { h.appendChild(n); });
-});
+    });
+  })();
 </script>
 
 <script>
-/* Hamburger toggle */
-(function () {
-  var burger = document.getElementById('nav-hamburger');
-  var drawer = document.getElementById('mobile-nav-drawer');
-  if (!burger || !drawer) return;
-  burger.addEventListener('click', function () {
-    var open = burger.classList.toggle('open');
-    drawer.classList.toggle('open', open);
-    burger.setAttribute('aria-expanded', open);
-  });
-  drawer.querySelectorAll('a').forEach(function (a) {
-    a.addEventListener('click', function () {
-      burger.classList.remove('open');
-      drawer.classList.remove('open');
-      burger.setAttribute('aria-expanded', 'false');
-    });
-  });
-})();
+  // Count-up numbers, live clock (Gulf Standard Time), smooth anchor scroll
+  (function () {
+    function start() {
+      var easeOut = function (t) { return 1 - Math.pow(1 - t, 3); };
+      function animateNumber(el) {
+        var target = parseFloat(el.getAttribute('data-target'));
+        if (isNaN(target)) return;
+        var dur = parseInt(el.getAttribute('data-duration') || '1500', 10);
+        var t0 = performance.now();
+        (function tick(now) {
+          var p = Math.min(1, (now - t0) / dur);
+          var v = easeOut(p) * target;
+          el.textContent = (target % 1 !== 0) ? v.toFixed(1) : Math.round(v).toString();
+          if (p < 1) requestAnimationFrame(tick);
+          else el.textContent = (target % 1 !== 0) ? target.toFixed(1) : Math.round(target).toString();
+        })(t0);
+      }
+      var counts = document.querySelectorAll('[data-target]');
+      if ('IntersectionObserver' in window && counts.length) {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (en) {
+            if (en.isIntersecting) { animateNumber(en.target); io.unobserve(en.target); }
+          });
+        }, { threshold: 0.4 });
+        counts.forEach(function (el) { io.observe(el); });
+        setTimeout(function () {
+          counts.forEach(function (el) { if (/^0?$/.test(el.textContent.trim())) animateNumber(el); });
+        }, 2800);
+      } else {
+        counts.forEach(animateNumber);
+      }
+
+      // Live clock — Gulf Standard Time (UAE target)
+      var clock = document.querySelector('[data-clock]');
+      if (clock) {
+        var paint = function () {
+          try {
+            var opts = { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'Asia/Dubai' };
+            clock.textContent = new Intl.DateTimeFormat('en-GB', opts).format(new Date()) + ' GST';
+          } catch (e) { clock.textContent = ''; }
+        };
+        paint(); setInterval(paint, 30000);
+      }
+
+      // Smooth anchor scroll with sticky-nav offset
+      document.addEventListener('click', function (e) {
+        var a = e.target.closest && e.target.closest('a[href^="#"]');
+        if (!a) return;
+        var id = a.getAttribute('href');
+        if (id.length < 2) return;
+        var el = document.querySelector(id);
+        if (!el) return;
+        e.preventDefault();
+        var y = el.getBoundingClientRect().top + window.pageYOffset - 64;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      });
+    }
+
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start);
+    else start();
+  })();
 </script>
 
 </body>
