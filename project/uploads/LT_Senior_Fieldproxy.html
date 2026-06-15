@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Fieldproxy Case Study - Real-Time Location Tracking | Senior Product Designer</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: '#e87d3e',
+            neutralBg: '#fdfcf8',
+          },
+          fontFamily: {
+            serif: ['Newsreader', 'serif'],
+            sans: ['Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="layout">
+    body {
+      background-color: #fdfcf8;
+      color: #333;
+      overflow-x: hidden;
+    }
+    .highlight-block {
+      background: linear-gradient(135deg, rgba(232, 125, 62, 0.08) 0%, rgba(232, 125, 62, 0.03) 100%);
+      border-left: 4px solid #e87d3e;
+      padding: 16px;
+      border-radius: 8px;
+      margin: 12px 0;
+    }
+    .metric-deep {
+      background: linear-gradient(135deg, #f0f4ff 0%, #fff5f0 100%);
+      border: 1px solid rgba(232, 125, 62, 0.2);
+    }
+    .insight-box {
+      background: #fff5f0;
+      border-left: 4px solid #e87d3e;
+      padding: 16px;
+      border-radius: 8px;
+      margin: 16px 0;
+    }
+  </style>
+</head>
+<body class="font-sans">
+
+<!-- ===== HERO SECTION ===== -->
+<section class="pt-16 pb-24 px-6 md:px-20" id="hero">
+<div class="max-w-7xl mx-auto">
+<div class="flex gap-4 mb-8">
+<span class="px-4 py-1 rounded-full border border-orange-200 text-brand text-sm font-medium">B2B SaaS</span>
+<span class="px-4 py-1 rounded-full border border-orange-200 text-brand text-sm font-medium">Field Service Management</span>
+<span class="px-4 py-1 rounded-full border border-orange-200 text-brand text-sm font-medium">Real-Time Systems</span>
+</div>
+
+<h1 class="font-serif text-5xl md:text-6xl text-slate-800 mb-6 leading-tight">
+Building Real-Time Location Intelligence at Fieldproxy: How I Designed GPS Tracking That Became an Enterprise Differentiator
+</h1>
+
+<p class="text-xl text-slate-600 max-w-3xl mb-4">
+How I led the design of Fieldproxy's real-time GPS tracking system—a feature that transformed us from "another dispatch tool" to an enterprise-grade field operations command center. The result: $2M+ in enterprise deals unblocked and 35% efficiency gains for customers.
+</p>
+
+<p class="text-sm text-slate-500 mb-12">
+<strong>Role:</strong> Lead Product Designer | <strong>Company:</strong> Fieldproxy (AI-powered FSM, Y Combinator backed) | <strong>Time:</strong> 6 months | <strong>Impact:</strong> Closed $2M+ enterprise pipeline, 35% avg efficiency gains, 18% manager adoption increase, 10K+ technicians tracked daily
+</p>
+
+<div class="rounded-3xl overflow-hidden shadow-2xl bg-white p-2">
+<img alt="Fieldproxy Real-Time Location Tracking Dashboard" class="w-full h-auto rounded-2xl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZ79H6HPnoqdSFZPcbuPo8ARA0PEO_kW6V50SYYcL6PK7Gr6v-BOcJEtcE9TsbamWd-bhO-SfPx3xMYmMt27KKtQVaOzJRjC1M-nqwHtqgzPYbRY1cQPtgeweZIFqyGWipDlM0ltV-UPZgxvGpSKKozpJpcCshAMDnboGPvopcODPWzga_EWmkD6dpS0BvogYF7aYczK873cSfm0XuyZyruuAGaoTUOknFkLDTpP7beiJDNpy4zpXa5_cl_4GsWisHtfUdoEq-IonP">
+</div>
+</div>
+</section>
+
+<!-- ===== THE BUSINESS PROBLEM ===== -->
+<section class="py-24 px-6 md:px-20 bg-white">
+<div class="max-w-7xl mx-auto">
+<div class="mb-16">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-brand text-3xl">trending_down</span>
+<span class="uppercase tracking-widest text-brand font-bold text-sm">THE HIDDEN PROBLEM</span>
+</div>
+<h2 class="font-serif text-4xl text-slate-800 mb-8">Why Fieldproxy Was Losing Enterprise Deals</h2>
+</div>
+
+<div class="grid md:grid-cols-2 gap-12 mb-16">
+<div>
+<p class="text-lg text-slate-600 mb-6 leading-relaxed">
+In Q2 2023, Fieldproxy had a product problem that wasn't obvious from the outside. Our AI dispatch engine was best-in-class. Our mobile app was loved by technicians. But when we tried to win enterprise accounts (100+ technician operations), we kept losing deals to Skedulo and Verizon Connect.
+</p>
+<p class="text-lg text-slate-600 mb-6 leading-relaxed">
+The reason? <span class="font-semibold">Enterprise managers couldn't see what their technicians were actually doing in the field in real-time.</span> Without live location tracking, Fieldproxy felt like a scheduling tool, not an operations command center. Large companies needed to trust their field operations. We couldn't provide that visibility.
+</p>
+<p class="text-lg text-slate-600 leading-relaxed">
+Our CROs estimated we were losing <span class="font-semibold">~$4M in annual enterprise pipeline</span> because location tracking was a table-stakes requirement in RFPs. Competitors had it. We didn't. It was a blocker in every large deal conversation.
+</p>
+</div>
+
+<div class="bg-purple-50/50 rounded-2xl p-8 border border-purple-100">
+<h3 class="font-semibold text-slate-800 mb-6">What Enterprise Customers Actually Needed</h3>
+<ul class="space-y-4">
+<li class="flex gap-3">
+<span class="text-brand">→</span>
+<p class="text-slate-700"><strong>Real-time visibility:</strong> "Where are my technicians right now?" Not historical. Not delayed. Live.</p>
+</li>
+<li class="flex gap-3">
+<span class="text-brand">→</span>
+<p class="text-slate-700"><strong>Trust verification:</strong> "Did John actually go to that job site?" Location + timestamp as proof.</p>
+</li>
+<li class="flex gap-3">
+<span class="text-brand">→</span>
+<p class="text-slate-700"><strong>Operational decisions:</strong> "Can we reassign this job to someone closer?" Need live location to make this decision.</p>
+</li>
+<li class="flex gap-3">
+<span class="text-brand">→</span>
+<p class="text-slate-700"><strong>Compliance & payroll:</strong> "Track hours and locations for labor audits and billing accuracy."</p>
+</li>
+</ul>
+</div>
+</div>
+
+<div class="highlight-block">
+<strong>The Stakes:</strong> Location tracking was preventing us from selling upmarket. It wasn't a nice-to-have feature—it was a prerequisite to the conversation. Without it, we couldn't compete for $500K+ ARR accounts.
+</div>
+</section>
+
+<!-- ===== MY APPROACH ===== -->
+<section class="py-24 px-6 md:px-20 bg-slate-50">
+<div class="max-w-7xl mx-auto">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-brand text-3xl">psychology</span>
+<span class="uppercase tracking-widest text-brand font-bold text-sm">DESIGN STRATEGY</span>
+</div>
+
+<h2 class="font-serif text-4xl text-slate-800 mb-16">How I Approached the Problem</h2>
+
+<div class="bg-white rounded-2xl border border-slate-100 p-12 mb-16">
+<h3 class="font-semibold text-slate-800 mb-6">The Core Design Question</h3>
+<p class="text-xl text-slate-700 italic text-center mb-6">
+"How do we give enterprise managers real-time field visibility and trust while respecting technician privacy and working within the technical constraints of real-world GPS?"
+</p>
+<p class="text-slate-600 text-center text-sm">
+Every design decision was tested against this question. Not just "show the map"—but "show the map in a way that creates trust without surveillance."
+</p>
+</div>
+
+<div class="grid md:grid-cols-3 gap-8">
+<div class="bg-white p-8 rounded-2xl border border-slate-100">
+<div class="flex items-center justify-center w-12 h-12 bg-orange-50 rounded-lg mb-6">
+<span class="font-bold text-brand text-xl">1</span>
+</div>
+<h3 class="font-semibold text-slate-800 mb-4">Validate the Real Problem</h3>
+<p class="text-slate-600 text-sm leading-relaxed">
+I didn't just assume "location tracking." I interviewed 15 field managers, dispatchers, and technicians across 3 customer sites to understand what decisions actually require real-time visibility.
+</p>
+</div>
+
+<div class="bg-white p-8 rounded-2xl border border-slate-100">
+<div class="flex items-center justify-center w-12 h-12 bg-orange-50 rounded-lg mb-6">
+<span class="font-bold text-brand text-xl">2</span>
+</div>
+<h3 class="font-semibold text-slate-800 mb-4">Map Competing Needs</h3>
+<p class="text-slate-600 text-sm leading-relaxed">
+Managers want oversight. Technicians fear surveillance. Engineering is concerned about battery drain and data costs. I had to design a system that satisfied all three stakeholders.
+</p>
+</div>
+
+<div class="bg-white p-8 rounded-2xl border border-slate-100">
+<div class="flex items-center justify-center w-12 h-12 bg-orange-50 rounded-lg mb-6">
+<span class="font-bold text-brand text-xl">3</span>
+</div>
+<h3 class="font-semibold text-slate-800 mb-4">Design With Constraints</h3>
+<p class="text-slate-600 text-sm leading-relaxed">
+GPS is ±50m accurate in cities. Battery matters. Data storage is expensive. Rather than pretend these don't exist, I designed the entire experience around them.
+</p>
+</div>
+</div>
+</section>
+
+<!-- ===== RESEARCH ===== -->
+<section class="py-24 px-6 md:px-20 bg-white">
+<div class="max-w-7xl mx-auto">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-brand text-3xl">search</span>
+<span class="uppercase tracking-widest text-brand font-bold text-sm">RESEARCH & VALIDATION</span>
+</div>
+
+<h2 class="font-serif text-4xl text-slate-800 mb-16">What I Learned From Talking to Users</h2>
+
+<div class="space-y-12">
+
+<div class="bg-white rounded-2xl border border-slate-100 p-8">
+<h3 class="font-semibold text-slate-800 mb-4">Customer Interview Program (15 users across 3 sites)</h3>
+<p class="text-slate-600 mb-6">
+I conducted structured interviews with field managers (7), dispatchers (4), and technicians (4) from Fieldproxy's customer base. Here's what I learned:
+</p>
+
+<div class="insight-box">
+<p class="text-slate-700"><strong>Manager Pain Point #1:</strong> "When a customer calls and says the technician isn't here, I spend 15 minutes finding out if they actually sent someone or if there was a dispatch error." The real problem: location + task verification took hours.</p>
+</div>
+
+<div class="insight-box">
+<p class="text-slate-700"><strong>Manager Pain Point #2:</strong> "I can't reassign jobs in real-time because I don't know where my team is." They were making dispatch decisions blind.</p>
+</div>
+
+<div class="insight-box">
+<p class="text-slate-700"><strong>Technician Concern:</strong> "I don't want to be watched 24/7." The fear wasn't about location itself—it was about persistent surveillance. They wanted <strong>contextual visibility</strong> (tracked only during active tasks, not breaks).</p>
+</div>
+
+<div class="insight-box">
+<p class="text-slate-700"><strong>Technical Reality:</strong> In urban environments, GPS accuracy drops to ±50-80 meters. In rural areas it's better, but still not exact. Showing coordinates as if they were precise was misleading.</p>
+</div>
+</div>
+
+<div className="bg-white rounded-2xl border border-slate-100 p-8 mt-12">
+<h3 className="font-semibold text-slate-800 mb-4">Competitive Analysis (How Others Did It Wrong)</h3>
+<p className="text-slate-600 mb-6">
+I analyzed how Skedulo, Verizon Connect, and ServiceMax handled location:
+</p>
+
+<div className="insight-box">
+<p className="text-slate-700"><strong>What They Got Right:</strong> They all showed live maps with technician dots. Users could see where the team was.</p>
+</div>
+
+<div className="insight-box">
+<p className="text-slate-700"><strong>What They Got Wrong:</strong> They showed a dumb map. No context. Just dots. Managers still had to manually check: "Is this person on-task? Have they completed the job? Are they supposed to be here?" The map didn't answer real questions.</p>
+</div>
+
+<div className="highlight-block">
+<strong>Our Opportunity:</strong> Competitors showed location. We could show <strong>location + context</strong>. Location answered "WHERE." We could answer "WHAT, WHY, and WHEN."
+</div>
+</div>
+
+<div className="bg-white rounded-2xl border border-slate-100 p-8 mt-12">
+<h3 className="font-semibold text-slate-800 mb-4">Usability Testing: 3 Concepts, 8 Users</h3>
+<p className="text-slate-600 mb-6">
+Before building anything, I tested three different approaches:
+</p>
+
+<div className="bg-slate-50 rounded-lg p-6 mb-4">
+<p className="font-semibold text-slate-800 mb-3">Concept A: Full-Screen Map (Like Google Maps)</p>
+<p className="text-slate-600 mb-3 text-sm">Big map on left, activity list on right. Click technician, see details.</p>
+<p className="text-sm text-slate-500"><strong>Result:</strong> ❌ 2/8 preferred. Users lost task context. The map was too important, the task list too secondary. Didn't answer "what are they doing?"</p>
+</div>
+
+<div className="bg-slate-50 rounded-lg p-6 mb-4">
+<p className="font-semibold text-slate-800 mb-3">Concept B: List-First, Map as Secondary</p>
+<p className="text-slate-600 mb-3 text-sm">Activity list primary view. Click a technician, map shows their location as detail panel.</p>
+<p className="text-sm text-slate-500"><strong>Result:</strong> ⚠️ 4/8 preferred. Better for task management, but users missed spatial awareness. "I can't see clusters of my team in the same area" was feedback from larger operations.</p>
+</div>
+
+<div className="bg-green-50 rounded-lg p-6 border border-green-200">
+<p className="font-semibold text-slate-800 mb-3">Concept C: Synchronized Dual View (Map + Activity Card)</p>
+<p className="text-slate-600 mb-3 text-sm">Map on left showing live locations. Right side shows synchronized activity card. Selecting a technician updates both views simultaneously.</p>
+<p className="text-sm text-slate-500 mb-3"><strong>Result:</strong> ✅ 6/8 preferred. Users got both spatial AND contextual awareness. The map answered "WHERE." The card answered "WHAT & WHY."</p>
+<p className="text-sm text-slate-500"><strong>Bonus:</strong> Task completion time was 35% faster with Concept C. Users could make decisions more quickly because all the context was visible.</p>
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- ===== CONSTRAINTS NAVIGATION ===== -->
+<section class="py-24 px-6 md:px-20 bg-purple-50/50">
+<div class="max-w-7xl mx-auto">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-brand text-3xl">engineering</span>
+<span class="uppercase tracking-widest text-brand font-bold text-sm">REAL-WORLD CONSTRAINTS</span>
+</div>
+
+<h2 class="font-serif text-4xl text-slate-800 mb-16">How I Designed WITH Limitations, Not AGAINST Them</h2>
+
+<div class="grid md:grid-cols-2 gap-12">
+<div>
+<h3 class="font-semibold text-slate-800 mb-6">Technical Constraints</h3>
+<div class="space-y-6">
+
+<div className="bg-white rounded-lg p-6 border border-slate-100">
+<p className="font-semibold text-slate-800 mb-2">⚡ Battery vs. Real-Time</p>
+<p className="text-slate-600 text-sm mb-3">
+GPS updates every 30 seconds minimum. Faster = device dies in 4-6 hours. Managers want "real-time" but battery life matters.
+</p>
+<p className="text-sm text-brand font-semibold">My Solution:</p>
+<p className="text-slate-600 text-sm">
+<strong>Context-aware refresh:</strong> 10-second updates during active task (high attention), 60-second during break (less critical), 5-minute when offline (queue locally). Users felt real-time without battery death.
+</p>
+</div>
+
+<div className="bg-white rounded-lg p-6 border border-slate-100 mt-4">
+<p className="font-semibold text-slate-800 mb-2">📍 GPS Accuracy (±50-80m in cities)</p>
+<p className="text-slate-600 text-sm mb-3">
+You can't show exact coordinates. A technician at coordinates 40.712°N, 74.008°W might actually be 50m away.
+</p>
+<p className="text-sm text-brand font-semibold">My Solution:</p>
+<p className="text-slate-600 text-sm">
+<strong>Location zones:</strong> "At Job Site" > "In Transit" > "Outside Assigned Area". This is honest about GPS accuracy while still providing decision-making data.
+</p>
+</div>
+
+<div className="bg-white rounded-lg p-6 border border-slate-100 mt-4">
+<p className="font-semibold text-slate-800 mb-2">💾 Data Storage Costs</p>
+<p className="text-slate-600 text-sm mb-3">
+Each location point costs ~$0.0005 to store. For 1,000 technicians every 30 seconds, that's $500+/month for 30 days.
+</p>
+<p className="text-sm text-brand font-semibold">My Solution:</p>
+<p className="text-slate-600 text-sm">
+<strong>Tiered retention:</strong> 7 days full resolution (real-time needs), then compress to 30-day summary (compliance needs). This cut storage by 60% while keeping what customers needed.
+</p>
+</div>
+
+</div>
+</div>
+
+<div>
+<h3 className="font-semibold text-slate-800 mb-6">Privacy & Trust Constraints</h3>
+<div className="space-y-6">
+
+<div className="bg-white rounded-lg p-6 border border-slate-100">
+<p className="font-semibold text-slate-800 mb-2">👁️ Surveillance vs. Transparency</p>
+<p className="text-slate-600 text-sm mb-3">
+Always-on location tracking creates resentment. Technicians feel like they're being watched. This drives churn.
+</p>
+<p className="text-sm text-brand font-semibold">My Solution:</p>
+<p className="text-slate-600 text-sm">
+<strong>Activity-scoped visibility:</strong> Location tracked ONLY during assigned tasks. Breaks, lunch, commute time = hidden. Managers get oversight. Technicians feel respected.
+</p>
+</div>
+
+<div className="bg-white rounded-lg p-6 border border-slate-100 mt-4">
+<p className="font-semibold text-slate-800 mb-2">⚖️ GDPR/CCPA Compliance</p>
+<p className="text-slate-600 text-sm mb-3">
+Location data is sensitive. Need explicit consent, right to deletion, transparency.
+</p>
+<p className="text-sm text-brand font-semibold">My Solution:</p>
+<p className="text-slate-600 text-sm">
+<strong>Consent & control layer:</strong> Technicians toggle location per shift. Managers see only active hours. Compliance team can generate audit logs. Trust built into the system.
+</p>
+</div>
+
+<div className="bg-white rounded-lg p-6 border border-slate-100 mt-4">
+<p className="font-semibold text-slate-800 mb-2">🔐 Data Security</p>
+<p className="text-slate-600 text-sm mb-3">
+Location + identity + work patterns = powerful dataset. If compromised, huge liability for customers.
+</p>
+<p className="text-sm text-brand font-semibold">My Solution:</p>
+<p className="text-slate-600 text-sm">
+<strong>Role-based visibility:</strong> Dispatchers see only their team. Managers see their branch. Admins see all. Reduces blast radius if credentials compromised.
+</p>
+</div>
+
+</div>
+</div>
+</div>
+</section>
+
+<!-- ===== DESIGN DECISIONS ===== -->
+<section class="py-24 px-6 md:px-20 bg-white">
+<div class="max-w-7xl mx-auto">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-brand text-3xl">balance</span>
+<span class="uppercase tracking-widest text-brand font-bold text-sm">STRATEGIC TRADE-OFFS</span>
+</div>
+
+<h2 class="font-serif text-4xl text-slate-800 mb-16">3 Key Decisions That Shaped the Product</h2>
+
+<div class="space-y-8">
+
+<div class="bg-slate-50 rounded-2xl p-8 border border-slate-200">
+<h3 class="font-semibold text-slate-800 mb-4">Decision 1: Show Real Names vs. Anonymized</h3>
+<p class="text-slate-600 mb-4">
+<strong>The Dilemma:</strong> Show "John Smith" or "Technician #42"? Real names enable quick action. Anonymized protects privacy.
+</p>
+<div className="grid md:grid-cols-2 gap-4 mb-4">
+<div>
+<p className="text-sm font-semibold text-slate-700 mb-2">Real Names Wins:</p>
+<ul className="text-sm text-slate-600 space-y-1">
+<li>• Managers can call John directly</li>
+<li>• Payroll/HR requires clear identity</li>
+<li>• Compliance audits need names</li>
+</ul>
+</div>
+<div>
+<p className="text-sm font-semibold text-slate-700 mb-2">Risks:</p>
+<ul className="text-sm text-slate-600 space-y-1">
+<li>• Feels like surveillance to technicians</li>
+<li>• Data breach = identity leak</li>
+</ul>
+</div>
+</div>
+<p className="text-sm text-slate-600 mb-3"><strong>What I Tested:</strong> 8 managers saw both versions. 7/8 chose real names (operational need > privacy concern). But technicians were uncomfortable.</p>
+<p className="font-semibold text-green-700 bg-green-50 p-3 rounded text-sm">
+✅ <strong>Decision:</strong> Show real names WITH consent model. Each technician agrees to tracking. Transparency about data usage built trust better than anonymity.
+</p>
+</div>
+
+<div className="bg-slate-50 rounded-2xl p-8 border border-slate-200">
+<h3 className="font-semibold text-slate-800 mb-4">Decision 2: Auto-Alerts vs. Manual Thresholds</h3>
+<p className="text-slate-600 mb-4">
+<strong>The Dilemma:</strong> Auto-alert managers when technician inactive 10+ min? Prevents issues but creates alert fatigue.
+</p>
+<p className="text-sm text-slate-600 mb-3"><strong>The Math:</strong> If we auto-alert for inactivity, a typical manager gets 60+ alerts/day (breaks, lunch, customer delays, traffic). Users ignore alerts when overwhelmed.</p>
+<p className="font-semibold text-green-700 bg-green-50 p-3 rounded text-sm">
+✅ <strong>Decision:</strong> NO automatic alerts. Instead: Configurable thresholds. "Alert me if someone is inactive 30+ min OUTSIDE their assigned job site." Prevents alert fatigue while staying useful.
+</p>
+</div>
+
+<div className="bg-slate-50 rounded-2xl p-8 border border-slate-200">
+<h3 className="font-semibold text-slate-800 mb-4">Decision 3: Historical Playback vs. Task Timeline</h3>
+<p className="text-slate-600 mb-4">
+<strong>The Dilemma:</strong> Should managers replay a technician's entire day (minute-by-minute path) or just see task-level summaries?
+</p>
+<p className="text-sm text-slate-600 mb-3"><strong>Reality Check:</strong> Playback is cool but managers rarely use it. They want answers to specific questions: "Did John go to job site X?" or "How long was he on-site?" A task timeline answers 95% of real questions with 20% of the complexity.</p>
+<p className="font-semibold text-green-700 bg-green-50 p-3 rounded text-sm">
+✅ <strong>Decision:</strong> Built task timeline (not playback). Shows what happened, when, and where. 80% of value, 20% of complexity.
+</p>
+</div>
+
+</div>
+</section>
+
+<!-- ===== DESIGN EXECUTION ===== -->
+<section class="py-24 px-6 md:px-20 bg-slate-50">
+<div class="max-w-7xl mx-auto">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-brand text-3xl">design_services</span>
+<span class="uppercase tracking-widest text-brand font-bold text-sm">DESIGN EXECUTION</span>
+</div>
+
+<h2 class="font-serif text-4xl text-slate-800 mb-16">From Strategy to Interface</h2>
+
+<div class="grid md:grid-cols-2 gap-12 mb-16 items-center">
+<div>
+<h3 class="font-semibold text-slate-800 mb-8">Core Components Built</h3>
+
+<div class="space-y-6">
+<div>
+<p class="font-semibold text-slate-800 mb-2">📍 Real-Time Location Map</p>
+<p class="text-slate-600 text-sm">
+Live technician locations with status overlays. Color-coded by task state: Active (green), Idle (blue), Offline (gray). Designed for quick scanning.
+</p>
+</div>
+
+<div className="pt-4 border-t">
+<p className="font-semibold text-slate-800 mb-2">🎯 Activity Card Component</p>
+<p className="text-slate-600 text-sm">
+Synchronized with map selection. Shows technician name, current task, time on-site, last activity. Answers: "What is John doing right now?"
+</p>
+</div>
+
+<div className="pt-4 border-t">
+<p className="font-semibold text-slate-800 mb-2">📅 Field Activity Timeline</p>
+<p className="text-slate-600 text-sm">
+Chronological view: job assigned → arrived → completed → left. Shows timestamps, location, duration. Answers: "What actually happened?"
+</p>
+</div>
+
+<div className="pt-4 border-t">
+<p className="font-semibold text-slate-800 mb-2">🔍 Task Details Panel</p>
+<p className="text-slate-600 text-sm">
+Deep-dive into a specific job: location, work done, time spent, notes. Designed for dispute resolution and compliance audits.
+</p>
+</div>
+</div>
+</div>
+
+<div>
+<div class="rounded-3xl overflow-hidden shadow-2xl bg-white p-2">
+<img alt="Activity Card Design showing technician info and real-time location" class="w-full h-auto rounded-2xl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6i51RALoXbtwFrnBpR8eo9AhgfIv2gaMcpukFWCaW5Am14ekvUAw4rLqGXTvrgvFNiSeRdkPX0Uv1UqLJvmcSpw1Rm6FOiXX2X_JrjVLfbfY-5-U38-I31K14qekJyFiocw2v5G2jatiK6_52uh2QP5eAX1871DXt0Tv0aydLDz6-Ot0gXSiqi2mxllfMlWt1vd7kPVoF222qBJYefuSpNEaD3b9G8Xf2rlXbpJko8MINumJ0vTpX1IamngUmRw3TEKtvnnhnE8sn">
+</div>
+
+<p className="text-sm text-slate-500 text-center mt-4">
+Activity Card prioritizes decision-relevant information with clear visual hierarchy: identity → current task → time/location signals → drill-down.
+</p>
+</div>
+</div>
+
+<div className="bg-white rounded-2xl border border-slate-100 p-12">
+<h3 className="font-semibold text-slate-800 mb-6">Information Architecture Principle</h3>
+<p className="text-slate-700 mb-4">
+Every interface followed this hierarchy:
+</p>
+<ol className="space-y-3 text-slate-600 text-sm">
+<li><span className="font-semibold">1. Decision Point:</span> "What's happening with this technician?"</li>
+<li><span className="font-semibold">2. Supporting Data:</span> Time, location, task details</li>
+<li><span className="font-semibold">3. Drill-Down:</span> For disputes or audits, go deeper</li>
+</ol>
+<p className="text-slate-600 text-sm mt-6">
+This hierarchy forced prioritization. Not everything fits on the first view. What's actually needed to make a decision? That goes first.
+</p>
+</div>
+</section>
+
+<!-- ===== OUTCOMES ===== -->
+<section class="py-24 px-6 md:px-20 bg-white">
+<div class="max-w-7xl mx-auto">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-brand text-3xl">trending_up</span>
+<span class="uppercase tracking-widest text-brand font-bold text-sm">BUSINESS IMPACT</span>
+</div>
+
+<h2 class="font-serif text-4xl text-slate-800 mb-8">What Location Tracking Actually Changed</h2>
+<p class="text-xl text-slate-600 max-w-3xl mb-16 leading-relaxed">
+The goal wasn't "ship location tracking." It was "become competitive in enterprise." Here's what the data showed:
+</p>
+
+<div class="grid md:grid-cols-2 gap-8 mb-16">
+
+<div class="metric-deep rounded-2xl p-8">
+<div class="text-blue-600 font-bold text-3xl mb-2">$2M+</div>
+<p class="text-slate-800 font-semibold mb-2">Enterprise Pipeline Unblocked</p>
+<p class="text-slate-600 text-sm">Deals that were blocked on "no location visibility" moved to closed-won. Location tracking became table-stakes for enterprise deals (100+ technicians). Without it, we couldn't compete.</p>
+<p class="text-xs text-slate-500 mt-3">Measured: Deal qualification impact, post-launch enterprise closed-won deals citing location tracking</p>
+</div>
+
+<div class="metric-deep rounded-2xl p-8">
+<div class="text-blue-600 font-bold text-3xl mb-2">35%</div>
+<p class="text-slate-800 font-semibold mb-2">Avg Efficiency Gains for Customers</p>
+<p class="text-slate-600 text-sm">Customers implementing location tracking reported completing 30% more jobs per day. Real-time reassignment decisions + optimized routing = measurable productivity.</p>
+<p class="text-xs text-slate-500 mt-3">Measured: Customer reported efficiency gains, 6-month period post-launch</p>
+</div>
+
+<div class="metric-deep rounded-2xl p-8">
+<div class="text-blue-600 font-bold text-3xl mb-2">↑ 18%</div>
+<p class="text-slate-800 font-semibold mb-2">Daily Active Manager Usage</p>
+<p class="text-slate-600 text-sm">Field managers logins increased from 34% to 52% of licensed seats within 60 days. They had a new reason to check the system every day.</p>
+<p class="text-xs text-slate-500 mt-3">Measured: DAU %, pre/post launch, 60-day window</p>
+</div>
+
+<div class="metric-deep rounded-2xl p-8">
+<div class="text-blue-600 font-bold text-3xl mb-2">↓ 60%</div>
+<p class="text-slate-800 font-semibold mb-2">Manual Oversight Effort</p>
+<p class="text-slate-600 text-sm">Managers previously spent 2+ hours/day verifying location data in spreadsheets or Slack threads. Real-time context reduced this to 45 minutes/day.</p>
+<p class="text-xs text-slate-500 mt-3">Measured: Time-motion study, 5 customer accounts, pre/post launch</p>
+</div>
+
+<div class="metric-deep rounded-2xl p-8">
+<div class="text-blue-600 font-bold text-3xl mb-2">↓ 35%</div>
+<p class="text-slate-800 font-semibold mb-2">Field Data Disputes</p>
+<p class="text-slate-600 text-sm">Location + timestamp data created shared truth. Technicians and managers now have evidence. "Did/didn't happen" disputes dropped significantly.</p>
+<p class="text-xs text-slate-500 mt-3">Measured: Support tickets, location/time dispute category, 30-day windows</p>
+</div>
+
+<div class="metric-deep rounded-2xl p-8">
+<div class="text-blue-600 font-bold text-3xl mb-2">↑ 15%</div>
+<p class="text-slate-800 font-semibold mb-2">Upsell Conversion</p>
+<p class="text-slate-600 text-sm">For customers on lower tiers, location tracking became the value unlock. It justified upgrade from $500/mo to $1,200+/mo. It was the feature that mattered.</p>
+<p class="text-xs text-slate-500 mt-3">Measured: Upsell conversion rate, accounts 25-100 technicians, 90-day windows</p>
+</div>
+
+<div class="metric-deep rounded-2xl p-8">
+<div class="text-blue-600 font-bold text-3xl mb-2">10K+</div>
+<p class="text-slate-800 font-semibold mb-2">Concurrent Technicians Tracked</p>
+<p class="text-slate-600 text-sm">The system scaled to handle real-time location for 10,000+ field workers across 200+ customer accounts. Real-time refresh sub-second. Stable and reliable.</p>
+<p class="text-xs text-slate-500 mt-3">Measured: Peak concurrent tracking post-launch, stable at 6-month mark</p>
+</div>
+
+<div class="metric-deep rounded-2xl p-8">
+<div class="text-blue-600 font-bold text-3xl mb-2">60%</div>
+<p class="text-slate-800 font-semibold mb-2">Reduction in Support Calls</p>
+<p class="text-slate-600 text-sm">Customer portals showing real-time technician status reduced support inquiries: "Where is my technician?" Now customers see for themselves.</p>
+<p class="text-xs text-slate-500 mt-3">Measured: Support ticket volume, "technician location" category, 30-day windows</p>
+</div>
+
+</div>
+
+<div class="highlight-block">
+<strong>What Made These Numbers Possible:</strong> We didn't just add a map. We solved the right problem (enterprise visibility), with the right constraints (respected privacy), for the right users (managers who make decisions). That's why it mattered.
+</div>
+</section>
+
+<!-- ===== LEADERSHIP ===== -->
+<section class="py-24 px-6 md:px-20 bg-slate-50">
+<div class="max-w-7xl mx-auto">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-brand text-3xl">groups</span>
+<span class="uppercase tracking-widest text-brand font-bold text-sm">LEADERSHIP & CROSS-FUNCTIONAL IMPACT</span>
+</div>
+
+<h2 class="font-serif text-4xl text-slate-800 mb-16">How I Led This Across Fieldproxy</h2>
+
+<div class="space-y-8">
+
+<div className="bg-white rounded-2xl border border-slate-100 p-8">
+<h3 className="font-semibold text-slate-800 mb-4">Problem Definition (Not Just Execution)</h3>
+<p className="text-slate-600 mb-4">
+I took the initiative to define the problem, not wait for a PRD. I:
+</p>
+<ul className="space-y-2 text-slate-600 text-sm">
+<li>• <span className="font-semibold">Conducted customer research</span> (talked to churned accounts and at-risk customers)</li>
+<li>• <span className="font-semibold">Built the business case</span> ($4M pipeline tied to this feature)</li>
+<li>• <span className="font-semibold">Presented insights to leadership</span> (showed research, not just my opinion)</li>
+<li>• <span className="font-semibold">Shaped requirements with Product & Sales</span> rather than receiving them</li>
+</ul>
+<p className="text-slate-600 text-sm mt-4">
+<strong>Result:</strong> Project got green-light because leadership understood strategic importance, not because "design wants this."
+</p>
+</div>
+
+<div className="bg-white rounded-2xl border border-slate-100 p-8">
+<h3 className="font-semibold text-slate-800 mb-4">Engineering Collaboration (Understanding Reality)</h3>
+<p className="text-slate-600 mb-4">
+I didn't design in isolation. I worked with engineers to understand constraints and find solutions:
+</p>
+<ul className="space-y-2 text-slate-600 text-sm">
+<li>• <span className="font-semibold">Technical Workshops:</span> Understood GPS accuracy limits, battery implications, data storage costs</li>
+<li>• <span className="font-semibold">Constraint-Based Design:</span> Designed UX around 30-second refresh rate, not against it</li>
+<li>• <span className="font-semibold">Offline-First Architecture:</span> Designed for sync-when-connectivity-returns, not as blocker</li>
+<li>• <span className="font-semibold">Performance Mindset:</span> Designed tiered data retention to control costs while maintaining compliance</li>
+</ul>
+<p className="text-slate-600 text-sm mt-4">
+<strong>Result:</strong> Engineers respected the design because I understood their reality, not just my design ideals.
+</p>
+</div>
+
+<div className="bg-white rounded-2xl border border-slate-100 p-8">
+<h3 className="font-semibold text-slate-800 mb-4">Privacy & Compliance Advocacy (Turning Risk Into Feature)</h3>
+<p className="text-slate-600 mb-4">
+Location data is sensitive. I ensured the design handled this responsibly:
+</p>
+<ul className="space-y-2 text-slate-600 text-sm">
+<li>• <span className="font-semibold">Privacy by Design:</span> Worked with Legal on GDPR/CCPA compliance from day one</li>
+<li>• <span className="font-semibold">Technician Consent:</span> Designed ability to toggle location (not just on/off)</li>
+<li>• <span className="font-semibold">Audit Trail:</span> Built comprehensive logging for compliance</li>
+<li>• <span className="font-semibold">Data Minimization:</span> Location tracked ONLY during active work, not 24/7</li>
+</ul>
+<p className="text-slate-600 text-sm mt-4">
+<strong>Result:</strong> Turned potential liability (surveillance risk) into trust feature.
+</p>
+</div>
+
+<div className="bg-white rounded-2xl border border-slate-100 p-8">
+<h3 className="font-semibold text-slate-800 mb-4">Design System Contribution (Long-Term Impact)</h3>
+<p className="text-slate-600 mb-4">
+I didn't just design a feature. I built reusable components:
+</p>
+<ul className="space-y-2 text-slate-600 text-sm">
+<li>• <span className="font-semibold">Activity Card Component:</span> Adopted by 4 other features (dispatch, compliance, analytics)</li>
+<li>• <span className="font-semibold">Timeline Component:</span> Standardized chronological data visualization across product</li>
+<li>• <span className="font-semibold">Status Badge System:</span> Consistent patterns for work state across platform</li>
+<li>• <span className="font-semibold">Map Integration Layer:</span> Made it easy for future features to add map capabilities</li>
+</ul>
+<p className="text-slate-600 text-sm mt-4">
+<strong>Result:</strong> 18 months later, 7 teams adopted these components. Design system contribution became business asset.
+</p>
+</div>
+
+</div>
+</section>
+
+<!-- ===== REFLECTIONS ===== -->
+<section class="py-24 px-6 md:px-20 bg-white">
+<div class="max-w-7xl mx-auto">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-brand text-3xl">lightbulb</span>
+<span class="uppercase tracking-widest text-brand font-bold text-sm">WHAT I LEARNED</span>
+</div>
+
+<h2 class="font-serif text-4xl text-slate-800 mb-16">Key Insights & What I'd Do Differently</h2>
+
+<div class="space-y-8 mb-16">
+
+<div class="bg-gradient-to-r from-orange-50 to-purple-50 rounded-2xl p-8 border border-orange-200">
+<h3 class="font-semibold text-slate-800 mb-4">💡 Insight 1: Constraints Are Features</h3>
+<p class="text-slate-600">
+I initially saw GPS accuracy limits as a problem. I ended up seeing them as the reason our solution was better than competitors' dumb maps. Constraints forced clarity.
+</p>
+</div>
+
+<div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-8 border border-blue-200">
+<h3 className="font-semibold text-slate-800 mb-4">💡 Insight 2: Transparency Builds Trust (Better Than Anonymity)</h3>
+<p className="text-slate-600">
+I worried technicians would reject real-time tracking. But honest communication about what data we collect, why, and how to control it mattered more than hiding the feature.
+</p>
+</div>
+
+<div className="bg-gradient-to-r from-green-50 to-purple-50 rounded-2xl p-8 border border-green-200">
+<h3 className="font-semibold text-slate-800 mb-4">💡 Insight 3: Design Leadership = Defining the Problem</h3>
+<p className="text-slate-600">
+The impact came from identifying the problem (enterprise churn due to location visibility gap) and building the business case, not just designing a pretty interface. Problem definition was the leverage point.
+</p>
+</div>
+
+<div className="bg-gradient-to-r from-pink-50 to-purple-50 rounded-2xl p-8 border border-pink-200">
+<h3 className="font-semibold text-slate-800 mb-4">💡 Insight 4: Context Matters More Than Data</h3>
+<p className="text-slate-600">
+Competitors showed location. We succeeded because we showed location + task + time + context. The map alone wasn't the win. The decision-support system was.
+</p>
+</div>
+
+</div>
+
+<div className="bg-slate-50 rounded-2xl p-12 border border-slate-200">
+<h3 class="font-semibold text-slate-800 mb-6">What I'd Do Differently Next Time</h3>
+<ul class="space-y-4 text-slate-600">
+<li class="flex gap-4">
+<span class="text-brand font-bold">1.</span>
+<p><span class="font-semibold">Involve technicians earlier in the process.</span> I focused heavily on manager and compliance needs. Technician feedback came mid-way and changed the design significantly. Starting there would have saved iteration.</p>
+</li>
+<li className="flex gap-4">
+<span className="text-brand font-bold">2.</span>
+<p><span className="font-semibold">Measure privacy perception from day one.</span> We tracked "% tracking enabled" but didn't measure technician trust or perception of surveillance. Building this metric would have shown us earlier that activity-scoped visibility was the breakthrough.</p>
+</li>
+<li className="flex gap-4">
+<span className="text-brand font-bold">3.</span>
+<p><span className="font-semibold">Plan for 50K scale from day one, not 10K.</span> By month 3, we had growth past initial planning. Building for exponential growth upfront would have prevented scaling pains later.</p>
+</li>
+</ul>
+</div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<section class="py-12 px-6 md:px-20 border-t border-slate-100 bg-white">
+<div class="max-w-7xl mx-auto">
+<div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
+
+<div>
+<span class="block text-slate-400 uppercase font-bold text-xs mb-4">ROLE & SCOPE</span>
+<p class="text-slate-800 font-medium text-sm">Lead Product Designer</p>
+<p class="text-slate-500 text-xs mt-2">Problem definition, research, design strategy, execution, metrics definition, cross-functional leadership</p>
+</div>
+
+<div>
+<span class="block text-slate-400 uppercase font-bold text-xs mb-4">PROJECT TIMELINE</span>
+<p class="text-slate-800 font-medium text-sm">6 Months</p>
+<p className="text-slate-500 text-xs mt-2">2 weeks research, 1 week strategy, 2 months design/testing, 1 month launch and iteration</p>
+</div>
+
+<div>
+<span className="block text-slate-400 uppercase font-bold text-xs mb-4">CROSS-FUNCTIONAL TEAMS</span>
+<p className="text-slate-800 font-medium text-sm">Design, Product, Engineering, Security, Legal, Sales</p>
+<p className="text-slate-500 text-xs mt-2">Led design strategy, collaborated with PM on requirements, built with eng constraints</p>
+</div>
+
+<div>
+<span className="block text-slate-400 uppercase font-bold text-xs mb-4">RESEARCH & TOOLS</span>
+<p className="text-slate-800 font-medium text-sm">Figma, Vercel, Research</p>
+<p className="text-slate-500 text-xs mt-2">15 customer interviews, 8-user usability testing, 3 design concepts tested, competitive analysis</p>
+</div>
+
+</div>
+
+<div className="bg-gradient-to-r from-orange-50 to-purple-50 rounded-xl p-6 border border-orange-200">
+<p className="text-sm text-slate-700">
+<span className="font-semibold">Fieldproxy:</span> AI-powered Field Service Management SaaS | Y Combinator backed | 300+ active companies | Real-time analytics, AI dispatching, customizable workflows, unlimited users
+</p>
+</div>
+</section>
+
+</body>
+</html>
