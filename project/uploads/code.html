@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en" style=""><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AIPortfolio | Platform Builder Case Study</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Playfair+Display:wght@700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-container": "#9c83fe",
+                        "secondary-fixed": "#e7deff",
+                        "on-tertiary-fixed": "#1e1929",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-primary": "#c8bfff",
+                        "secondary": "#6349c1",
+                        "tertiary-container": "#453f51",
+                        "surface-container-highest": "#e5e1e8",
+                        "on-surface-variant": "#484554",
+                        "on-primary-container": "#afa2ff",
+                        "error": "#ba1a1a",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-fixed-variant": "#4a4456",
+                        "surface-container-high": "#ebe7ee",
+                        "outline": "#787585",
+                        "on-secondary-fixed": "#1e0060",
+                        "surface-bright": "#fcf8ff",
+                        "on-primary": "#ffffff",
+                        "surface-container-low": "#f7f2f9",
+                        "on-tertiary-container": "#b4aac0",
+                        "tertiary": "#2f293a",
+                        "tertiary-fixed": "#e9def5",
+                        "error-container": "#ffdad6",
+                        "surface": "#fcf8ff",
+                        "secondary-fixed-dim": "#cbbeff",
+                        "outline-variant": "#c9c4d6",
+                        "tertiary-fixed-dim": "#cdc2d9",
+                        "primary": "#280090",
+                        "on-primary-fixed": "#190064",
+                        "primary-container": "#3f22b1",
+                        "on-background": "#1c1b20",
+                        "surface-variant": "#e5e1e8",
+                        "surface-container": "#f1ecf3",
+                        "inverse-on-surface": "#f4eff6",
+                        "background": "#fcf8ff",
+                        "on-secondary-fixed-variant": "#4b2ea8",
+                        "inverse-surface": "#313035",
+                        "on-tertiary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "surface-dim": "#ddd8e0",
+                        "on-secondary": "#ffffff",
+                        "primary-fixed": "#e5deff",
+                        "on-primary-fixed-variant": "#4429b6",
+                        "surface-tint": "#5d47cf",
+                        "on-surface": "#1c1b20",
+                        "on-secondary-container": "#32058f",
+                        "primary-fixed-dim": "#c8bfff",
+                        /* Specific case study aliases */
+                        "accent-purple": "#3F22B1",
+                        "soft-lavender": "#D1C9FF",
+                        "mint-glass": "#D5F5C9",
+                        "canvas-white": "#FFFFFF"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "64px",
+                        "unit": "8px",
+                        "container-max": "1280px",
+                        "gutter": "24px",
+                        "margin-mobile": "20px",
+                        "stack-sm": "16px",
+                        "stack-lg": "80px",
+                        "stack-md": "32px",
+                        "stack-unit": "10px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter", "sans-serif"],
+                        "label-md": ["Inter", "sans-serif"],
+                        "headline-lg": ["Playfair Display", "serif"],
+                        "body-md": ["Inter", "sans-serif"],
+                        "headline-md": ["Playfair Display", "serif"],
+                        "headline-lg-mobile": ["Playfair Display", "serif"],
+                        "label-sm": ["Inter", "sans-serif"],
+                        "headline-xl": ["Playfair Display", "serif"],
+                        "quote": ["Playfair Display", "serif"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["20px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "label-md": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["36px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "label-sm": ["12px", {"lineHeight": "1.2", "fontWeight": "500"}],
+                        "headline-xl": ["72px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "quote": ["28px", {"lineHeight": "42px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+@keyframes bounce {
+    0%, 100% { transform: translate(-50%, 0); }
+    50% { transform: translate(-50%, -6px); }
+}
+.animate-bounce {
+    animation: bounce 2s ease-in-out infinite;
+}
+</style><style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(209, 201, 255, 0.2);
+        }
+    </style>
+<style>
+@keyframes bounce {
+    0%, 100% { transform: translate(-50%, 0); }
+    50% { transform: translate(-50%, -6px); }
+}
+.animate-bounce {
+    animation: bounce 2s ease-in-out infinite;
+}
+</style><style data-stitch-cursor=""></style><style>
+@keyframes bounce {
+    0%, 100% { transform: translate(-50%, 0); }
+    50% { transform: translate(-50%, -6px); }
+}
+.animate-bounce {
+    animation: bounce 2s ease-in-out infinite;
+}
+</style><style data-stitch-scroll-lock=""></style><style>
+@keyframes bounce {
+    0%, 100% { transform: translate(-50%, 0); }
+    50% { transform: translate(-50%, -6px); }
+}
+.animate-bounce {
+    animation: bounce 2s ease-in-out infinite;
+}
+</style><style data-stitch-cursor=""></style><style>
+@keyframes bounce {
+    0%, 100% { transform: translate(-50%, 0); }
+    50% { transform: translate(-50%, -6px); }
+}
+.animate-bounce {
+    animation: bounce 2s ease-in-out infinite;
+}
+</style><style data-stitch-scroll-lock=""></style><style>
+@keyframes bounce {
+    0%, 100% { transform: translate(-50%, 0); }
+    50% { transform: translate(-50%, -6px); }
+}
+.animate-bounce {
+    animation: bounce 2s ease-in-out infinite;
+}
+</style><style data-stitch-cursor=""></style><style>
+@keyframes bounce {
+    0%, 100% { transform: translate(-50%, 0); }
+    50% { transform: translate(-50%, -6px); }
+}
+.animate-bounce {
+    animation: bounce 2s ease-in-out infinite;
+}
+</style><style data-stitch-scroll-lock=""></style><style>
+@keyframes bounce {
+    0%, 100% { transform: translate(-50%, 0); }
+    50% { transform: translate(-50%, -6px); }
+}
+.animate-bounce {
+    animation: bounce 2s ease-in-out infinite;
+}
+</style><style>
+@keyframes bounce {
+    0%, 100% { transform: translate(-50%, 0); }
+    50% { transform: translate(-50%, -6px); }
+}
+.animate-bounce {
+    animation: bounce 2s ease-in-out infinite;
+}
+</style><style>
+@keyframes bounce {
+    0%, 100% { transform: translate(-50%, 0); }
+    50% { transform: translate(-50%, -6px); }
+}
+.animate-bounce {
+    animation: bounce 2s ease-in-out infinite;
+}
+</style><style>
+@keyframes bounce {
+    0%, 100% { transform: translate(-50%, 0); }
+    50% { transform: translate(-50%, -6px); }
+}
+.animate-bounce {
+    animation: bounce 2s ease-in-out infinite;
+}
+</style><style data-stitch-cursor=""></style><style>
+@keyframes bounce {
+    0%, 100% { transform: translate(-50%, 0); }
+    50% { transform: translate(-50%, -6px); }
+}
+.animate-bounce {
+    animation: bounce 2s ease-in-out infinite;
+}
+</style><style data-stitch-scroll-lock=""></style><style>
+@keyframes bounce {
+    0%, 100% { transform: translate(-50%, 0); }
+    50% { transform: translate(-50%, -6px); }
+}
+.animate-bounce {
+    animation: bounce 2s ease-in-out infinite;
+}
+</style><style data-stitch-cursor=""></style><style data-stitch-scroll-lock=""></style><style data-stitch-cursor=""></style><style data-stitch-scroll-lock=""></style><style data-stitch-cursor=""></style><style data-stitch-scroll-lock=""></style><style class="">
+@keyframes drawPath {
+  from {
+    stroke-dashoffset: 1000;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+.animate-draw-path {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: drawPath 5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+</style><style data-stitch-cursor=""></style><style data-stitch-scroll-lock=""></style></head>
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden">
+<!-- Top Navigation from COMPONENTS_36 -->
+<nav class="sticky top-0 z-50 bg-surface/80 backdrop-blur-xl dark:bg-surface-dim/80 shadow-sm">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto h-20">
+<div class="font-headline-md text-headline-md font-bold tracking-tight text-primary dark:text-primary-fixed">AIPortfolio</div>
+<div class="hidden md:flex items-center gap-10">
+<a class="font-body-md text-body-md text-primary dark:text-primary-fixed border-b-2 border-primary dark:border-primary-fixed pb-1" href="#">Work</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Expertise</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">About</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Contact</a>
+</div>
+<button class="bg-primary text-on-primary px-8 py-3 rounded-lg font-body-md transition-all duration-200 active:scale-95 hover:opacity-80">Let's Talk</button>
+</div>
+</nav>
+<main class="pt-20">
+<!-- Hero Section -->
+<section class="max-w-container-max mx-auto px-margin-desktop mb-40 pt-20">
+<div class="flex flex-wrap gap-4 mb-10">
+<span class="px-5 py-2 rounded-full border border-outline-variant text-primary font-label-sm text-label-sm uppercase">B2B</span>
+<span class="px-5 py-2 rounded-full bg-secondary-fixed text-primary font-label-sm text-label-sm uppercase">AI-Assisted System</span>
+<span class="px-5 py-2 rounded-full border border-outline-variant text-primary font-label-sm text-label-sm uppercase">System Design</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface max-w-5xl mb-8 leading-tight">
+                From a Fragile Builder to a Scalable AI-Assisted Platform for Field Apps
+            </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-3xl mb-20">
+                Transformed a complex, manual builder into a structured AI-assisted system, enabling 2× faster application creation.
+            </p>
+<div class="relative w-full aspect-video rounded-[32px] overflow-hidden shadow-sm">
+<img class="w-full h-full object-cover" data-alt="A clean, high-fidelity UI design showcasing a sophisticated AI-powered dashboard layout alongside a mobile application screen. The aesthetic is ultra-modern and minimalist, with a soft lavender and pristine white color palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDq_GOvwDxyW_v4XkHCRFv0r0tgBQq03DbAQKupnJmDKoG0yt7f4OEjNc9ynoegXKOZ8KwDDPqCTQoKULMQRzX8-KXkntzvHMHEhCqHyc0Kp7-XBwpgCPXJk-okJwf5WPqmQNVVYojSz6qysumQBe4Zyj2lgc98UNnyyf7P05ot7nIlAVHnW8Ag9BAEodT-pbrVYjOiqLsi9FMa9RWPQ1QYRyWtLXXtZJq4pI8tLEsLt9TQ5pb2ExT51BJxl2_gwJkSg34CFdV2XA"/>
+</div>
+</section>
+<!-- Overview Section -->
+<section class="max-w-container-max mx-auto px-margin-desktop mb-48">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<div class="md:col-span-10 lg:col-span-9">
+<h2 class="font-headline-md text-headline-md mb-10">Project Overview</h2>
+<div class="space-y-8 text-on-surface-variant font-body-lg text-body-lg leading-relaxed">
+<p class="">
+                            Rebuilt the Fieldproxy platform from the ground up, shifting from complex manual configuration to a machine-readable system that enables AI-assisted application creation faster and scalable field application development.
+                        </p>
+<p class="">
+                            The previous builder relied on multi-layered configuration, making it slow and difficult to scale. I led the platform transition, redefining how applications are created by shaping the builder experience and system architecture for AI.
+                        </p>
+</div>
+</div>
+</div>
+</section>
+<!-- Key Impacts -->
+<section class="bg-surface-container-low py-32 mb-48">
+<div class="max-w-container-max mx-auto px-margin-desktop">
+<h2 class="font-headline-md text-headline-md text-center mb-20">Key Impacts</h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+<!-- Impact 1 -->
+<div class="bg-surface-container-lowest p-10 rounded-2xl shadow-sm border border-outline-variant/10">
+<div class="bg-secondary-fixed w-16 h-16 rounded-xl flex items-center justify-center mb-8">
+<span class="material-symbols-outlined text-primary text-3xl">trending_up</span>
+</div>
+<div class="font-headline-lg text-headline-lg text-primary mb-3">80%</div>
+<p class="font-body-md text-body-md text-on-surface-variant">System stability</p>
+</div>
+<!-- Impact 2 -->
+<div class="bg-surface-container-lowest p-10 rounded-2xl shadow-sm border border-outline-variant/10">
+<div class="bg-mint-glass/40 w-16 h-16 rounded-xl flex items-center justify-center mb-8">
+<span class="material-symbols-outlined text-primary text-3xl">star</span>
+</div>
+<div class="font-headline-lg text-headline-lg text-primary mb-3">3x</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Faster app deployment</p>
+</div>
+<!-- Impact 3 -->
+<div class="bg-surface-container-lowest p-10 rounded-2xl shadow-sm border border-outline-variant/10">
+<div class="bg-error-container/40 w-16 h-16 rounded-xl flex items-center justify-center mb-8">
+<span class="material-symbols-outlined text-error text-3xl">trending_down</span>
+</div>
+<div class="font-headline-lg text-headline-lg text-primary mb-3">35%</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Reduced Churn &amp; support cost</p>
+</div>
+<!-- Impact 4 -->
+<div class="bg-surface-container-lowest p-10 rounded-2xl shadow-sm border border-outline-variant/10">
+<div class="bg-secondary-fixed w-16 h-16 rounded-xl flex items-center justify-center mb-8">
+<span class="material-symbols-outlined text-primary text-3xl">public</span>
+</div>
+<div class="font-headline-lg text-headline-lg text-primary mb-3">43%</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Product Adoption (Global Rollout)</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Architecture Analysis -->
+<section class="max-w-container-max mx-auto px-margin-desktop mb-48">
+<div class="text-center mb-24">
+<h2 class="font-headline-md text-headline-md mb-8">How the existing builder was structured</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-4xl mx-auto">
+                    Fieldproxy enables organisations to coordinate field teams through mobile apps used by field technicians and web apps used by operations managers.
+                </p>
+</div>
+<div class="w-full mb-24">
+<div class="flex justify-center mb-16">
+<div class="flex p-2 bg-surface-container-high rounded-2xl">
+<button class="flex items-center gap-3 px-10 py-4 rounded-xl font-bold text-primary bg-surface shadow-sm transition-all duration-300" onclick="document.getElementById('mobile-content').classList.remove('hidden'); document.getElementById('web-content').classList.add('hidden'); this.classList.add('bg-surface', 'shadow-sm', 'text-primary'); this.classList.remove('text-on-surface-variant'); this.nextElementSibling.classList.remove('bg-surface', 'shadow-sm', 'text-primary'); this.nextElementSibling.classList.add('text-on-surface-variant')">
+<span class="material-symbols-outlined text-[24px]">smartphone</span>
+<span class="font-body-md">Mobile Builder</span>
+</button>
+<button class="flex items-center gap-3 px-10 py-4 rounded-xl font-bold text-on-surface-variant transition-all duration-300 hover:text-primary" onclick="document.getElementById('web-content').classList.remove('hidden'); document.getElementById('mobile-content').classList.add('hidden'); this.classList.add('bg-surface', 'shadow-sm', 'text-primary'); this.classList.remove('text-on-surface-variant'); this.previousElementSibling.classList.remove('bg-surface', 'shadow-sm', 'text-primary'); this.previousElementSibling.classList.add('text-on-surface-variant')">
+<span class="material-symbols-outlined text-[24px]">monitor</span>
+<span class="font-body-md">Web Builder</span>
+</button>
+</div>
+</div>
+<div class="relative">
+<div class="transition-opacity duration-500" id="mobile-content">
+<div class="relative bg-surface-container-high/30 rounded-[32px] p-10 md:p-16 overflow-hidden border border-outline-variant/10">
+<div class="relative z-10">
+<div class="text-center font-label-sm text-label-sm text-primary uppercase tracking-widest mb-10">Node Based Builder Interface</div>
+<div class="rounded-2xl overflow-hidden shadow-xl bg-surface">
+<img alt="Mobile Builder Node Interface" class="w-full h-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDaZ2T2fqPZi_-YseXYsl7gUFZJZm5cWPl_-yPA6XWcXyvDIoFuzWMLVukI4lOFi0AoWLB3PouaEtwSsa7Dx16bW_uvky7DF0q2gaUi4kj9v6vkptXOxDX6VHKpeI5ZhfjNqR3P-_HydgRuXmglKnOgi2681ZlCsfQ_2DW7ScGDMQa22dZWJ0mhIkjnj9VCododhwhJDiJamgpUwNIigIWl3ng223OavkJ6yCL5zfNAWSnJ8R_ilsG3_cUMKgQlNOtC3rPtHPvwhg"/>
+</div>
+</div>
+</div>
+</div>
+<div class="hidden transition-opacity duration-500" id="web-content">
+<div class="relative bg-surface-container-high/30 rounded-[32px] p-10 md:p-16 overflow-hidden border border-outline-variant/10">
+<div class="relative z-10">
+<div class="text-center font-label-sm text-label-sm text-primary uppercase tracking-widest mb-10">Admin Dashboard &amp; Operations Web Portal</div>
+<div class="rounded-2xl overflow-hidden shadow-xl bg-surface">
+<img alt="Web Builder Interface" class="w-full h-auto" src="https://lh3.googleusercontent.com/aida/ADBb0ugsZEUYjU3EfLxo_DbQaEPDf10PC3X4WmnqNakF7TfDludZJkS7KelztAVOHbQ9on--0V3goHM2qreK3XxFXJ95hvSfinmy6CLrtAcuobIVaY65u0-ZCML7famp-9oDJNKRb7G25YlLpnTFcTV1C1nksgYU-nhpjAxRNJztqQG6vAc0FPwdbIq08LR16mNlq16IRY7U_xlQOKr6RDGRGFJkdbGZtWH-nmWZ8KHByotjjs2gbLcJNpF7"/>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="max-w-4xl mx-auto text-center">
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                    Mobile workflows were created using a node-based builder, where implementation teams configured applications by linking task and action nodes across multiple layers. Even simple setups required navigating multiple steps across settings, task definitions, and action triggers. The lack of real-time preview made it difficult to understand the final experience during configuration.
+                </p>
+</div>
+</section>
+<!-- Problem Section -->
+<section class="max-w-container-max mx-auto px-margin-desktop mb-48">
+<div class="mb-16">
+<div class="flex items-center gap-5 mb-6">
+<div class="w-1 h-10 bg-error"></div>
+<span class="font-bold text-error tracking-widest text-[16px] uppercase font-label-md">PROBLEM</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-10">What led to the platform rebuild</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-5xl leading-relaxed">
+                    As Fieldproxy scaled to support larger operations, the existing V3 workflow builder struggled with increasing complexity. Implementation teams found it difficult to configure, debug, and maintain workflows, exposing the key limitations outlined below.
+                </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
+<!-- Card 1 -->
+<div class="bg-[#1B2D19] p-12 rounded-[32px] flex flex-col gap-24">
+<div class="w-14 h-14 rounded-full border border-white/20 flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-3xl">error</span>
+</div>
+<div>
+<h3 class="text-white font-bold text-[24px] mb-6 font-headline-md">Rigid System Architecture</h3>
+<p class="text-white/80 font-body-md leading-relaxed">
+                            Heavy reliance on manual configuration and predefined components made the system rigid, limiting flexibility and hard to scale across complex use cases.
+                        </p>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-[#7E2D11] p-12 rounded-[32px] flex flex-col gap-24">
+<div class="w-14 h-14 rounded-full border border-white/20 flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-3xl">account_tree</span>
+</div>
+<div>
+<h3 class="text-white font-bold text-[24px] mb-6 font-headline-md">Complex Workflow</h3>
+<p class="text-white/80 font-body-md leading-relaxed">
+                            Multi-layered configuration across UI, data, and actions required navigating several steps, making even simple workflows complex to set up and deployment slower.
+                        </p>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-[#3D143D] p-12 rounded-[32px] flex flex-col gap-24">
+<div class="w-14 h-14 rounded-full border border-white/20 flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-3xl">moving</span>
+</div>
+<div>
+<h3 class="text-white font-bold text-[24px] mb-6 font-headline-md">Inconsistent Builder Models</h3>
+<p class="text-white/80 font-body-md leading-relaxed">
+                            Mobile used a node-based builder while web used a drag-and-drop interface, leading to inconsistent setups and making debugging and stability harder to manage.
+                        </p>
+</div>
+</div>
+</div>
+<div class="max-w-5xl mx-auto text-center">
+<p class="font-body-lg text-[22px] text-on-surface-variant leading-relaxed">
+                    This led to higher <span class="bg-primary text-white px-2 py-0.5 font-semibold">churn, increased support costs, and slower adoption, impacting end-user</span> <span class="bg-primary text-white px-2 py-0.5 font-semibold">experience.</span>
+</p>
+</div>
+</section>
+<!-- Goal Section -->
+<section class="max-w-container-max mx-auto px-margin-desktop mb-48">
+<div class="mb-16">
+<div class="flex items-center gap-5 mb-6">
+<div class="w-1 h-10 bg-secondary-container"></div>
+<span class="font-bold text-secondary tracking-widest text-[16px] uppercase font-label-md">GOAL</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-10">Redefining How Applications Are Built</h2>
+<div class="space-y-6 max-w-5xl font-body-lg text-body-lg text-on-surface-variant leading-relaxed mb-20">
+<p class="">
+                        As we dug deeper, it became clear that fixing individual issues would only add complexity without solving the core problem. The system lacked a structured, machine-readable foundation, making it difficult to scale and limiting its ability to support AI-assisted workflows.
+                    </p>
+<p class="">
+                        To address this, I focused on three key areas that redefined how applications are created.
+                    </p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-4">
+<!-- Flexible Configuration -->
+<div class="flex items-center gap-6 p-8 rounded-2xl bg-mint-glass/20 border border-mint-glass/40">
+<div class="w-14 h-14 shrink-0 rounded-xl bg-mint-glass flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-3xl">bolt</span>
+</div>
+<div>
+<h4 class="font-bold text-on-surface mb-1 font-body-md">Flexible Configuration</h4>
+<p class="text-on-surface-variant text-sm font-body-md">From rigid setup to Flexible configurable.</p>
+</div>
+</div>
+<!-- Built for Scale & AI -->
+<div class="flex items-center gap-6 p-8 rounded-2xl bg-[#FFF4E5] border border-[#FFE0B2]">
+<div class="w-14 h-14 shrink-0 rounded-xl bg-[#FFE0B2] flex items-center justify-center text-[#E65100]">
+<span class="material-symbols-outlined text-3xl">auto_awesome</span>
+</div>
+<div>
+<h4 class="font-bold text-on-surface mb-1 font-body-md">Built for Scale &amp; AI</h4>
+<p class="text-on-surface-variant text-sm font-body-md">Machine-readable system enables scalable apps and AI.</p>
+</div>
+</div>
+<!-- Faster Deployment & Debugging -->
+<div class="flex items-center gap-6 p-8 rounded-2xl bg-soft-lavender/20 border border-soft-lavender/40">
+<div class="w-14 h-14 shrink-0 rounded-xl bg-soft-lavender flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-3xl">flash_on</span>
+</div>
+<div>
+<h4 class="font-bold text-on-surface mb-1 font-body-md">Faster Deployment &amp; Debugging</h4>
+<p class="text-on-surface-variant text-sm font-body-md">Unified mobile and web setup improves consistency.</p>
+</div>
+</div>
+</div>
+<!-- Bracket Image Placeholder -->
+<div class="flex justify-center w-full mb-4">
+<img alt="Connecting Bracket" class="w-full max-w-4xl h-auto object-contain max-h-32" src="https://lh3.googleusercontent.com/aida/ADBb0ugOClauMLi5Xm7KC4PkytLY6eqm4tu7LHsLbLGpBMPfGOi7HzMhQiLUWIXiwwG3FBD4v9ZGIy0Fc42w3evOt_SmDv1JfUZhsq_6evJvefQlOEV2HSAnk7Q5cadHz-XyqXt87Fyvd_gqeR-Cg7ihsvuOgs0WlSJm-WO09358970ibpjXLJMTJ2s4rqkfPxVZCjHdm6MpRqKrwwN3BHcVcgfKVF9B56b_HCnrfbzuRD82oOkhvu-Etd2c"/>
+</div>
+<div class="relative max-w-4xl mx-auto mb-20 text-center">
+<div class="bg-secondary-fixed/30 p-8 rounded-2xl border border-secondary-fixed/50">
+<p class="font-body-lg text-primary font-semibold">
+                            Rebuilt the platform around a structured, JSON-based system with AI-assisted workflows
+                        </p>
+</div>
+</div>
+<div class="max-w-4xl mx-auto text-center">
+<p class="font-body-md text-body-md text-on-surface-variant italic">
+                        Applications are defined through structured, machine-readable configurations, unifying workflows, data, and UI across mobile and web.
+                    </p>
+</div>
+</div>
+</section>
+<!-- Meta Section (Users/Role) -->
+<section class="max-w-container-max mx-auto px-margin-desktop mb-48" id="platform-transformation">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-1 h-6 bg-secondary-container"></div>
+<span class="font-bold text-secondary tracking-widest text-[14px] uppercase font-label-md">PLATFORM TRANSFORMATION</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-12">How the scaling happened?</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-4xl mb-16">
+    The transition to a structured system evolved through iterative stages, starting with validation in mobile and scaling across the platform.
+  </p>
+<div class="mb-16">
+<h3 class="font-headline-md text-[24px] text-secondary mb-6">Validating the System (Mobile - first)</h3>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-5xl leading-relaxed">
+      To transition the platform to a configuration-driven architecture, the system was first started with the technician mobile workflow, where most of the complexity, and usability issues existed. Application creation still involved partial manual configuration, including component selection and setup.
+    </p>
+</div>
+<div class="mb-12">
+<span class="font-label-sm text-label-sm text-on-surface-variant/60 uppercase mb-6 block">We built with</span>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="bg-white p-6 rounded-2xl border border-outline-variant/10 shadow-sm">
+<h4 class="font-bold text-on-surface mb-2 font-body-md">Live preview while building</h4>
+<p class="text-on-surface-variant text-sm font-body-md">See changes instantly without switching between steps</p>
+</div>
+<div class="bg-white p-6 rounded-2xl border border-outline-variant/10 shadow-sm">
+<h4 class="font-bold text-on-surface mb-2 font-body-md">Flexible components</h4>
+<p class="text-on-surface-variant text-sm font-body-md">Choose and customize components without rigid limits</p>
+</div>
+<div class="bg-white p-6 rounded-2xl border border-outline-variant/10 shadow-sm">
+<h4 class="font-bold text-on-surface mb-2 font-body-md">AI-assisted data &amp; queries</h4>
+<p class="text-on-surface-variant text-sm font-body-md">Generate data and queries faster with AI support</p>
+</div>
+</div>
+</div>
+<div class="w-full mb-12">
+<div class="relative group select-none overflow-hidden shadow-2xl border bg-white aspect-[16/9] max-w-[900px] mx-auto border-[0.5px] rounded-[40px] border-accent-purple/20" id="comparison-slider-container" style="box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 40px -10px; border: 1px solid rgba(0, 0, 0, 0.05);">
+<!-- After Image -->
+<img alt="AI-Assisted Platform Builder" class="absolute top-0 left-0 w-full h-full object-cover origin-center scale-95" src="https://lh3.googleusercontent.com/aida/ADBb0ugsZEUYjU3EfLxo_DbQaEPDf10PC3X4WmnqNakF7TfDludZJkS7KelztAVOHbQ9on--0V3goHM2qreK3XxFXJ95hvSfinmy6CLrtAcuobIVaY65u0-ZCML7famp-9oDJNKRb7G25YlLpnTFcTV1C1nksgYU-nhpjAxRNJztqQG6vAc0FPwdbIq08LR16mNlq16IRY7U_xlQOKr6RDGRGFJkdbGZtWH-nmWZ8KHByotjjs2gbLcJNpF7"/>
+<!-- Before Image Overlay -->
+<div class="absolute top-0 left-0 h-full overflow-hidden w-1/2 border-r border-white/30" id="before-image-layer" style="width: 50%;">
+<img alt="Legacy Node Builder" class="absolute top-0 left-0 h-full w-auto max-w-none origin-center scale-95" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTBezezQNJRH2cVWP4Zgv4aImw0DoIvtW5cO17qpo0GUvoXMok9F7RXrJackrH96FgSDBGwpbhAoQeOuqu4jcva-eUP3PXGzHZNNqK9B3oMLIYufbbQnntOmIaIjLl6Ul5UIgm_z3ncoHWI-TW70jX9vlJthrYSXb1cNXyteWUfamMx0CtTYU-q-imvMb5_y_lRJ36ozjO-DAQ7ZOfxhfobLF7868y-uqPbq1-VdU_8pCJGmDD2YlxAPf1eD7_jadUXKw7tAeuww" style="width: 100vw; height: 100%; object-fit: cover;"/>
+</div>
+<!-- Labels -->
+<div class="absolute bottom-8 left-8 z-20 pointer-events-none"><div class="bg-white/10 backdrop-blur-xl text-white px-5 py-2.5 rounded-full font-bold text-[10px] tracking-[0.2em] uppercase border border-white/20 shadow-lg">Legacy Node Builder</div></div>
+<div class="absolute bottom-8 right-8 z-20 pointer-events-none text-right"><div class="bg-primary/20 backdrop-blur-xl text-white px-5 py-2.5 rounded-full font-bold text-[10px] tracking-[0.2em] uppercase border border-white/20 shadow-lg">AI-Assisted Platform</div></div>
+<!-- Slider Handle -->
+<div class="absolute top-0 bottom-0 left-1/2 w-px bg-white/40 cursor-ew-resize z-30 transform -translate-x-1/2" id="slider-handle" style="left: 50%;">
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full shadow-[0_0_20px_rgba(0,0,0,0.15)] flex items-center justify-center border border-white/50">
+<div class="flex gap-1">
+<div class="w-0.5 h-3 bg-primary/40 rounded-full"></div>
+<div class="w-0.5 h-3 bg-primary/40 rounded-full"></div>
+</div>
+</div>
+<div class="absolute -top-10 left-1/2 -translate-x-1/2 whitespace-nowrap bg-white/90 backdrop-blur text-primary rounded-full font-bold tracking-widest shadow-sm animate-bounce pointer-events-none py-1.5 text-[9px] px-4 border border-primary/10">
+        DRAG TO COMPARE
+        <div class="absolute -bottom-1 left-1/2 -translate-x-1/2 bg-white/90 rotate-45 w-1.5 h-1.5 border-r border-b border-primary/10"></div>
+</div>
+</div>
+</div>
+<script>
+        (function() {
+            const container = document.getElementById('comparison-slider-container');
+            const handle = document.getElementById('slider-handle');
+            const beforeLayer = document.getElementById('before-image-layer');
+            let isDragging = false;
+
+            const updateSlider = (x) => {
+                const rect = container.getBoundingClientRect();
+                let position = ((x - rect.left) / rect.width) * 100;
+                position = Math.max(0, Math.min(100, position));
+                handle.style.left = position + '%';
+                beforeLayer.style.width = position + '%';
+            };
+
+            const onMove = (e) => {
+                if (!isDragging) return;
+                const x = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+                updateSlider(x);
+            };
+
+            const startDragging = () => isDragging = true;
+            const stopDragging = () => isDragging = false;
+
+            handle.addEventListener('mousedown', startDragging);
+            window.addEventListener('mouseup', stopDragging);
+            window.addEventListener('mousemove', onMove);
+
+            handle.addEventListener('touchstart', startDragging);
+            window.addEventListener('touchend', stopDragging);
+            window.addEventListener('touchmove', onMove);
+            
+            // Set initial position
+            updateSlider(container.getBoundingClientRect().left + (container.offsetWidth / 2));
+        })();
+    </script>
+</div>
+<div class="max-w-4xl mx-auto text-center mb-16">
+<p class="font-body-md text-body-md text-on-surface-variant">
+      This mobile-first migration validated the new architecture in a real workflow before expanding the platform further.
+    </p>
+</div>
+<div class="flex flex-wrap justify-center gap-6">
+<div class="px-8 py-4 rounded-full bg-[#fce4ec] text-[#880e4f] flex items-center gap-2 font-bold">
+<span class="material-symbols-outlined">arrow_downward</span>
+<span class="">85% Support tickets reduced</span>
+</div>
+<div class="px-8 py-4 rounded-full bg-[#e8f5e9] text-[#1b5e20] flex items-center gap-2 font-bold">
+<span class="material-symbols-outlined">arrow_upward</span>
+<span class="">2x Faster deployment</span>
+</div>
+</div>
+</section><section class="max-w-container-max mx-auto px-margin-desktop mb-48" id="scaling-web-ai">
+<div class="mb-16">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-8">Scaling to Web &amp; Introducing AI</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-4xl leading-relaxed">
+            After validating the new architecture with the mobile workflow, the next step was to scale the builder to support web applications, which required handling more greater layout complexity, larger screen structures, and deeper element hierarchies.
+        </p>
+</div>
+<div class="mb-20">
+<h3 class="font-label-md text-label-md text-on-surface-variant/60 uppercase mb-10 block tracking-widest">Constraints:</h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Constraint 1 -->
+<div class="relative bg-[#fdf2f2] p-10 rounded-3xl shadow-lg border border-red-100 overflow-hidden flex flex-col gap-6" style="background-image: repeating-linear-gradient(0deg, transparent, transparent 19px, rgba(255, 182, 193, 0.1) 20px);">
+<div class="w-12 h-12 flex items-center justify-center text-[#9a1e1e]">
+<span class="material-symbols-outlined text-3xl" style='font-variation-settings: "FILL" 0, "wght" 500;'>layers</span>
+</div>
+<div>
+<h4 class="font-bold text-[#9a1e1e] mb-4 font-body-md text-2xl">Deep nesting</h4>
+<p class="text-on-surface-variant font-body-md leading-relaxed text-lg">Manual Screen creation became difficult with deep element, component, and layout nesting.</p>
+</div>
+<div class="absolute bottom-0 right-0 w-12 h-12 bg-[#ffdada]" style="clip-path: polygon(100% 0, 0 100%, 100% 100%);"></div>
+</div>
+<!-- Constraint 2 -->
+<div class="relative bg-[#fdf2f2] p-10 rounded-3xl shadow-lg border border-red-100 overflow-hidden flex flex-col gap-6" style="background-image: repeating-linear-gradient(0deg, transparent, transparent 19px, rgba(255, 182, 193, 0.1) 20px);">
+<div class="w-12 h-12 flex items-center justify-center text-[#9a1e1e]">
+<span class="material-symbols-outlined text-3xl" style='font-variation-settings: "FILL" 0, "wght" 500;'>dashboard_customize</span>
+</div>
+<div>
+<h4 class="font-bold text-[#9a1e1e] mb-4 font-body-md text-2xl">Complex Layouts</h4>
+<p class="text-on-surface-variant font-body-md leading-relaxed text-lg">Web application required flexible &amp; Multi-layered layouts which increased effort and complexity in building.</p>
+</div>
+<div class="absolute bottom-0 right-0 w-12 h-12 bg-[#ffdada]" style="clip-path: polygon(100% 0, 0 100%, 100% 100%);"></div>
+</div>
+<!-- Constraint 3 -->
+<div class="relative bg-[#fdf2f2] p-10 rounded-3xl shadow-lg border border-red-100 overflow-hidden flex flex-col gap-6" style="background-image: repeating-linear-gradient(0deg, transparent, transparent 19px, rgba(255, 182, 193, 0.1) 20px);">
+<div class="w-12 h-12 flex items-center justify-center text-[#9a1e1e]">
+<span class="material-symbols-outlined text-3xl" style='font-variation-settings: "FILL" 0, "wght" 500;'>speed</span>
+</div>
+<div>
+<h4 class="font-bold text-[#9a1e1e] mb-4 font-body-md text-2xl">Slow Deployment</h4>
+<p class="text-on-surface-variant font-body-md leading-relaxed text-lg">Large workflows and deep nesting increased time and effort, reducing development velocity at web scale.</p>
+</div>
+<div class="absolute bottom-0 right-0 w-12 h-12 bg-[#ffdada]" style="clip-path: polygon(100% 0, 0 100%, 100% 100%);"></div>
+</div>
+</div>
+</div>
+<div class="max-w-5xl mx-auto text-center">
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+            These constraints <span class="bg-primary-container text-on-primary-container px-2 py-0.5 rounded-sm font-semibold">increased effort, slowed deployment and harder to scale with manual workflows.</span> To address this, we introduced an AI-assisted workflow.
+        </p>
+</div>
+</section><section class="max-w-container-max mx-auto px-margin-desktop mb-48" id="ai-workflow-diagram">
+<div class="relative rounded-[40px] overflow-hidden bg-[#2D2826] border border-[#484554]/30 shadow-2xl p-12 md:p-20" style="background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px); background-size: 40px 40px;">
+<!-- Header -->
+<div class="text-center mb-24">
+<div class="inline-flex items-center gap-3 mb-4">
+<h2 class="text-[#F4B481] font-bold text-3xl font-headline-md">AI-assisted workflow</h2>
+<svg class="text-[#F4B481]" fill="none" height="40" viewbox="0 0 40 40" width="40">
+<path class="animate-draw-path" d="M20 5L22 15M35 20L25 22M20 35L18 25M5 20L15 18" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
+</svg>
+</div>
+<p class="text-[#F4B481]/80 font-body-md">A structured generation approach to accelerate deployment and reduce manual effort.</p>
+</div>
+<!-- Intro Text -->
+<div class="max-w-4xl mx-auto mb-24">
+<p class="text-white/80 font-body-md leading-relaxed text-center">
+                To make the workflow scalable, I defined a structured AI generation system that translated requirements into JSON configurations using reusable elements, layout rules, and screen-level instructions. This workflow was implemented using Cursor, where the design system and generation rules were provided as context. Based on structured prompts, the AI generated valid configurations, which were then integrated into the builder.
+            </p>
+</div>
+<!-- Flowchart -->
+<div class="relative max-w-5xl mx-auto mb-32"><div class="relative w-full py-20 px-4">
+<!-- SVG Connection Line - Layered Above -->
+<div class="absolute inset-0 z-20 pointer-events-none">
+<svg class="w-full h-full" preserveaspectratio="none" viewbox="0 0 1000 500"><path class="animate-draw-path" d="M 125,100 L 375,100 L 625,100 L 875,100 L 875,325 L 500,325" fill="none" stroke="#F4B481" stroke-dasharray="8 8" stroke-width="2"></path><circle cx="125" cy="100" fill="#F4B481" r="6"></circle><circle cx="375" cy="100" fill="#F4B481" r="6"></circle><circle cx="625" cy="100" fill="#F4B481" r="6"></circle><circle cx="875" cy="100" fill="#F4B481" r="6"></circle><circle cx="875" cy="325" fill="#F4B481" r="6"></circle><circle cx="500" cy="325" fill="#F4B481" r="6"></circle></svg>
+</div>
+<!-- Main Flow Grid -->
+<div class="relative z-10 grid grid-cols-1 md:grid-cols-4 gap-x-8 gap-y-32">
+<!-- Step 01 -->
+<div class="flex flex-col items-center">
+<div class="bg-[#F4B481] text-black w-10 h-10 rounded-full flex items-center justify-center font-bold mb-6 border-2 border-[#2D2826] shadow-lg relative z-30">01</div>
+<div class="bg-[#FFDAB9] p-6 rounded-2xl w-full shadow-xl min-h-[180px] border border-[#F4B481]/30 transition-transform hover:scale-105 duration-300">
+<h4 class="font-bold text-black mb-3 text-sm">Requirement Analysis.md</h4>
+<ul class="text-black/70 text-xs space-y-2">
+<li class="flex items-start gap-2"><span>•</span> Requirement Extraction</li>
+<li class="flex items-start gap-2"><span>•</span> Mixed Pattern App guidelines</li>
+<li class="flex items-start gap-2"><span>•</span> Structured Requirement</li>
+</ul>
+</div>
+</div>
+<!-- Step 02 -->
+<div class="flex flex-col items-center">
+<div class="bg-[#F4B481] text-black w-10 h-10 rounded-full flex items-center justify-center font-bold mb-6 border-2 border-[#2D2826] shadow-lg relative z-30">02</div>
+<div class="bg-[#FFDAB9] p-6 rounded-2xl w-full shadow-xl min-h-[180px] border border-[#F4B481]/30 transition-transform hover:scale-105 duration-300">
+<h4 class="font-bold text-black mb-3 text-sm">Design Data.md</h4>
+<ul class="text-black/70 text-xs space-y-2">
+<li class="flex items-start gap-2"><span>•</span> Element Library - Component</li>
+<li class="flex items-start gap-2"><span>•</span> Library-Schema-UX guidelines</li>
+</ul>
+</div>
+</div>
+<!-- Step 03 -->
+<div class="flex flex-col items-center">
+<div class="bg-[#F4B481] text-black w-10 h-10 rounded-full flex items-center justify-center font-bold mb-6 border-2 border-[#2D2826] shadow-lg relative z-30">03</div>
+<div class="bg-[#FFDAB9] p-6 rounded-2xl w-full shadow-xl min-h-[180px] border border-[#F4B481]/30 transition-transform hover:scale-105 duration-300">
+<h4 class="font-bold text-black mb-3 text-sm">Mapping.md</h4>
+<ul class="text-black/70 text-xs space-y-2">
+<li class="flex items-start gap-2"><span>•</span> Component Mapping</li>
+<li class="flex items-start gap-2"><span>•</span> Schema Mapping</li>
+<li class="flex items-start gap-2"><span>•</span> Layout Generation</li>
+</ul>
+</div>
+</div>
+<!-- Step 04 -->
+<div class="flex flex-col items-center">
+<div class="bg-[#F4B481] text-black w-10 h-10 rounded-full flex items-center justify-center font-bold mb-6 border-2 border-[#2D2826] shadow-lg relative z-30">04</div>
+<div class="bg-[#FFDAB9] p-6 rounded-2xl w-full shadow-xl min-h-[180px] border border-[#F4B481]/30 transition-transform hover:scale-105 duration-300">
+<h4 class="font-bold text-black mb-3 text-sm">Validation.md</h4>
+<ul class="text-black/70 text-xs space-y-2">
+<li class="flex items-start gap-2"><span>•</span> Rule Check</li>
+<li class="flex items-start gap-2"><span>•</span> Schema Check</li>
+<li class="flex items-start gap-2"><span>•</span> Missing data Check</li>
+</ul>
+</div>
+</div>
+<!-- Step 05 Branch (Offset) -->
+<div class="md:col-start-4 flex flex-col items-center mt-32 md:mt-0">
+<div class="bg-[#F4B481] text-black w-10 h-10 rounded-full flex items-center justify-center font-bold mb-6 border-2 border-[#2D2826] shadow-lg relative z-30">05</div>
+<div class="bg-[#FFDAB9] p-6 rounded-2xl w-full shadow-xl min-h-[180px] border border-[#F4B481]/30 transition-transform hover:scale-105 duration-300">
+<h4 class="font-bold text-black mb-3 text-sm">Functions.md</h4>
+<ul class="text-black/70 text-xs space-y-2">
+<li class="flex items-start gap-2"><span>•</span> Query Generation</li>
+<li class="flex items-start gap-2"><span>•</span> Action Binding</li>
+</ul>
+</div>
+</div>
+<!-- Output Generation Label -->
+<div class="md:col-start-2 md:col-span-2 flex flex-col items-center justify-center mt-32 md:mt-0">
+<div class="text-[#F4B481] font-bold text-sm uppercase tracking-[0.4em] border-y border-[#F4B481]/30 py-4 px-10 bg-[#2D2826]/80 backdrop-blur-sm">
+        Output Generation
+      </div>
+</div>
+</div>
+</div></div>
+<!-- Summary Text -->
+<div class="max-w-4xl mx-auto mb-20">
+<p class="text-white/80 font-body-md leading-relaxed text-center">
+                With this structured generation workflow, the generator followed a fixed hierarchy to ensure UI, data, and queries were created in the correct order before the configuration was used in the builder. This reduced manual setup, deployment time and made the platform easier to scale for larger applications.
+            </p>
+</div>
+<!-- Code Block Component -->
+<div class="relative bg-[#1E1E1E] rounded-3xl overflow-hidden border border-white/10 shadow-2xl flex flex-col md:flex-row" id="code-preview-container"><div class="absolute top-0 left-0 bg-[#F4B481] text-black text-[10px] font-bold uppercase tracking-widest px-4 py-1.5 rounded-br-xl z-20">Code Preview</div>
+<div class="p-8 flex-1 font-mono text-sm leading-relaxed overflow-x-auto">
+<div class="flex gap-4 mb-4 text-white/40">
+<span class="text-[#E06C75]">Architecture</span>
+<span class="">/</span>
+<span class="text-[#D19A66]">Architecture Data</span>
+</div>
+<div class="space-y-1">
+<div class="flex"><span class="w-8 text-white/20">24</span><span class="text-[#C678DD]">"type"</span>: <span class="text-[#98C379]">"card"</span>,</div>
+<div class="flex"><span class="w-8 text-white/20">25</span><span class="text-[#C678DD]">"element_id"</span>: <span class="text-[#98C379]">"card_id"</span>,</div>
+<div class="flex"><span class="w-8 text-white/20">26</span><span class="text-[#C678DD]">"style"</span>: {</div>
+<div class="flex"><span class="w-8 text-white/20">27</span><span class="ml-4 text-white/40">// Container style</span></div>
+<div class="flex"><span class="w-8 text-white/20">28</span>},</div>
+<div class="flex"><span class="w-8 text-white/20">29</span><span class="text-[#C678DD]">"metadata"</span>: {</div>
+<div class="flex"><span class="w-8 text-white/20">30</span><span class="ml-4 text-white/40">// Navigation/actions of card click</span></div>
+<div class="flex"><span class="w-8 text-white/20">31</span>}</div>
+<div class="flex"><span class="w-8 text-white/20">32</span>...</div>
+</div>
+</div>
+<div class="bg-[#252525] p-10 md:w-80 border-t md:border-t-0 md:border-l border-white/10">
+<p class="italic text-[#F4B481] text-lg leading-snug" style='font-family: "Playfair Display", serif;'>
+                    I defined each component with rules, usage Guidelines, JSON Structure, and supported actions to guide.
+                </p>
+</div>
+</div>
+</div>
+</section><section class="max-w-container-max mx-auto px-margin-desktop mb-48">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-24 items-start">
+<!-- Who are the users? -->
+<div>
+<h2 class="font-headline-md text-headline-md mb-16">Who are the users?</h2>
+<div class="space-y-8">
+<div class="p-10 rounded-2xl bg-surface-container-low border border-outline-variant/10">
+<div class="font-label-sm text-label-sm text-primary mb-6 uppercase tracking-wider">Internal users (Builder Users)</div>
+<div class="flex items-center gap-5 bg-surface p-6 rounded-xl shadow-sm">
+<span class="material-symbols-outlined text-primary text-3xl" style='font-variation-settings: "FILL" 1;'>groups</span>
+<p class="font-body-md text-on-surface"><strong class="text-primary">Implementation team</strong> — who configure and generate applications through the builder</p>
+</div>
+</div>
+<div class="p-10 rounded-2xl bg-surface-container-low border border-outline-variant/10">
+<div class="font-label-sm text-label-sm text-primary mb-6 uppercase tracking-wider">End Users (Generated Apps)</div>
+<div class="space-y-5">
+<div class="flex items-center gap-5 bg-surface p-6 rounded-xl shadow-sm">
+<span class="material-symbols-outlined text-primary text-3xl">monitoring</span>
+<p class="font-body-md text-on-surface"><strong class="text-primary">Operational Heads</strong> — manage and monitor workflows on the web.</p>
+</div>
+<div class="flex items-center gap-5 bg-surface p-6 rounded-xl shadow-sm">
+<span class="material-symbols-outlined text-primary text-3xl">engineering</span>
+<p class="font-body-md text-on-surface"><strong class="text-primary">Field technicians</strong> — execute tasks and report updates via mobile apps.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- What did I do? (Project Meta Card) -->
+<div class="bg-primary p-16 rounded-[32px] text-on-primary">
+<h2 class="font-headline-md text-headline-md text-white mb-16">What did I do?</h2>
+<div class="space-y-12">
+<div class="flex gap-8">
+<div class="w-1.5 h-16 bg-white/20 rounded-full"></div>
+<div>
+<div class="font-label-sm text-label-sm text-white/60 mb-2 uppercase">Role</div>
+<p class="font-body-lg text-white">Sole Product Designer — led end-to-end platform transformation.</p>
+</div>
+</div>
+<div class="flex gap-8">
+<div class="w-1.5 h-16 bg-white/20 rounded-full"></div>
+<div>
+<div class="font-label-sm text-label-sm text-white/60 mb-2 uppercase">Duration</div>
+<p class="font-body-lg text-white">2 Quarters</p>
+</div>
+</div>
+<div class="flex gap-8">
+<div class="w-1.5 h-16 bg-white/20 rounded-full"></div>
+<div>
+<div class="font-label-sm text-label-sm text-white/60 mb-2 uppercase">Focus</div>
+<p class="font-body-lg text-white">Platform redesign, design system, builder workflows, and scalable architecture</p>
+</div>
+</div>
+<div class="flex gap-8">
+<div class="w-1.5 h-16 bg-white/20 rounded-full"></div>
+<div>
+<div class="font-label-sm text-label-sm text-white/60 mb-2 uppercase">Team</div>
+<p class="font-body-lg text-white">CTO, Product Manager, 2 engineers</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer from COMPONENTS_36 -->
+<footer class="bg-surface dark:bg-surface-dim border-t border-outline-variant/20">
+<div class="flex flex-col md:flex-row justify-between items-center w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto py-stack-md gap-stack-sm">
+<div class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">AIPortfolio</div>
+<p class="font-label-md text-label-md text-on-surface-variant dark:text-on-surface-variant">© 2024 AI Portfolio. Crafted with technical precision.</p>
+<div class="flex gap-8">
+<a class="font-label-md text-label-md text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">LinkedIn</a>
+<a class="font-label-md text-label-md text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Twitter</a>
+<a class="font-label-md text-label-md text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Dribbble</a>
+</div>
+</div>
+</footer>
+</body></html>
