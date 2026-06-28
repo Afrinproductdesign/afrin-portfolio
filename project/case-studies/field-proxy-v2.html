@@ -7181,12 +7181,20 @@ li {
     </div>
   </div>
 
-  <div class="cs-centered-text" style="max-width: 900px; margin-left: auto; margin-right: auto;">
+  <div class="cs-centered-text" id="builder-desc-mobile" style="max-width: 900px; margin-left: auto; margin-right: auto;">
     <p class="cs-body" style="margin-left: auto; margin-right: auto;">
       Mobile workflows were created using a node-based builder, where implementation teams configured applications by linking task and action nodes across multiple layers. Even simple setups required navigating multiple steps across settings, task definitions, and action triggers.
     </p>
     <p class="cs-body" style="margin-left: auto; margin-right: auto;">
       The lack of real-time preview made it difficult to understand the final experience during configuration.
+    </p>
+  </div>
+  <div class="cs-centered-text" id="builder-desc-web" style="max-width: 900px; margin-left: auto; margin-right: auto; display: none;">
+    <p class="cs-body" style="margin-left: auto; margin-right: auto;">
+      The platform used a drag-and-drop builder for web application creation, where implementation teams configured applications, dashboards, and reports using widgets. These were used by operations teams to manage field operations.
+    </p>
+    <p class="cs-body" style="margin-left: auto; margin-right: auto;">
+      Each component required configuration across UI, data, and actions, forcing teams into rigid structures and limiting flexibility.
     </p>
   </div>
 </section>
@@ -7234,7 +7242,7 @@ li {
   
   <div class="cs-centered-text" style="display: flex; justify-content: center; align-items: center; padding: 40px 0; margin: 40px auto; width: 100%;">
     <p class="cs-callout" style="margin: 0; max-width: 800px; text-align: center; padding: 12px 40px">
-      This led to higher <strong>churn, increased support costs, and slower adoption, impacting end-user experience.</strong>
+      This led to higher <strong>churn, increased support tickets, and slower adoption, impacting end-user experience.</strong>
     </p>
   </div>
 </section>
@@ -7378,8 +7386,8 @@ AI-assisted workflows</p>
       </div>
     </div>
     
-    <div class="cs-centered-text">
-      <p class="cs-body">
+    <div class="cs-centered-text" style="text-align: center; margin-left: auto; margin-right: auto;">
+      <p class="cs-body" style="text-align: center; margin-left: auto; margin-right: auto;">
         This mobile-first migration validated the new architecture in a real workflow before expanding the platform further.
       </p>
     </div>
@@ -7438,8 +7446,8 @@ AI-assisted workflows</p>
     </div>
   </div>
   
-  <div class="cs-centered-text">
-    <p class="cs-callout" style="margin: 80px 70px 0px; background: linear-gradient(135deg, rgba(245,158,11,0.1) 0%, rgba(245,158,11,0.05) 100%); border-left-color: #f59e0b">
+  <div class="cs-centered-text" style="text-align: center;">
+    <p class="cs-callout" style="margin: 80px auto 0px; max-width: 800px; text-align: center; background: linear-gradient(135deg, rgba(245,158,11,0.1) 0%, rgba(245,158,11,0.05) 100%); border-left-color: #f59e0b">
       These constraints <strong>increased effort, slowed deployment, and made it harder to scale with manual workflows.</strong> To address this, we introduced an AI-assisted workflow.
     </p>
   </div>
@@ -7662,12 +7670,12 @@ AI-assisted workflows</p>
   <div class="shell showcase-content">
     <div class="showcase-intro">
       <h3 class="showcase-title" style="text-align: left; font-size: 20px">SQL Editor - Addition of data source</h3>
-      <p class="showcase-desc" style="font-size: 16px; text-align: left; margin: 0px 38px 0px 0px">The workflow begins with the addition of a data source, through schema creation in the SQL Builder, where tables are defined directly using queries. By adopting a data-first workflow, queries and relationships are configured upfront, allowing screens to be generated from structured data rather than manual setup.</p>
+      <p class="showcase-desc" style="font-size: 16px; text-align: left; margin: 0px 38px 0px 0px">The workflow begins with the addition of a data source, through schema creation in the PSQL Builder, where tables are defined directly using queries. By adopting a data-first workflow, queries and relationships are configured upfront, allowing screens to be generated from structured data rather than manual setup.</p>
     </div>
 
     <div>
       <div class="placeholder-box" data-ratio="16/9">
-        <img src="image/sqlexplain.png" alt="Unified Dashboard - SQL Builder" style="width: 100%; height: 100%; object-fit: contain;">
+        <img src="image/sqlexplain-new.jpg" alt="Unified Dashboard - SQL Builder" style="width: 100%; height: 100%; object-fit: contain;">
       </div>
     </div>
     <p class="showcase-desc" style="margin-top: var(--spacing-8); margin: 32px 58px 0px 0px">
@@ -7711,7 +7719,7 @@ AI-assisted workflows</p>
           </div>
           <div>
             <div class="placeholder-box" data-ratio="16/9">
-              <img src="image/additionoftablesql.png" alt="Step 2: Table Added" style="width: 100%; height: 100%; object-fit: contain;">
+              <img src="image/insertvalue.png" alt="Step 2: Table Added" style="width: 100%; height: 100%; object-fit: contain;">
             </div>
           </div>
         </div>
@@ -7729,7 +7737,7 @@ AI-assisted workflows</p>
           </div>
           <div>
             <div class="placeholder-box" data-ratio="16/9">
-              <img src="image/insertvalue.png" alt="Step 3: Data Inserted" style="width: 100%; height: 100%; object-fit: contain;">
+              <img src="image/additionoftablesql.png" alt="Step 3: Data Inserted" style="width: 100%; height: 100%; object-fit: contain;">
             </div>
           </div>
         </div>
@@ -7748,7 +7756,7 @@ AI-assisted workflows</p>
 
     <div>
       <div class="placeholder-box" data-ratio="16/9">
-        <img src="image/builderexplain.png" alt="Mobile application builder" style="width: 100%; height: 100%; object-fit: contain;">
+        <img src="image/builderexplain-new.png" alt="Mobile application builder" style="width: 100%; height: 100%; object-fit: contain;">
       </div>
     </div>
     <p class="showcase-desc" style="margin-top: 48px; font-size: 16px; text-align: left; margin-right: 38px; margin: 48px 38px 0px 0px">
@@ -7858,20 +7866,7 @@ AI-assisted workflows</p>
                     <span class="carousel-tag">Optimization</span>
                   </div>
                 </div>
-                <img src="image/employedetail.png" alt="Resource Planning" style="height: 460px; width: 100%; object-fit: contain;">
-              </div>
-            </div>
-            <!-- Slide 5 -->
-            <div class="carousel-item" data-index="4" style="padding: 60px 24px">
-              <div class="carousel-item-content" style="justify-content: flex-start; height: 520px">
-                <div class="carousel-slide-header">
-                  <h3 class="carousel-slide-title" style="font-size: 18px">Performance Analytics</h3>
-                  <div class="carousel-slide-tags">
-                    <span class="carousel-tag">Metrics</span>
-                    <span class="carousel-tag">Reporting</span>
-                  </div>
-                </div>
-                <img src="image/dashboard.png" alt="Performance Analytics" style="height: 460px; width: 100%; object-fit: contain;">
+                <img src="image/schedule-calendar.png" alt="Resource Planning" style="height: 460px; width: 100%; object-fit: contain;">
               </div>
             </div>
           </div>
@@ -7917,9 +7912,9 @@ AI-assisted workflows</p>
                 <img src="image/homwmob.png" alt="Home Dashboard" loading="lazy">
               </div>
             </figure>
-            <figure class="mc-slide" data-index="1" aria-label="Task Execution, 2 of 5">
+            <figure class="mc-slide" data-index="1" aria-label="Activity Done, 2 of 5">
               <div class="mc-phone">
-                <img src="image/mobactivity.png" alt="Task Execution" loading="lazy">
+                <img src="image/mobactivity.png" alt="Activity Done" loading="lazy">
               </div>
             </figure>
             <figure class="mc-slide" data-index="2" aria-label="Safety Compliance, 3 of 5">
@@ -7927,14 +7922,14 @@ AI-assisted workflows</p>
                 <img src="image/moblog.png" alt="Safety Compliance" loading="lazy">
               </div>
             </figure>
-            <figure class="mc-slide" data-index="3" aria-label="Visit Scheduling, 4 of 5">
+            <figure class="mc-slide" data-index="3" aria-label="Visit Information, 4 of 5">
               <div class="mc-phone">
-                <img src="image/mobvisit.png" alt="Visit Scheduling" loading="lazy">
+                <img src="image/mobvisit.png" alt="Visit Information" loading="lazy">
               </div>
             </figure>
-            <figure class="mc-slide" data-index="4" aria-label="Visit Information, 5 of 5">
+            <figure class="mc-slide" data-index="4" aria-label="Task Details & Job Acceptance, 5 of 5">
               <div class="mc-phone">
-                <img src="image/visistinfomob.png" alt="Visit Information" loading="lazy">
+                <img src="image/visistinfomob.png" alt="Task Details & Job Acceptance" loading="lazy">
               </div>
             </figure>
           </div>
@@ -8088,9 +8083,17 @@ toggleButtons.forEach(btn => {
     if (target === 'mobile') {
       mobilePan?.classList.add('active');
       webPanel?.classList.remove('active');
+      const dm = document.getElementById('builder-desc-mobile');
+      const dw = document.getElementById('builder-desc-web');
+      if (dm) dm.style.display = '';
+      if (dw) dw.style.display = 'none';
     } else if (target === 'web') {
       webPanel?.classList.add('active');
       mobilePan?.classList.remove('active');
+      const dm = document.getElementById('builder-desc-mobile');
+      const dw = document.getElementById('builder-desc-web');
+      if (dm) dm.style.display = 'none';
+      if (dw) dw.style.display = '';
     }
   });
 });
@@ -8330,10 +8333,10 @@ webCarousel.init();
 const premiumMobileShowcase = {
   screens: [
     { image: 'image/homwmob.png', title: 'Home Dashboard', subtitle: 'Overview' },
-    { image: 'image/mobactivity.png', title: 'Task Execution', subtitle: 'Activities' },
+    { image: 'image/mobactivity.png', title: 'Activity Done', subtitle: 'Activities' },
     { image: 'image/moblog.png', title: 'Safety Compliance', subtitle: 'Logging' },
-    { image: 'image/mobvisit.png', title: 'Visit Scheduling', subtitle: 'Planning' },
-    { image: 'image/visistinfomob.png', title: 'Visit Information', subtitle: 'Details' }
+    { image: 'image/mobvisit.png', title: 'Visit Information', subtitle: 'Details' },
+    { image: 'image/visistinfomob.png', title: 'Task Details & Job Acceptance', subtitle: 'Details' }
   ],
   
   currentIndex: 1,
@@ -8781,10 +8784,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const SCREENS = [
     { title: 'Home Dashboard',     desc: "At-a-glance snapshot of the technician's day — visits, tasks, alerts." },
-    { title: 'Task Execution',     desc: 'Step-through activities with real-time sync back to the office.' },
+    { title: 'Activity Done',      desc: 'Step-through activities with real-time sync back to the office.' },
     { title: 'Safety Compliance',  desc: 'Required checklists and logs captured before, during, and after each job.' },
-    { title: 'Visit Scheduling',   desc: "Today's route, planned visits, and quick reschedule from the field." },
-    { title: 'Visit Information',  desc: 'Asset history, customer context, and prior notes — all in one place.' }
+    { title: 'Visit Information', desc: 'Asset history, customer context, and prior notes — all in one place.' },
+    { title: 'Task Details & Job Acceptance',  desc: 'Full task details with the option to accept or decline the job.' }
   ];
 
   const track       = root.querySelector('#mc-track-2');

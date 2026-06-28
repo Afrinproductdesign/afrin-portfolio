@@ -6439,10 +6439,10 @@ li {
   <div class="section-marker" data-reveal style="margin: 0px 0px 20px">04 — RESEARCH &amp; VALIDATION</div>
   
   <h2 class="cs-section-title" data-reveal>Identifying the friction points</h2>
-  <p class="cs-lead" style="font-size: 16px; margin: 0px 0px 60px">I validated the problem through customer interviews and support data analysis. By synthesizing recurring feedback from customer success teams and reviewing client call recordings.</p>
+  <p class="cs-lead" style="font-size: 16px; margin: 0px 0px 60px">I validated the problem through customer interviews and support data analysis, synthesizing recurring feedback from customer success teams and reviewing client call recordings.</p>
   
   <div style="margin-top: 40px;">
-    <h3 style="font-size: 1.25rem; color: #9ca3af; font-weight: 500; margin-bottom: 32px; margin: 0px 0px 80px">From client call recordings, these were the most frequent questions raised:</h3>
+    <h3 style="font-size: 1.25rem; color: #9ca3af; font-weight: 500; margin-bottom: 32px; margin: 0px 0px 80px">From client calls and recordings, these were the most frequent questions raised:</h3>
     
     <div class="user-questions-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: stretch; margin: 0px 0px 70px 0px">
       <!-- Danny - Manager -->
@@ -6566,7 +6566,7 @@ li {
           <span class="material-symbols-outlined" style="font-size: 22px; color: #ef4444;">gps_off</span>
         </div>
         <h4 style="font-size: 15px; font-weight: 700; color: var(--color-black); margin-bottom: 8px;">GPS Accuracy ±50m</h4>
-        <p style="font-size: 14px; line-height: 1.6; color: var(--color-gray-600); margin: 0;">Urban environments degrade GPS precision. Showing exact coordinates would be misleading — location zones are more honest.</p>
+        <p style="font-size: 14px; line-height: 1.6; color: var(--color-gray-600); margin: 0;">GPS in cities drifts ±50m. We capture the technician's location at their geofence check-in, confirmed on-site, and show that on the manager's web map. Location managers can actually trust, anchored to a verified check-in rather than a raw GPS pin.</p>
       </div>
       <div style="padding: 24px; border-radius: 14px; background: rgba(245, 158, 11, 0.04); border: 1px solid rgba(245, 158, 11, 0.15);">
         <div style="width: 40px; height: 40px; border-radius: 10px; background: rgba(245, 158, 11, 0.1); display: flex; align-items: center; justify-content: center; margin-bottom: 14px;">
@@ -6616,8 +6616,8 @@ li {
     <!-- Live Walkthrough Video -->
     <div style="margin-bottom: 8px; display: flex; justify-content: center;">
       <div class="video-mockup-frame" style="border-radius: 16px; overflow: hidden; max-width: 100%; width: 100%; background: transparent; box-shadow: none;">
-        <div class="video-container" style="background: linear-gradient(135deg, #f5f3ff 0%, #fdf2f8 100%); width: 100%; padding: 20px; margin: 0px 0px 80px">
-          <video autoplay muted loop playsinline preload="metadata" style="width: 100%; height: 320px; opacity: 1; object-fit: contain; display: block; border-radius: 20px; clip-path: inset(16px 0 0 0 round 20px); text-align: center" data-comment-anchor="17d8112337-video">
+        <div class="video-container" style="background: linear-gradient(135deg, #f5f3ff 0%, #fdf2f8 100%); width: 100%; padding: 20px; margin: 0px 0px 80px; height: 400px">
+          <video autoplay muted loop playsinline preload="metadata" style="width: 100%; height: 360px; opacity: 1; object-fit: contain; display: block; border-radius: 20px; clip-path: inset(16px 0 0 0 round 20px); text-align: center; color: rgba(255, 255, 255, 0)" data-comment-anchor="17d8112337-video">
             <source src="video/agents-overview.mp4" type="video/mp4">
           </video>
         </div>
@@ -6695,9 +6695,9 @@ li {
         <div class="showcase-sticky-content" style="padding: 32px 48px; background: linear-gradient(135deg, #EEF0FF 0%, #FFF5F0 100%)">
           <h4 class="layer-title" style="text-align: center; font-size: 18px; margin-bottom: 24px;">Field Activity Timeline</h4>
           <div class="showcase-flex-row" style="display: flex; gap: 48px; align-items: center;">
-            <div class="showcase-flex-img" style="flex: 0 0 45%;">
-              <div class="placeholder-box" data-ratio="16/9">
-                <img src="image/timeline card.png" alt="Step 1: Empty State" style="width: 100%; height: 100%; object-fit: contain;">
+            <div class="showcase-flex-img" style="flex: 0 0 45%; max-width: 460px;">
+              <div class="placeholder-box" style="min-height:0; aspect-ratio:auto;">
+                <img src="image/timeline card.png" alt="Step 1: Empty State" style="width: 100%; height: auto; object-fit: contain; display:block;">
               </div>
             </div>
             <ul style="flex: 1; list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 20px;">
@@ -6727,8 +6727,8 @@ li {
       <div class="showcase-sticky-layer" data-sticky-layer="2">
         <div class="showcase-sticky-content" style="padding: 32px 48px; background: linear-gradient(135deg, #EEF0FF 0%, #FFF5F0 100%)">
           <h4 class="layer-title" style="text-align: center; font-size: 18px; margin-bottom: 24px;">Field Task Data</h4>
-          <div class="showcase-flex-row" style="display: flex; gap: 48px; align-items: center;">
-            <div style="flex: 0 0 45%;">
+          <div class="showcase-flex-row" style="display: flex; flex-direction: column; gap: 32px; align-items: center;">
+            <div style="width: 100%; max-width: 760px;">
               <div class="placeholder-box" data-ratio="16/9">
                 <img src="image/job detail.png" alt="Step 2: Table Added" style="width: 100%; height: 100%; object-fit: contain;">
               </div>
