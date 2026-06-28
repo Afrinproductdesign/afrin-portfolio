@@ -1,0 +1,4728 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Field Proxy Platform Rebuild — Afrin Portfolio</title>
+<meta name="description" content="Transformed a fragile builder into a scalable AI-assisted platform for field apps" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<style>
+/* ===================== ROOT & DESIGN SYSTEM ===================== */
+:root {
+  --color-black: #0a0a0a;
+  --color-white: #ffffff;
+  --color-gray-50: #f9fafb;
+  --color-gray-100: #f3f4f6;
+  --color-gray-200: #e5e7eb;
+  --color-gray-300: #d1d5db;
+  --color-gray-400: #9ca3af;
+  --color-gray-600: #4b5563;
+  --color-gray-700: #374151;
+  --color-gray-900: #111827;
+  
+  --color-accent: #3B3EF7;
+  --color-accent-light: #eef0fe;
+  --color-accent-dark: #2e30c4;
+  
+  --color-green: #10b981;
+  --color-green-light: #d1fae5;
+  --color-orange: #f59e0b;
+  --color-orange-light: #fef3c7;
+  --color-red: #ef4444;
+  --color-red-light: #fee2e2;
+  
+  --font-sans: 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  --font-mono: "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas, "Courier New", monospace;
+  
+  --size-xs: 0.75rem;
+  --size-sm: 0.875rem;
+  --size-base: 1rem;
+  --size-lg: 1.125rem;
+  --size-xl: 1.25rem;
+  --size-2xl: 1.5rem;
+  --size-3xl: 1.875rem;
+  --size-4xl: 2.25rem;
+  --size-5xl: 3rem;
+  
+  --leading-tight: 1.2;
+  --leading-snug: 1.375;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
+  
+  --track-tight: -0.01em;
+  --track-normal: 0em;
+  --track-wide: 0.02em;
+  
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-full: 9999px;
+  
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  
+  --spacing-0: 0;
+  --spacing-1: 0.25rem;
+  --spacing-2: 0.5rem;
+  --spacing-3: 0.75rem;
+  --spacing-4: 1rem;
+  --spacing-6: 1.5rem;
+  --spacing-8: 2rem;
+  --spacing-10: 2.5rem;
+  --spacing-12: 3rem;
+  --spacing-16: 4rem;
+  --spacing-20: 5rem;
+  --spacing-24: 6rem;
+  --spacing-32: 8rem;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-white);
+  color: var(--color-gray-700);
+  font-family: var(--font-sans);
+  font-size: var(--size-base);
+  line-height: var(--leading-normal);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ===================== MATERIAL ICONS STYLING ===================== */
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24;
+  vertical-align: middle;
+  user-select: none;
+}
+
+/* ===================== TYPOGRAPHY ===================== */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  line-height: var(--leading-tight);
+  color: var(--color-black);
+}
+
+h1 { font-size: var(--size-5xl); letter-spacing: var(--track-tight); }
+h2 { font-size: var(--size-4xl); letter-spacing: var(--track-tight); }
+h3 { font-size: var(--size-2xl); letter-spacing: var(--track-tight); }
+h4 { font-size: var(--size-xl); }
+h5 { font-size: var(--size-lg); }
+h6 { font-size: var(--size-base); font-weight: 600; }
+
+p { margin-bottom: var(--spacing-4); }
+p:last-child { margin-bottom: 0; }
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+a:hover {
+  color: var(--color-accent-dark);
+}
+
+strong {
+  font-weight: 700;
+  color: var(--color-black);
+}
+
+/* ===================== NAV ===================== */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--color-gray-100);
+}
+
+.shell {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-8);
+}
+
+.nav-row {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-8);
+  padding: var(--spacing-4) 0;
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  font-size: var(--size-lg);
+  font-weight: 700;
+  color: var(--color-black);
+  white-space: nowrap;
+}
+
+.nav-brand small {
+  font-size: var(--size-xs);
+  font-weight: 500;
+  color: var(--color-gray-600);
+  display: block;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.nav-spacer {
+  flex: 1;
+}
+
+.nav-links {
+  display: flex;
+  gap: var(--spacing-8);
+  align-items: center;
+}
+
+.nav-links a {
+  font-size: var(--size-sm);
+  font-weight: 500;
+  color: var(--color-gray-600);
+  transition: color 0.2s;
+}
+
+.nav-links a:hover {
+  color: var(--color-black);
+}
+
+.nav-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  padding: var(--spacing-2) var(--spacing-6);
+  background: var(--color-gray-100);
+  border-radius: var(--radius-full);
+  font-size: var(--size-xs);
+  font-weight: 600;
+  color: var(--color-black);
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+
+.nav-cta:hover {
+  background: var(--color-gray-200);
+  color: var(--color-black);
+}
+
+/* ===================== LAYOUT ===================== */
+.cs-layout {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-16);
+  padding: 0 var(--spacing-8);
+}
+
+.cs-layout.with-toc {
+  grid-template-columns: 240px 1fr;
+  gap: 40px;
+  padding: 0 var(--spacing-8);
+}
+
+/* ===================== TOC ===================== */
+.cs-toc {
+  position: sticky;
+  top: 80px;
+  height: fit-content;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+
+.cs-layout.with-toc .cs-toc {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.toc-nav {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.toc-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  padding: var(--spacing-3) var(--spacing-4);
+  font-size: var(--size-xs);
+  font-weight: 600;
+  color: var(--color-gray-600);
+  border-left: 2px solid var(--color-gray-200);
+  border-radius: 0;
+  transition: all 0.2s;
+}
+
+.toc-item:hover {
+  color: var(--color-black);
+  border-left-color: var(--color-gray-400);
+}
+
+.toc-item.active {
+  color: var(--color-accent);
+  border-left-color: var(--color-accent);
+}
+
+.toc-num {
+  font-size: var(--size-xs);
+  font-weight: 700;
+  color: inherit;
+  opacity: 0.6;
+}
+
+.toc-label {
+  letter-spacing: var(--track-wide);
+}
+
+/* ===================== HERO ===================== */
+.cs-hero {
+  padding: 0 var(--spacing-8) var(--spacing-24) var(--spacing-8);
+  background: linear-gradient(180deg, 
+    rgba(59, 62, 247, 0.02) 0%, 
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+.cs-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-2);
+  margin-bottom: var(--spacing-8);
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--spacing-2) var(--spacing-4);
+  background: var(--color-gray-100);
+  border: 1px solid var(--color-gray-200);
+  border-radius: var(--radius-full);
+  font-size: var(--size-xs);
+  font-weight: 600;
+  color: var(--color-gray-700);
+  letter-spacing: var(--track-wide);
+  text-transform: uppercase;
+}
+
+.tag.accent {
+  background: var(--color-accent-light);
+  border-color: var(--color-accent);
+  color: var(--color-accent-dark);
+}
+
+.cs-headline {
+  font-size: var(--size-5xl);
+  line-height: var(--leading-tight);
+  margin-bottom: var(--spacing-8);
+  color: var(--color-black);
+  max-width: 900px;
+}
+
+.cs-lead {
+  font-size: var(--size-xl);
+  line-height: var(--leading-relaxed);
+  color: var(--color-gray-700);
+  margin-bottom: var(--spacing-12);
+  max-width: 700px;
+}
+
+.cs-hero-image {
+  margin-top: var(--spacing-16);
+}
+
+.placeholder-box {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  display: block;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  overflow: hidden;
+}
+
+/* ===================== BUILDER PANEL MOCKUP GRADIENT ===================== */
+#mobile-panel .placeholder-box::after,
+#web-panel .placeholder-box::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(59, 62, 247, 0.02) 0%, rgba(255, 255, 255, 0.01) 50%, rgba(59, 62, 247, 0.015) 100%);
+  pointer-events: none;
+  z-index: 3;
+  border-radius: inherit;
+}
+
+/* ===================== GLASSMORPHISM FRAME ===================== */
+.glassmorphism-frame {
+  position: relative;
+  padding: 2rem;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.08) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 24px;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.08),
+    inset 0 1px 1px rgba(255, 255, 255, 0.5),
+    0 0 60px rgba(59, 62, 247, 0.08);
+  animation: float-subtle 6s ease-in-out infinite;
+  overflow: hidden;
+}
+
+.glassmorphism-frame::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.3) 0%, transparent 50%);
+  border-radius: 24px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.glassmorphism-frame::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at bottom right, rgba(59, 62, 247, 0.05) 0%, transparent 70%);
+  border-radius: 24px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Ensure content sits above pseudo-element overlays */
+.glassmorphism-frame .panel-label {
+  position: relative;
+  z-index: 2;
+}
+
+@keyframes float-subtle {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+.placeholder-box[data-ratio="16/9"] {
+  min-height: 250px;
+}
+
+.placeholder-box[data-ratio="2/1"] {
+  aspect-ratio: 2 / 1;
+}
+
+.placeholder-box[data-ratio="9/16"] {
+  aspect-ratio: 9 / 16;
+}
+
+.placeholder-text {
+  pointer-events: none;
+}
+
+/* ===================== SECTIONS ===================== */
+.cs-section {
+  padding: var(--spacing-12) var(--spacing-8);
+  position: relative;
+}
+
+.cs-grid-background {
+  background-color: #fafafa;
+  background-image: 
+    linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+  background-size: 30px 30px;
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-16);
+}
+
+.section-marker {
+  display: inline-block;
+  font-size: var(--size-xs);
+  font-weight: 700;
+  letter-spacing: var(--track-wide);
+  color: var(--color-accent);
+  text-transform: uppercase;
+  margin-bottom: var(--spacing-8);
+  opacity: 0.7;
+}
+
+.section-marker.light {
+  color: var(--color-gray-300);
+}
+
+.cs-section-title {
+  font-size: var(--size-4xl);
+  font-weight: 700;
+  line-height: var(--leading-tight);
+  letter-spacing: -0.02em;
+  margin-bottom: var(--spacing-8);
+  color: var(--color-black);
+}
+
+.cs-section-title.centered {
+  text-align: center;
+}
+
+.cs-section-title.white {
+  color: var(--color-white);
+}
+
+.cs-grid-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-16);
+  align-items: start;
+}
+
+.cs-col-wide {
+  grid-column: 1 / -1;
+}
+
+.cs-text-block p {
+  font-size: var(--size-lg);
+  line-height: var(--leading-relaxed);
+  color: var(--color-gray-700);
+  margin-bottom: var(--spacing-6);
+}
+
+.cs-centered-text {
+  text-align: center;
+  margin-bottom: var(--spacing-16);
+}
+
+.cs-body {
+  font-size: var(--size-lg);
+  line-height: var(--leading-relaxed);
+  color: var(--color-gray-700);
+  max-width: 800px;
+  margin: var(--spacing-12) 0;
+}
+
+.cs-callout {
+  font-size: var(--size-lg);
+  line-height: var(--leading-relaxed);
+  color: var(--color-gray-700);
+  max-width: 700px;
+  margin: var(--spacing-8) auto;
+  padding: var(--spacing-6) var(--spacing-8);
+  background: var(--color-accent-light);
+  border-left: 4px solid var(--color-accent);
+  border-radius: var(--radius-md);
+}
+
+.cs-subsection-title {
+  font-size: var(--size-2xl);
+  margin: var(--spacing-12) 0 var(--spacing-6) 0;
+  color: var(--color-black);
+}
+
+/* ===================== IMPACT SECTION - MODERN & COMPACT ===================== */
+.cs-impacts {
+  background: transparent;
+  padding: var(--spacing-12) var(--spacing-8);
+  margin: var(--spacing-8) 0;
+  border-top: 1px solid var(--color-gray-200);
+  border-bottom: 1px solid var(--color-gray-200);
+}
+
+.impacts-header {
+  display: flex;
+  align-items: baseline;
+  gap: var(--spacing-4);
+  margin-bottom: var(--spacing-8);
+}
+
+.impacts-label {
+  font-size: var(--size-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: var(--track-wide);
+  color: var(--color-gray-400);
+}
+
+.impacts-title {
+  font-size: var(--size-4xl);
+  font-weight: 700;
+  color: var(--color-black);
+}
+
+.impact-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spacing-8);
+}
+
+.impact-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+  padding: var(--spacing-6) 0;
+  border-left: 2px solid var(--color-gray-200);
+  padding-left: var(--spacing-6);
+  transition: all 0.3s;
+}
+
+.impact-item:hover {
+  border-left-color: var(--color-accent);
+}
+
+.impact-metric {
+  display: flex;
+  align-items: baseline;
+  gap: var(--spacing-2);
+}
+
+.metric-value {
+  font-size: var(--size-5xl);
+  font-weight: 700;
+  color: var(--color-black);
+  letter-spacing: var(--track-tight);
+  line-height: 1;
+}
+
+.metric-trend {
+  font-size: var(--size-2xl);
+  color: var(--color-gray-400);
+  font-weight: 400;
+}
+
+.metric-trend.positive {
+  color: var(--color-green);
+}
+
+.metric-trend.negative {
+  color: var(--color-red);
+}
+
+.impact-description {
+  font-size: var(--size-sm);
+  color: var(--color-gray-600);
+  font-weight: 500;
+  line-height: var(--leading-snug);
+  margin: 0;
+}
+
+/* Responsive Impact Grid */
+@media (max-width: 1024px) {
+  .impact-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-8);
+  }
+}
+
+@media (max-width: 768px) {
+  .impact-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-6);
+  }
+  
+  .impacts-title {
+    font-size: var(--size-3xl);
+  }
+  
+  .metric-value {
+    font-size: var(--size-4xl);
+  }
+}
+
+/* ===================== BUILDER TOGGLE ===================== */
+.builder-toggle {
+  display: flex;
+  justify-content: center;
+  margin: var(--spacing-12) 0;
+}
+
+.toggle-buttons {
+  display: flex;
+  gap: var(--spacing-2);
+  background: var(--color-gray-100);
+  padding: var(--spacing-2);
+  border-radius: var(--radius-lg);
+}
+
+.toggle-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  padding: var(--spacing-3) var(--spacing-6);
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: var(--size-sm);
+  font-weight: 600;
+  color: var(--color-gray-600);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.toggle-btn .icon {
+  display: flex;
+  align-items: center;
+}
+
+.toggle-btn .material-symbols-outlined {
+  font-size: 20px;
+}
+
+.toggle-btn.active {
+  background: var(--color-white);
+  color: var(--color-black);
+  box-shadow: var(--shadow-sm);
+}
+
+.toggle-btn.active .material-symbols-outlined {
+  color: var(--color-accent);
+  font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 0, 'opsz' 20;
+}
+
+.toggle-btn:hover:not(.active) {
+  color: var(--color-black);
+}
+
+.builder-content {
+  position: relative;
+}
+
+.builder-panel {
+  display: none;
+  opacity: 0;
+}
+
+.builder-panel.active {
+  display: block;
+  opacity: 1;
+  animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.panel-label {
+  font-size: var(--size-sm);
+  font-weight: 600;
+  color: var(--color-gray-600);
+  margin-bottom: var(--spacing-6);
+  text-transform: uppercase;
+  letter-spacing: var(--track-wide);
+}
+
+/* ===================== PROBLEM CARDS ===================== */
+.problem-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--spacing-8);
+  margin-top: var(--spacing-12);
+}
+
+.problem-card {
+  display: flex;
+  gap: var(--spacing-6);
+  padding: var(--spacing-8);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-gray-200);
+  transition: all 0.3s;
+}
+
+.problem-card.dark-green {
+  background: rgba(16, 185, 129, 0.05);
+  border-color: rgba(16, 185, 129, 0.2);
+}
+
+.problem-card.dark-orange {
+  background: rgba(245, 158, 11, 0.05);
+  border-color: rgba(245, 158, 11, 0.2);
+}
+
+.problem-card.dark-purple {
+  background: rgba(139, 92, 246, 0.05);
+  border-color: rgba(139, 92, 246, 0.2);
+}
+
+.problem-card:hover {
+  border-color: var(--color-gray-400);
+  box-shadow: 0 8px 16px -4px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.problem-icon {
+  flex-shrink: 0;
+  font-size: var(--size-2xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.problem-card.dark-green .problem-icon {
+  color: #10b981;
+}
+
+.problem-card.dark-green .problem-icon .material-symbols-outlined {
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 28;
+}
+
+.problem-card.dark-orange .problem-icon {
+  color: #f59e0b;
+}
+
+.problem-card.dark-orange .problem-icon .material-symbols-outlined {
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 28;
+}
+
+.problem-card.dark-purple .problem-icon {
+  color: #8b5cf6;
+}
+
+.problem-card.dark-purple .problem-icon .material-symbols-outlined {
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 28;
+}
+
+.problem-content {
+  flex: 1;
+}
+
+.problem-title {
+  font-size: var(--size-lg);
+  font-weight: 700;
+  margin-bottom: var(--spacing-2);
+  color: var(--color-black);
+}
+
+.problem-desc {
+  font-size: var(--size-sm);
+  line-height: var(--leading-relaxed);
+  color: var(--color-gray-700);
+}
+
+/* ===================== GOAL FEATURES ===================== */
+.goal-features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-8);
+  margin: var(--spacing-12) 0;
+}
+
+.goal-card {
+  display: flex;
+  gap: var(--spacing-6);
+  padding: var(--spacing-8);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-gray-200);
+  transition: all 0.3s;
+}
+
+.goal-card.green-accent {
+  background: rgba(16, 185, 129, 0.05);
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+.goal-card.orange-accent {
+  background: rgba(245, 158, 11, 0.05);
+  border-color: rgba(245, 158, 11, 0.3);
+}
+
+.goal-card.purple-accent {
+  background: rgba(139, 92, 246, 0.05);
+  border-color: rgba(139, 92, 246, 0.3);
+}
+
+.goal-card:hover {
+  border-color: var(--color-gray-400);
+  box-shadow: 0 8px 16px -4px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.goal-icon {
+  flex-shrink: 0;
+  font-size: var(--size-2xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.goal-card.green-accent .goal-icon {
+  color: #10b981;
+}
+
+.goal-card.green-accent .goal-icon .material-symbols-outlined {
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 28;
+}
+
+.goal-card.orange-accent .goal-icon {
+  color: #f59e0b;
+}
+
+.goal-card.orange-accent .goal-icon .material-symbols-outlined {
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 28;
+}
+
+.goal-card.purple-accent .goal-icon {
+  color: #8b5cf6;
+}
+
+.goal-card.purple-accent .goal-icon .material-symbols-outlined {
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 28;
+}
+
+.goal-content {
+  flex: 1;
+}
+
+.goal-title {
+  font-size: var(--size-lg);
+  font-weight: 700;
+  margin-bottom: var(--spacing-2);
+  color: var(--color-black);
+}
+
+.goal-desc {
+  font-size: var(--size-sm);
+  line-height: var(--leading-relaxed);
+  color: var(--color-gray-700);
+}
+
+/* ===================== FEATURE GRID ===================== */
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--spacing-6);
+  margin: var(--spacing-12) 0;
+}
+
+.feature-card {
+  padding: var(--spacing-6);
+  background: var(--color-gray-50);
+  border: 1px solid var(--color-gray-200);
+  border-radius: var(--radius-lg);
+  transition: all 0.3s;
+}
+
+.feature-card:hover {
+  border-color: var(--color-accent);
+  background: var(--color-white);
+  box-shadow: 0 8px 16px -4px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.feature-title {
+  font-size: var(--size-lg);
+  font-weight: 700;
+  margin-bottom: var(--spacing-2);
+  color: var(--color-black);
+}
+
+.feature-desc {
+  font-size: var(--size-sm);
+  line-height: var(--leading-relaxed);
+  color: var(--color-gray-700);
+}
+
+/* ===================== PREMIUM BEFORE/AFTER COMPARISON SLIDER ===================== */
+.premium-comparison-wrapper {
+  position: relative;
+  margin: var(--spacing-20) auto;
+  padding: var(--spacing-8);
+  background: linear-gradient(135deg, rgba(59, 62, 247, 0.08) 0%, rgba(139, 92, 246, 0.08) 100%);
+  border-radius: 32px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  max-width: 1000px;
+  width: 100%;
+}
+
+.premium-comparison-slider {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 32px;
+  overflow: hidden;
+  background: var(--color-white);
+  cursor: col-resize;
+  border: 2px solid;
+  border-image: linear-gradient(135deg, 
+    rgba(59, 62, 247, 0.4) 0%,
+    rgba(139, 92, 246, 0.3) 50%,
+    rgba(59, 62, 247, 0.2) 100%
+  ) 1;
+  box-shadow: 
+    0 20px 60px rgba(0, 0, 0, 0.12),
+    inset 0 1px 1px rgba(255, 255, 255, 0.5),
+    0 0 100px rgba(59, 62, 247, 0.08);
+  transition: box-shadow 0.3s ease;
+  min-height: 450px;
+}
+
+.premium-comparison-slider:hover {
+  box-shadow: 
+    0 30px 80px rgba(0, 0, 0, 0.15),
+    inset 0 1px 1px rgba(255, 255, 255, 0.5),
+    0 0 120px rgba(59, 62, 247, 0.12);
+}
+
+.comparison-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.comparison-before-img {
+  clip-path: polygon(0 0, var(--clip-width, 50%) 0, var(--clip-width, 50%) 100%, 0 100%);
+  z-index: 3;
+}
+
+.comparison-after-img {
+  z-index: 1;
+}
+
+.comparison-divider {
+  position: absolute;
+  top: 0;
+  left: var(--slider-position, 50%);
+  width: 3px;
+  height: 100%;
+  background: rgba(59, 62, 247, 0.8);
+  box-shadow: 
+    -8px 0 32px rgba(59, 62, 247, 0.2),
+    8px 0 32px rgba(59, 62, 247, 0.2);
+  transform: translateX(-50%);
+  z-index: 4;
+  pointer-events: none;
+}
+
+.comparison-drag-handle {
+  position: absolute;
+  top: 50%;
+  left: var(--slider-position, 50%);
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  cursor: col-resize;
+  user-select: none;
+}
+
+.handle-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 50%;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 2px solid rgba(59, 62, 247, 0.3);
+  box-shadow: 
+    0 12px 40px rgba(0, 0, 0, 0.15),
+    inset 0 1px 2px rgba(255, 255, 255, 0.8),
+    0 0 40px rgba(59, 62, 247, 0.15);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  gap: 2px;
+}
+
+.comparison-drag-handle:hover .handle-inner,
+.comparison-drag-handle.dragging .handle-inner {
+  transform: scale(1.15);
+  box-shadow: 
+    0 16px 60px rgba(0, 0, 0, 0.2),
+    inset 0 1px 2px rgba(255, 255, 255, 0.8),
+    0 0 60px rgba(59, 62, 247, 0.3);
+  border-color: rgba(59, 62, 247, 0.6);
+}
+
+.handle-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  color: var(--color-accent);
+  opacity: 0.8;
+  transition: all 0.3s ease;
+  font-size: 12px;
+}
+
+.handle-arrow svg {
+  width: 18px;
+  height: 18px;
+}
+
+.comparison-drag-handle:hover .handle-arrow,
+.comparison-drag-handle.dragging .handle-arrow {
+  opacity: 1;
+}
+
+.comparison-label {
+  position: absolute;
+  top: var(--spacing-8);
+  z-index: 7;
+  opacity: 1;
+  transition: opacity 0.3s ease-out;
+  pointer-events: none;
+}
+
+.before-label {
+  left: var(--spacing-8);
+  right: auto;
+}
+
+.after-label {
+  right: var(--spacing-8);
+  left: auto;
+}
+
+.comparison-label.fade-out {
+  opacity: 0;
+  transition: opacity 0.4s ease-out;
+}
+
+.label-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  padding: var(--spacing-4) var(--spacing-8);
+  background: linear-gradient(135deg, 
+    rgba(59, 62, 247, 0.15) 0%, 
+    rgba(139, 92, 246, 0.12) 100%
+  );
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1.5px solid rgba(59, 62, 247, 0.35);
+  border-radius: var(--radius-full);
+  box-shadow: 
+    0 12px 48px rgba(0, 0, 0, 0.12),
+    inset 0 1px 1px rgba(255, 255, 255, 0.6),
+    0 0 32px rgba(59, 62, 247, 0.12);
+  font-weight: 900;
+  font-size: var(--size-xs);
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: var(--color-black);
+  text-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);
+  white-space: nowrap;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.comparison-label:hover .label-badge {
+  background: linear-gradient(135deg, 
+    rgba(59, 62, 247, 0.25) 0%, 
+    rgba(139, 92, 246, 0.2) 100%
+  );
+  border-color: rgba(59, 62, 247, 0.5);
+  box-shadow: 
+    0 16px 64px rgba(0, 0, 0, 0.15),
+    inset 0 1px 1px rgba(255, 255, 255, 0.6),
+    0 0 48px rgba(59, 62, 247, 0.2);
+  transform: translateY(-2px);
+}
+
+.label-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  color: var(--color-accent);
+  font-size: 10px;
+  opacity: 0.7;
+}
+
+.label-text {
+  font-weight: 900;
+  font-size: var(--size-xs);
+  letter-spacing: 1.2px;
+}
+
+/* ===================== VIDEO MOCKUP FRAME ===================== */
+.video-mockup-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 32px;
+  overflow: hidden;
+  background: #000;
+  cursor: pointer;
+  border: 2px solid;
+  border-image: linear-gradient(135deg, 
+    rgba(59, 62, 247, 0.4) 0%,
+    rgba(139, 92, 246, 0.3) 50%,
+    rgba(59, 62, 247, 0.2) 100%
+  ) 1;
+  box-shadow: 
+    0 20px 60px rgba(0, 0, 0, 0.12),
+    inset 0 1px 1px rgba(255, 255, 255, 0.5),
+    0 0 100px rgba(59, 62, 247, 0.08);
+  transition: box-shadow 0.3s ease;
+}
+
+.video-mockup-frame:hover {
+  box-shadow: 
+    0 30px 80px rgba(0, 0, 0, 0.15),
+    inset 0 1px 1px rgba(255, 255, 255, 0.5),
+    0 0 120px rgba(59, 62, 247, 0.12);
+}
+
+.video-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 24px;
+  background: #000;
+}
+
+.video-container video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ===================== RESULT BADGES ===================== */
+.result-badges {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--spacing-6);
+  margin: var(--spacing-12) 0;
+}
+
+.result-badge {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-4);
+  padding: var(--spacing-6) var(--spacing-8);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-gray-200);
+}
+
+.result-badge.red {
+  background: rgba(239, 68, 68, 0.05);
+  border-color: rgba(239, 68, 68, 0.2);
+}
+
+.result-badge.green {
+  background: rgba(16, 185, 129, 0.05);
+  border-color: rgba(16, 185, 129, 0.2);
+}
+
+.badge-icon {
+  font-size: var(--size-2xl);
+  opacity: 0.8;
+}
+
+.badge-text {
+  font-size: var(--size-lg);
+  font-weight: 600;
+  color: var(--color-black);
+}
+
+/* ===================== CONSTRAINT CARDS ===================== */
+.constraint-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-6);
+  margin: var(--spacing-12) 0;
+}
+
+.constraint-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+  padding: var(--spacing-8);
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.03) 0%, rgba(239, 68, 68, 0.06) 100%);
+  border: 1px solid rgba(239, 68, 68, 0.15);
+  border-radius: var(--radius-lg);
+  transition: all 0.3s;
+}
+
+.constraint-card:hover {
+  border-color: rgba(239, 68, 68, 0.3);
+  box-shadow: 0 8px 16px -4px rgba(239, 68, 68, 0.15);
+  transform: translateY(-2px);
+}
+
+.constraint-icon {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  color: #dc2626;
+  font-size: var(--size-2xl);
+}
+
+.constraint-icon .material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 28;
+}
+
+.constraint-content {
+  flex: 1;
+}
+
+.constraint-title {
+  font-size: var(--size-lg);
+  font-weight: 700;
+  margin-bottom: var(--spacing-3);
+  color: #991b1b;
+}
+
+.constraint-desc {
+  font-size: var(--size-sm);
+  line-height: var(--leading-relaxed);
+  color: var(--color-gray-700);
+}
+
+/* ===================== AI WORKFLOW SECTION ===================== */
+.cs-ai-workflow {
+  background-color: #0a0a0a;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 30px 30px;
+  padding: var(--spacing-24) var(--spacing-8);
+  position: relative;
+  border-radius: var(--radius-lg);
+  margin: var(--spacing-12) 0;
+}
+
+.section-marker.light {
+  color: var(--color-gray-600);
+}
+
+.ai-header {
+  text-align: center;
+  margin-bottom: var(--spacing-16);
+}
+
+.ai-title {
+  font-size: var(--size-4xl);
+  color: var(--color-white);
+  margin-bottom: var(--spacing-4);
+}
+
+.ai-subtitle {
+  font-size: var(--size-xl);
+  color: var(--color-gray-400);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.ai-intro {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-8);
+  margin: var(--spacing-12) 0;
+  color: var(--color-gray-300);
+}
+
+.ai-intro p {
+  font-size: var(--size-lg);
+  line-height: var(--leading-relaxed);
+  margin-bottom: 0;
+}
+
+/* ===================== FLOWCHART WITH CURVED LINES ===================== */
+.flowchart-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: var(--spacing-20) 0;
+  padding: var(--spacing-12) 0;
+}
+
+.flow-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-6);
+}
+
+.flow-row.flow-horizontal {
+  gap: var(--spacing-4);
+}
+
+.flow-row.flow-start,
+.flow-row.flow-end,
+.flow-row.flow-center {
+  justify-content: center;
+}
+
+.flow-node-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.flow-connector {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flow-connector-right {
+  align-self: flex-end;
+  margin-right: 20%;
+}
+
+.flow-arrow-h {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.flow-dot {
+  width: 16px;
+  height: 16px;
+  background: #ef4444;
+  border-radius: 50%;
+  margin: 0 auto;
+}
+
+.flow-label {
+  font-size: var(--size-sm);
+  font-weight: 700;
+  color: var(--color-white);
+  margin-top: var(--spacing-2);
+  white-space: nowrap;
+}
+
+.flow-label-large {
+  font-size: var(--size-lg);
+  font-weight: 700;
+  color: var(--color-white);
+  margin-bottom: var(--spacing-3);
+  white-space: nowrap;
+}
+
+.flow-badge {
+  width: 48px;
+  height: 48px;
+  background: #ef4444;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--size-lg);
+  font-weight: 700;
+  color: var(--color-white);
+  margin: 0 auto var(--spacing-4) auto;
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
+}
+
+.flow-card {
+  background: #fde8e8;
+  border: 1px solid #fecaca;
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-6);
+  min-width: 240px;
+  max-width: 280px;
+}
+
+.flow-card-title {
+  font-size: var(--size-base);
+  font-weight: 700;
+  color: #7c2d12;
+  margin-bottom: var(--spacing-4);
+}
+
+.flow-card-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.flow-card-list li {
+  font-size: var(--size-sm);
+  color: #991b1b;
+  padding: var(--spacing-2) 0;
+  padding-left: var(--spacing-3);
+  position: relative;
+}
+
+.flow-card-list li::before {
+  content: '-';
+  position: absolute;
+  left: 0;
+  color: #ef4444;
+}
+
+.ai-summary {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-8);
+  margin: var(--spacing-12) 0;
+  color: var(--color-gray-300);
+}
+
+.ai-summary p {
+  font-size: var(--size-lg);
+  line-height: var(--leading-relaxed);
+  margin-bottom: 0;
+}
+
+/* ===================== CODE EDITOR MOCKUP ===================== */
+
+
+
+
+.editor-annotation {
+  background: rgba(255, 255, 255, 0.05);
+  border-left: 4px solid #ef4444;
+  padding: var(--spacing-6);
+  border-radius: var(--radius-md);
+}
+
+.annotation-text {
+  font-size: var(--size-lg);
+  color: #fca5a5;
+  font-style: italic;
+  line-height: var(--leading-relaxed);
+  margin: 0;
+}
+
+/* ===================== RESPONSIVE FLOWCHART ===================== */
+@media (max-width: 1024px) {
+  .flow-row.flow-horizontal {
+    flex-direction: column;
+    gap: var(--spacing-6);
+  }
+  
+  .flow-arrow-h {
+    transform: rotate(90deg);
+  }
+  
+  .flow-connector-right {
+    align-self: center;
+    margin-right: 0;
+  }
+  
+  
+}
+
+@media (max-width: 768px) {
+  .flow-card {
+    min-width: 200px;
+    max-width: 100%;
+  }
+}
+
+/* ===================== USERS & ROLE SECTION ===================== */
+.meta-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-16);
+}
+
+.meta-col {
+  padding: var(--spacing-12);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-gray-200);
+}
+
+.meta-col.accent-bg {
+  background: var(--color-accent);
+  border-color: var(--color-accent-dark);
+}
+
+.user-group {
+  margin-bottom: var(--spacing-12);
+}
+
+.user-group-label {
+  display: block;
+  font-size: var(--size-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: var(--track-wide);
+  color: var(--color-gray-600);
+  margin-bottom: var(--spacing-4);
+}
+
+.user-card {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-4);
+  padding: var(--spacing-4) var(--spacing-6);
+  background: var(--color-gray-50);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--spacing-4);
+}
+
+.meta-col.accent-bg .user-card {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.user-icon {
+  font-size: var(--size-2xl);
+  flex-shrink: 0;
+  color: var(--color-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-icon .material-symbols-outlined {
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 28;
+}
+
+.user-card p {
+  font-size: var(--size-sm);
+  color: var(--color-gray-700);
+  margin-bottom: 0;
+}
+
+.meta-col.accent-bg .user-card p {
+  color: var(--color-white);
+}
+
+.user-cards {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
+.role-items {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-8);
+}
+
+.role-item {
+  display: flex;
+  gap: var(--spacing-6);
+  align-items: flex-start;
+}
+
+.role-bar {
+  width: 4px;
+  height: auto;
+  background: var(--color-white);
+  border-radius: 2px;
+  flex-shrink: 0;
+  min-height: 60px;
+}
+
+.role-content {
+  flex: 1;
+}
+
+.role-label {
+  font-size: var(--size-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: var(--track-wide);
+  color: var(--color-gray-300);
+  margin-bottom: var(--spacing-2);
+}
+
+.role-text {
+  font-size: var(--size-lg);
+  color: var(--color-white);
+  line-height: var(--leading-relaxed);
+  margin-bottom: 0;
+}
+
+/* ===================== SHOWCASE SECTIONS ===================== */
+.showcase-hero,
+.showcase-additional {
+  padding: var(--spacing-24) var(--spacing-8);
+  background: var(--color-white);
+}
+
+.showcase-content {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.showcase-intro {
+  text-align: center;
+  margin-bottom: var(--spacing-16);
+}
+
+.showcase-title {
+  font-size: var(--size-3xl);
+  font-weight: 700;
+  margin-bottom: var(--spacing-4);
+  color: var(--color-black);
+}
+
+.showcase-desc {
+  font-size: var(--size-lg);
+  line-height: var(--leading-relaxed);
+  color: var(--color-gray-600);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* ===================== STICKY SHOWCASE LAYERS ===================== */
+.sql-intro-after-dashboard {
+  margin: var(--spacing-16) 0 var(--spacing-12) 0;
+  text-align: center;
+}
+
+.sql-steps-stack {
+  position: relative;
+  margin: var(--spacing-12) 0;
+}
+
+.showcase-sticky-layer {
+  position: relative;
+  margin-bottom: var(--spacing-20);
+}
+
+.showcase-sticky-layer:last-child {
+  margin-bottom: 0;
+}
+
+.showcase-sticky-content {
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-12);
+  border: 1px solid var(--color-gray-200);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.06), 0 12px 25px -6px rgba(0, 0, 0, 0.04);
+}
+
+.layer-header {
+  margin-bottom: var(--spacing-12);
+}
+
+.layer-title {
+  font-size: var(--size-2xl);
+  font-weight: 700;
+  color: var(--color-black);
+  margin-bottom: var(--spacing-4);
+}
+
+.layer-desc {
+  font-size: var(--size-lg);
+  line-height: var(--leading-relaxed);
+  color: var(--color-gray-600);
+  margin-bottom: 0;
+}
+
+/* ===================== WORKFLOW DEMO ===================== */
+.workflow-demo-flow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: var(--spacing-12) 0;
+  gap: var(--spacing-8);
+}
+
+.workflow-demo-flow button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  padding: var(--spacing-3) var(--spacing-8);
+  background: var(--color-accent);
+  color: var(--color-white);
+  font-size: var(--size-sm);
+  font-weight: 700;
+  letter-spacing: var(--track-wide);
+  border: none;
+  border-radius: var(--radius-full);
+  cursor: default;
+  box-shadow: 0 4px 16px rgba(59, 62, 247, 0.25);
+  text-transform: uppercase;
+  transition: all 0.2s;
+}
+
+
+
+
+
+/* ===================== FOOTER ===================== */
+.cs-footer {
+  padding: var(--spacing-24) var(--spacing-8);
+  border-top: 1px solid var(--color-gray-200);
+  margin-top: var(--spacing-32);
+}
+
+.cs-nav-next {
+  margin-bottom: var(--spacing-16);
+}
+
+.next-case {
+  display: block;
+  padding: var(--spacing-8);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-gray-200);
+  transition: all 0.3s;
+}
+
+.next-case:hover {
+  border-color: var(--color-accent);
+  background: var(--color-accent-light);
+}
+
+.next-label {
+  font-size: var(--size-xs);
+  font-weight: 700;
+  color: var(--color-gray-600);
+  text-transform: uppercase;
+  letter-spacing: var(--track-wide);
+  margin-bottom: var(--spacing-2);
+}
+
+.next-title {
+  font-size: var(--size-2xl);
+  color: var(--color-black);
+  transition: color 0.2s;
+}
+
+.next-case:hover .next-title {
+  color: var(--color-accent);
+}
+
+.cs-back {
+  text-align: center;
+}
+
+.back-link {
+  font-size: var(--size-sm);
+  font-weight: 600;
+  color: var(--color-gray-600);
+}
+
+/* ===================== BRACKET CONNECTOR ===================== */
+.bracket-connector {
+  margin: var(--spacing-12) 0;
+  opacity: 0.5;
+}
+
+.bracket-connector svg {
+  width: 100%;
+  height: auto;
+  min-height: 80px;
+}
+
+/* ===================== GOAL RESULT ===================== */
+.goal-result {
+  text-align: center;
+  padding: var(--spacing-10) var(--spacing-12);
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.08) 0%, rgba(139, 92, 246, 0.06) 100%);
+  border: 2px solid rgba(99, 102, 241, 0.2);
+  border-radius: 24px;
+  margin: var(--spacing-16) auto;
+  max-width: 900px;
+  box-shadow: 0 4px 12px -2px rgba(99, 102, 241, 0.1);
+}
+
+.result-text {
+  font-size: var(--size-2xl);
+  font-weight: 600;
+  color: #4f46e5;
+  margin-bottom: 0;
+  line-height: var(--leading-relaxed);
+  letter-spacing: -0.01em;
+}
+
+/* ===================== RESPONSIVE ===================== */
+@media (max-width: 1024px) {
+  .cs-layout.with-toc {
+    grid-template-columns: 1fr;
+    padding: 0 var(--spacing-8);
+  }
+  
+  .cs-layout {
+    padding: 0 var(--spacing-8);
+  }
+  
+  .cs-toc {
+    display: none;
+  }
+  
+  .cs-grid-split {
+    grid-template-columns: 1fr;
+  }
+  
+  .meta-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .ai-flowchart {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .flow-step.offset {
+    transform: translateY(0);
+    grid-column: auto;
+  }
+  
+  .cs-headline {
+    font-size: var(--size-4xl);
+  }
+  
+  h2 {
+    font-size: var(--size-3xl);
+  }
+  
+  .shell {
+    padding: 0 var(--spacing-8);
+  }
+  
+  .cs-hero {
+    padding: var(--spacing-12) var(--spacing-8) var(--spacing-16) var(--spacing-8);
+  }
+  
+  .cs-section {
+    padding: var(--spacing-16) var(--spacing-8);
+  }
+  
+  .cs-impacts {
+    padding: var(--spacing-20) var(--spacing-8);
+  }
+  
+  .cs-ai-workflow {
+    padding: var(--spacing-16) var(--spacing-8);
+  }
+  
+  .showcase-hero,
+  .showcase-additional {
+    padding: var(--spacing-24) var(--spacing-8);
+  }
+  
+  .ecosystem-showcase {
+    padding: var(--spacing-32) var(--spacing-8);
+  }
+  
+  .cs-footer {
+    padding: var(--spacing-24) var(--spacing-8);
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-row {
+    flex-wrap: wrap;
+    gap: var(--spacing-4);
+  }
+  
+  .nav-links {
+    order: 3;
+    flex-basis: 100%;
+    justify-content: center;
+    gap: var(--spacing-4);
+  }
+  
+  .nav-spacer {
+    display: none;
+  }
+  
+  .shell {
+    padding: 0 var(--spacing-6);
+  }
+  
+  .cs-hero {
+    padding: var(--spacing-12) var(--spacing-4) var(--spacing-16) var(--spacing-4);
+  }
+  
+  .cs-section {
+    padding: var(--spacing-16) var(--spacing-4);
+  }
+  
+  .cs-impacts {
+    padding: var(--spacing-20) var(--spacing-4);
+  }
+  
+  .cs-ai-workflow {
+    padding: var(--spacing-16) var(--spacing-4);
+  }
+  
+  .showcase-hero,
+  .showcase-additional {
+    padding: var(--spacing-24) var(--spacing-4);
+  }
+  
+  .ecosystem-showcase {
+    padding: var(--spacing-32) var(--spacing-4);
+  }
+  
+  .cs-footer {
+    padding: var(--spacing-24) var(--spacing-4);
+  }
+  
+  .cs-headline {
+    font-size: var(--size-3xl);
+  }
+  
+  .cs-lead {
+    font-size: var(--size-lg);
+  }
+  
+  h2 {
+    font-size: var(--size-2xl);
+  }
+  
+  .impact-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .toggle-buttons {
+    flex-direction: column;
+  }
+  
+  .problem-cards {
+    grid-template-columns: 1fr;
+  }
+  
+  .goal-features {
+    grid-template-columns: 1fr;
+  }
+  
+  .ai-flowchart {
+    grid-template-columns: 1fr;
+  }
+  
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .result-badges {
+    grid-template-columns: 1fr;
+  }
+  
+  .constraint-cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-brand {
+    font-size: var(--size-base);
+  }
+  
+  .nav-cta {
+    padding: var(--spacing-2) var(--spacing-4);
+    font-size: var(--size-xs);
+  }
+  
+  .cs-headline {
+    font-size: var(--size-2xl);
+  }
+  
+  .cs-lead {
+    font-size: var(--size-base);
+  }
+  
+  h2 {
+    font-size: var(--size-xl);
+  }
+  
+  .impact-cards {
+    grid-template-columns: 1fr;
+  }
+  
+  .impact-value {
+    font-size: var(--size-3xl);
+  }
+  
+  .ai-title {
+    font-size: var(--size-3xl);
+  }
+}
+
+/* ===================== UTILITY CLASSES ===================== */
+.centered {
+  text-align: center;
+}
+
+ul, ol {
+  margin-left: 1.5rem;
+  margin-bottom: var(--spacing-4);
+}
+
+li {
+  margin-bottom: var(--spacing-2);
+}
+
+/* ===================== APPLICATIONS ECOSYSTEM SHOWCASE ===================== */
+.ecosystem-showcase {
+  background: linear-gradient(180deg, 
+    #fafbfc 0%, 
+    #f5f7fa 50%,
+    #ffffff 100%
+  );
+  padding: var(--spacing-32) var(--spacing-8);
+  position: relative;
+}
+
+.ecosystem-showcase::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 400px;
+  background: radial-gradient(ellipse at top, 
+    rgba(59, 62, 247, 0.04) 0%, 
+    transparent 60%
+  );
+  pointer-events: none;
+}
+
+.ecosystem-header {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto var(--spacing-24) auto;
+}
+
+.ecosystem-title {
+  font-size: var(--size-5xl);
+  font-weight: 700;
+  color: var(--color-black);
+  margin-bottom: var(--spacing-6);
+  line-height: var(--leading-tight);
+}
+
+.ecosystem-subtitle {
+  font-size: var(--size-xl);
+  color: var(--color-gray-600);
+  line-height: var(--leading-relaxed);
+}
+
+.ecosystem-section {
+  margin-bottom: var(--spacing-32);
+}
+
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-4);
+  margin-bottom: var(--spacing-12);
+}
+
+.label-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--spacing-2) var(--spacing-4);
+  background: var(--color-accent);
+  color: var(--color-white);
+  font-size: var(--size-xs);
+  font-weight: 700;
+  letter-spacing: var(--track-wide);
+  border-radius: var(--radius-full);
+  text-transform: uppercase;
+}
+
+.section-heading {
+  font-size: var(--size-3xl);
+  font-weight: 700;
+  color: var(--color-black);
+}
+
+/* ===================== DESKTOP CAROUSEL ===================== */
+/* ===================== MODERN CAROUSEL - PREMIUM ENHANCED ===================== */
+.modern-carousel {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: var(--spacing-16) var(--spacing-8);
+  box-sizing: border-box;
+}
+
+.carousel-container {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  height: 650px;
+  border-radius: 24px;
+  overflow: visible;
+  perspective: 1200px;
+  box-sizing: border-box;
+}
+
+/* Background glow effect */
+.carousel-container::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(ellipse at center, rgba(59, 62, 247, 0.15) 0%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(80px);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.carousel-slides-track {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 24px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(245, 245, 247, 0.95) 100%);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 
+    0 1px 3px rgba(0, 0, 0, 0.08),
+    0 8px 32px rgba(0, 0, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.carousel-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transform: translateX(100%) scale(0.85);
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.320, 1);
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: blur(4px);
+  padding: var(--spacing-6);
+  box-sizing: border-box;
+}
+
+.carousel-item-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-4);
+}
+
+.carousel-slide-header {
+  text-align: center;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1) 0.1s;
+  z-index: 5;
+}
+
+.carousel-item.active .carousel-slide-header {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.carousel-slide-title {
+  font-size: var(--size-2xl);
+  font-weight: 700;
+  color: var(--color-black);
+  margin-bottom: var(--spacing-2);
+  letter-spacing: -0.5px;
+}
+
+.carousel-slide-tags {
+  display: flex;
+  gap: var(--spacing-2);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.carousel-tag {
+  display: inline-flex;
+  padding: var(--spacing-1-5) var(--spacing-3);
+  background: var(--color-gray-100);
+  border: 1px solid var(--color-gray-200);
+  border-radius: var(--radius-full);
+  font-size: var(--size-xs);
+  font-weight: 600;
+  color: var(--color-gray-700);
+  letter-spacing: 0.5px;
+}
+
+/* Right adjacent preview */
+.carousel-item:nth-child(2) {
+  transform: translateX(100%) scale(0.85);
+  opacity: 0;
+}
+
+.carousel-item.active {
+  opacity: 1;
+  transform: translateX(0) scale(1);
+  z-index: 10;
+  filter: blur(0);
+  /* Floating animation removed */
+}
+
+.carousel-item.prev {
+  transform: translateX(-100%) scale(0.85);
+  opacity: 0;
+}
+
+.carousel-item img {
+  width: 815px;
+  max-width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 25px 50px rgba(59, 62, 247, 0.2));
+  transition: filter 0.8s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.carousel-item.active img {
+  filter: drop-shadow(0 40px 80px rgba(59, 62, 247, 0.25));
+}
+
+/* Navigation Arrows */
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 54px;
+  height: 54px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  color: var(--color-gray-700);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 25;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+  box-shadow: 
+    0 8px 24px rgba(0, 0, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+}
+
+.carousel-arrow:hover {
+  background: var(--color-accent);
+  color: white;
+  border-color: var(--color-accent);
+  box-shadow: 
+    0 16px 48px rgba(59, 62, 247, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  transform: translateY(-50%) scale(1.15);
+}
+
+.carousel-arrow:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+.carousel-arrow svg {
+  transition: transform 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.carousel-arrow:hover svg {
+  transform: scale(1.2);
+}
+
+.carousel-arrow-prev {
+  left: -30px;
+}
+
+.carousel-arrow-next {
+  right: -30px;
+}
+
+/* Pagination Dots */
+.carousel-dots-container {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-3);
+  padding: var(--spacing-6) var(--spacing-4);
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(10px);
+  border-radius: 50px;
+  width: fit-content;
+  margin: 0 auto;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.carousel-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--color-gray-300);
+  border: none;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+  padding: 0;
+  backdrop-filter: blur(5px);
+}
+
+.carousel-dot:hover {
+  background: var(--color-gray-400);
+  transform: scale(1.3);
+}
+
+.carousel-dot.active {
+  background: var(--color-accent);
+  width: 32px;
+  border-radius: var(--radius-full);
+  box-shadow: 0 0 16px rgba(59, 62, 247, 0.4);
+}
+
+/* ===================== MOBILE CAROUSEL SPECIFIC ===================== */
+.mobile-carousel .carousel-container {
+  height: 320px;
+}
+
+/* ===================== RESPONSIVE ===================== */
+@media (max-width: 768px) {
+  .modern-carousel {
+    padding: var(--spacing-12) var(--spacing-16);
+  }
+
+  .carousel-container {
+    height: 380px;
+    max-width: 900px;
+  }
+
+  .carousel-arrow {
+    width: 48px;
+    height: 48px;
+  }
+
+  .carousel-arrow-prev {
+    left: -20px;
+  }
+
+  .carousel-arrow-next {
+    right: -20px;
+  }
+
+  .carousel-dots-container {
+    padding: var(--spacing-5) var(--spacing-3);
+  }
+}
+
+@media (max-width: 480px) {
+  .modern-carousel {
+    padding: var(--spacing-8) var(--spacing-16);
+  }
+
+  .carousel-container {
+    max-width: 100%;
+    height: 300px;
+    border-radius: 16px;
+  }
+
+  .carousel-slides-track {
+    border-radius: 16px;
+  }
+
+  .carousel-item {
+    padding: var(--spacing-4);
+  }
+
+  .carousel-arrow {
+    width: 44px;
+    height: 44px;
+    opacity: 0.9;
+  }
+
+  .carousel-arrow-prev {
+    left: -12px;
+  }
+
+  .carousel-arrow-next {
+    right: -12px;
+  }
+
+  .carousel-arrow svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .carousel-dot {
+    width: 8px;
+    height: 8px;
+  }
+
+  .carousel-dot.active {
+    width: 28px;
+  }
+}
+
+/* ===================== PREMIUM MOBILE SHOWCASE ===================== */
+.premium-mobile-showcase {
+  position: relative;
+  padding: var(--spacing-24) var(--spacing-8);
+  background: linear-gradient(180deg, transparent 0%, rgba(59, 62, 247, 0.02) 100%);
+}
+
+.mobile-showcase-header {
+  text-align: center;
+  margin-bottom: var(--spacing-20);
+}
+
+.showcase-section-title {
+  font-size: var(--size-3xl);
+  font-weight: 700;
+  color: var(--color-black);
+  margin-bottom: var(--spacing-3);
+}
+
+.showcase-section-subtitle {
+  font-size: var(--size-base);
+  color: var(--color-gray-600);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.mobile-carousel-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-12);
+}
+
+.mobile-devices-stage {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-8);
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  perspective: 1000px;
+}
+
+/* Mobile device frames */
+.device-frame {
+  border-radius: 32px;
+  overflow: hidden;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.device-frame img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  border-radius: 32px;
+}
+
+/* ===================== PREMIUM CAROUSEL TRANSITIONS ===================== */
+/* Inactive preview phones (left & right) */
+.mobile-device-preview {
+  transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0.45;
+  transform: scale(0.65) translateY(20px) translateX(var(--slide-offset, 0));
+  filter: blur(0px);
+}
+
+.mobile-device-preview.sliding-out {
+  animation: previewSlideOut 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.mobile-device-preview.sliding-in {
+  animation: previewSlideIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes previewSlideOut {
+  0% {
+    opacity: 0.45;
+    transform: scale(0.65) translateY(20px) translateX(var(--slide-offset, 0));
+    filter: blur(0px);
+  }
+  50% {
+    filter: blur(1.5px);
+  }
+  100% {
+    opacity: 0.2;
+    transform: scale(0.55) translateY(30px) translateX(calc(var(--slide-offset, 0) * 1.5));
+    filter: blur(2px);
+  }
+}
+
+@keyframes previewSlideIn {
+  0% {
+    opacity: 0.2;
+    transform: scale(0.55) translateY(30px) translateX(calc(var(--slide-offset, 0) * 1.5));
+    filter: blur(2px);
+  }
+  50% {
+    filter: blur(1.5px);
+  }
+  100% {
+    opacity: 0.45;
+    transform: scale(0.65) translateY(20px) translateX(var(--slide-offset, 0));
+    filter: blur(0px);
+  }
+}
+
+.preview-left {
+  margin-right: -40px;
+  z-index: 2;
+  --slide-offset: -30px;
+}
+
+.preview-right {
+  margin-left: -40px;
+  z-index: 2;
+  --slide-offset: 30px;
+}
+
+.device-inactive {
+  width: 180px;
+  height: 380px;
+}
+
+/* Active phone (center) */
+.mobile-device-active {
+  position: relative;
+  z-index: 10;
+  transition: none;
+  animation: slideInCenter 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mobile-device-active.transitioning {
+  animation: slideInCenter 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideInCenter {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) translateY(40px);
+  }
+  50% {
+    transform: scale(1.03) translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.device-active {
+  width: 280px;
+  height: 590px;
+  transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.15));
+  animation: slideInImage 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity, filter;
+}
+
+.device-active.sliding-out-left {
+  animation: slideOutLeft 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.device-active.sliding-out-right {
+  animation: slideOutRight 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.device-active.sliding-in-left {
+  animation: slideInLeft 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.device-active.sliding-in-right {
+  animation: slideInRight 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideInImage {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideOutLeft {
+  0% {
+    opacity: 1;
+    transform: scale(1) translateX(0);
+    filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.15)) blur(0px);
+  }
+  60% {
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.1)) blur(1px);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.85) translateX(-100px);
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.05)) blur(3px);
+  }
+}
+
+@keyframes slideOutRight {
+  0% {
+    opacity: 1;
+    transform: scale(1) translateX(0);
+    filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.15)) blur(0px);
+  }
+  60% {
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.1)) blur(1px);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.85) translateX(100px);
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.05)) blur(3px);
+  }
+}
+
+@keyframes slideInLeft {
+  0% {
+    opacity: 0;
+    transform: scale(0.85) translateX(100px);
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.05)) blur(3px);
+  }
+  40% {
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.1)) blur(1px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateX(0);
+    filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.15)) blur(0px);
+  }
+}
+
+@keyframes slideInRight {
+  0% {
+    opacity: 0;
+    transform: scale(0.85) translateX(-100px);
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.05)) blur(3px);
+  }
+  40% {
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.1)) blur(1px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateX(0);
+    filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.15)) blur(0px);
+  }
+}
+
+.device-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 350px;
+  height: 500px;
+  background: radial-gradient(ellipse at center, rgba(59, 62, 247, 0.15) 0%, transparent 70%);
+  filter: blur(40px);
+  z-index: -1;
+  pointer-events: none;
+  transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: glowPulse 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+
+@keyframes glowPulse {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+/* Screen info below active phone */
+.active-screen-info {
+  position: absolute;
+  bottom: -70px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  opacity: 0;
+  animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(30px);
+  }
+  50% {
+    transform: translateX(-50%) translateY(-5px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.screen-title {
+  font-size: var(--size-lg);
+  font-weight: 600;
+  color: var(--color-black);
+  margin-bottom: var(--spacing-1);
+}
+
+.screen-subtitle {
+  font-size: var(--size-sm);
+  color: var(--color-gray-600);
+}
+
+/* Navigation arrows */
+.mobile-nav-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  color: var(--color-gray-700);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 15;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(8px);
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  will-change: transform, background, box-shadow;
+}
+
+.mobile-nav-arrow:hover {
+  background: var(--color-accent);
+  color: white;
+  box-shadow: 0 12px 30px rgba(59, 62, 247, 0.25);
+  transform: translateY(-50%) scale(1.12);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mobile-nav-arrow:active {
+  transform: translateY(-50%) scale(0.92);
+  box-shadow: 0 4px 12px rgba(59, 62, 247, 0.15);
+  transition: all 0.12s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mobile-nav-arrow.clicked {
+  animation: arrowClick 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes arrowClick {
+  0% {
+    transform: translateY(-50%) scale(1.12);
+  }
+  25% {
+    transform: translateY(-50%) scale(0.95);
+  }
+  50% {
+    transform: translateY(-50%) scale(1.15);
+  }
+  100% {
+    transform: translateY(-50%) scale(1);
+  }
+}
+
+.arrow-prev {
+  left: -60px;
+}
+
+.arrow-next {
+  right: -60px;
+}
+
+/* Pagination dots */
+.mobile-pagination {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-2);
+  margin-top: var(--spacing-8);
+}
+
+.mobile-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--color-gray-300);
+  border: none;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 0;
+  will-change: transform, width, background;
+}
+
+.mobile-dot:hover {
+  background: var(--color-gray-400);
+  transform: scale(1.3);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mobile-dot.active {
+  background: var(--color-accent);
+  width: 28px;
+  border-radius: var(--radius-full);
+  box-shadow: 0 0 12px rgba(59, 62, 247, 0.3);
+  animation: dotActivate 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes dotActivate {
+  0% {
+    transform: scale(0.8);
+    width: 10px;
+    border-radius: 50%;
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    width: 28px;
+    border-radius: var(--radius-full);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .mobile-devices-stage {
+    gap: var(--spacing-4);
+  }
+
+  .preview-left {
+    margin-right: -25px;
+  }
+
+  .preview-right {
+    margin-left: -25px;
+  }
+
+  .device-inactive {
+    width: 140px;
+    height: 300px;
+  }
+
+  .device-active {
+    width: 240px;
+    height: 510px;
+  }
+
+  .arrow-prev,
+  .arrow-next {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .premium-mobile-showcase {
+    padding: var(--spacing-16) var(--spacing-4);
+  }
+
+  .mobile-devices-stage {
+    gap: 0;
+  }
+
+  .preview-left,
+  .preview-right {
+    display: none;
+  }
+
+  .device-active {
+    width: 200px;
+    height: 420px;
+  }
+
+  .device-glow {
+    width: 280px;
+    height: 380px;
+  }
+
+  .arrow-prev,
+  .arrow-next {
+    width: 36px;
+    height: 36px;
+    position: relative;
+    top: auto;
+    transform: none;
+  }
+
+  .arrow-prev {
+    left: auto;
+    margin-right: var(--spacing-4);
+  }
+
+  .arrow-next {
+    right: auto;
+    margin-left: var(--spacing-4);
+  }
+
+  .active-screen-info {
+    bottom: -60px;
+  }
+}
+
+/* ===================== MOBILE STACK CONTAINER ===================== */
+.mobile-section {
+  background: linear-gradient(135deg, var(--color-gray-50) 0%, var(--color-white) 100%);
+  padding: var(--spacing-16) var(--spacing-8);
+  border-radius: var(--radius-lg);
+}
+
+.mobile-stack-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-12);
+}
+
+.mobile-stack {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1000px;
+}
+
+
+
+
+
+
+
+/* Device Positions */
+
+
+.device-front 
+
+
+
+
+
+.device-back-left {
+  z-index: 3;
+  transform: translateX(-350px) translateY(40px) scale(0.7) rotateY(20deg);
+  opacity: 0.4;
+}
+
+.device-back-right {
+  z-index: 3;
+  transform: translateX(350px) translateY(40px) scale(0.7) rotateY(-20deg);
+  opacity: 0.4;
+}
+
+/* ===================== MOBILE STACK NAVIGATION ===================== */
+.mobile-stack-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-6);
+}
+
+.stack-nav-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: var(--color-white);
+  border: 1px solid var(--color-gray-200);
+  border-radius: 50%;
+  color: var(--color-gray-700);
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: var(--shadow-sm);
+}
+
+.stack-nav-btn:hover {
+  background: var(--color-accent);
+  color: var(--color-white);
+  border-color: var(--color-accent);
+}
+
+.stack-dots {
+  display: flex;
+  gap: var(--spacing-2);
+}
+
+/* ===================== ECOSYSTEM FOOTER ===================== */
+.ecosystem-footer {
+  margin-top: var(--spacing-24);
+  text-align: center;
+  padding: var(--spacing-12);
+  background: linear-gradient(135deg, var(--color-accent-light) 0%, rgba(59, 62, 247, 0.05) 100%);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-accent);
+}
+
+.ecosystem-note {
+  font-size: var(--size-lg);
+  line-height: var(--leading-relaxed);
+  color: var(--color-gray-700);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* ===================== RESPONSIVE ECOSYSTEM ===================== */
+@media (max-width: 1024px) {
+  .mobile-stack {
+    height: 500px;
+  }
+  
+  
+  
+  
+  
+  
+  
+  .device-back-left {
+    transform: translateX(-250px) translateY(40px) scale(0.7) rotateY(20deg);
+  }
+  
+  .device-back-right {
+    transform: translateX(250px) translateY(40px) scale(0.7) rotateY(-20deg);
+  }
+}
+
+@media (max-width: 768px) {
+  .ecosystem-title {
+    font-size: var(--size-3xl);
+  }
+  
+  .section-heading {
+    font-size: var(--size-2xl);
+  }
+  
+  .mobile-stack {
+    height: 450px;
+  }
+  
+  
+  
+  .device-left,
+  
+  
+  .device-back-left,
+  .device-back-right {
+    display: none;
+  }
+}
+</style>
+</head>
+<body data-screen-label="00 Field Proxy Case Study">
+
+<!-- ===================== NAV ===================== -->
+<header class="nav">
+  <div class="shell nav-row">
+    <a href="../index.html" class="nav-brand">
+      <span class="dot"></span>
+      Afrin
+      <small>Senior Product Designer</small>
+    </a>
+    <span class="nav-spacer"></span>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="../index.html#work">Work</a>
+      <a href="../index.html#how">How I Work</a>
+      <a href="../index.html#contact">Contact</a>
+    </nav>
+    <a href="/cdn-cgi/l/email-protection#58393e2a3136183d20393528343d763b3735672b2d3a323d3b2c650b3d3631372a7d6a683c3d2b313f363d2a7d6a682a37343d" class="nav-cta">
+      <span class="pulse"></span> Available · May '26
+    </a>
+  </div>
+</header>
+
+<!-- ===================== CASE STUDY LAYOUT ===================== -->
+<div class="cs-layout">
+  
+  <!-- LEFT TOC (appears after impacts) -->
+  <aside class="cs-toc">
+    <nav class="toc-nav">
+      <a href="#overview" class="toc-item active">
+        <span class="toc-num">01</span>
+        <span class="toc-label">CONTEXT</span>
+      </a>
+      <a href="#architecture" class="toc-item">
+        <span class="toc-num">02</span>
+        <span class="toc-label">EXISTING STRUCTURE</span>
+      </a>
+      <a href="#problem" class="toc-item">
+        <span class="toc-num">03</span>
+        <span class="toc-label">PROBLEM</span>
+      </a>
+      <a href="#goal" class="toc-item">
+        <span class="toc-num">04</span>
+        <span class="toc-label">GOAL</span>
+      </a>
+      <a href="#transformation" class="toc-item">
+        <span class="toc-num">05</span>
+        <span class="toc-label">TRANSFORMATION</span>
+      </a>
+      <a href="#scaling" class="toc-item">
+        <span class="toc-num">06</span>
+        <span class="toc-label">SCALING</span>
+      </a>
+      <a href="#ai-workflow" class="toc-item">
+        <span class="toc-num">07</span>
+        <span class="toc-label">AI WORKFLOW</span>
+      </a>
+      <a href="#users" class="toc-item">
+        <span class="toc-num">08</span>
+        <span class="toc-label">USERS & ROLE</span>
+      </a>
+      <a href="#ui-showcase" class="toc-item">
+        <span class="toc-num">09</span>
+        <span class="toc-label">UI SHOWCASE</span>
+      </a>
+    </nav>
+  </aside>
+  
+<!-- ===================== HERO ===================== -->
+<main>
+<section class="cs-hero shell" data-screen-label="01 Hero" id="hero">
+  <div class="cs-tags">
+    <span class="tag">B2B</span>
+    <span class="tag accent">AI-Assisted System</span>
+    <span class="tag">System Design</span>
+  </div>
+  
+  <h1 class="cs-headline">
+    From a Fragile Builder to a Scalable AI-Assisted Platform for Field Apps
+  </h1>
+  
+  <p class="cs-lead">
+    Transformed a complex, manual builder into a structured AI-assisted system, enabling 2× faster application creation.
+  </p>
+  
+  <div class="cs-hero-image">
+    <div class="placeholder-box" data-ratio="16/9">
+      <img src="file:///C:/Users/hanashafika/OneDrive/Pictures/Documents/rebuilt/fp/image/dashboard.png" alt="Hero Image" style="width: 100%; height: 100%; object-fit: contain;">
+    </div>
+  </div>
+</section>
+
+<!-- ===================== OVERVIEW ===================== -->
+<section class="cs-section shell" data-screen-label="02 Overview" id="overview">
+  <div class="section-marker">§ 01 — CONTEXT</div>
+  <div class="cs-grid-split">
+    <div class="cs-col-wide">
+      <h2 class="cs-section-title">Project Overview</h2>
+      <div class="cs-text-block">
+        <p>
+          Rebuilt the Fieldproxy platform from the ground up, shifting from complex manual configuration to a machine-readable system that enables AI-assisted application creation faster and scalable field application development.
+        </p>
+        <p>
+          The previous builder relied on multi-layered configuration, making it slow and difficult to scale. I led the platform transition, redefining how applications are created by shaping the builder experience and system architecture for AI.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== KEY IMPACTS ===================== -->
+<section class="cs-impacts" data-screen-label="03 Key Impacts" id="impacts">
+  <div class="shell">
+    <div class="impacts-header">
+      <span class="impacts-label">Impact</span>
+      <h2 class="impacts-title">Key Results</h2>
+    </div>
+    
+    <div class="impact-grid">
+      <div class="impact-item">
+        <div class="impact-metric">
+          <span class="metric-value">80%</span>
+          <span class="metric-trend">↑</span>
+        </div>
+        <p class="impact-description">System Stability</p>
+      </div>
+      
+      <div class="impact-item">
+        <div class="impact-metric">
+          <span class="metric-value">3×</span>
+          <span class="metric-trend positive">↑</span>
+        </div>
+        <p class="impact-description">Faster App Deployment</p>
+      </div>
+      
+      <div class="impact-item">
+        <div class="impact-metric">
+          <span class="metric-value">35%</span>
+          <span class="metric-trend negative">↓</span>
+        </div>
+        <p class="impact-description">Reduced Churn & Support Cost</p>
+      </div>
+      
+      <div class="impact-item">
+        <div class="impact-metric">
+          <span class="metric-value">43%</span>
+          <span class="metric-trend positive">↑</span>
+        </div>
+        <p class="impact-description">Product Adoption (Global Rollout)</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===================== USERS & ROLE ===================== -->
+<section class="cs-section shell" data-screen-label="10 Users & Role" id="users">
+  <div class="section-marker">§ 07 — USERS & ROLE</div>
+  
+  <div class="meta-grid">
+    <div class="meta-col">
+      <h2 class="cs-section-title">Who are the users?</h2>
+      
+      <div class="user-group">
+        <div class="user-group-label">Internal users (Builder Users)</div>
+        <div class="user-card">
+          <span class="user-icon"><span class="material-symbols-outlined">group</span></span>
+          <p><strong>Implementation team</strong> — who configure and generate applications through the builder</p>
+        </div>
+      </div>
+      
+      <div class="user-group">
+        <div class="user-group-label">End Users (Generated Apps)</div>
+        <div class="user-cards">
+          <div class="user-card">
+            <span class="user-icon"><span class="material-symbols-outlined">bar_chart</span></span>
+            <p><strong>Operational Heads</strong> — manage and monitor workflows on the web.</p>
+          </div>
+          <div class="user-card">
+            <span class="user-icon"><span class="material-symbols-outlined">construction</span></span>
+            <p><strong>Field technicians</strong> — execute tasks and report updates via mobile apps.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="meta-col accent-bg">
+      <h2 class="cs-section-title white">What did I do?</h2>
+      
+      <div class="role-items">
+        <div class="role-item">
+          <div class="role-bar"></div>
+          <div class="role-content">
+            <div class="role-label">Role</div>
+            <p class="role-text">Sole Product Designer — led end-to-end platform transformation.</p>
+          </div>
+        </div>
+        
+        <div class="role-item">
+          <div class="role-bar"></div>
+          <div class="role-content">
+            <div class="role-label">Duration</div>
+            <p class="role-text">2 Quarters</p>
+          </div>
+        </div>
+        
+        <div class="role-item">
+          <div class="role-bar"></div>
+          <div class="role-content">
+            <div class="role-label">Team</div>
+            <p class="role-text">Cross-functional — PM, Engineering, Implementation</p>
+          </div>
+        </div>
+        
+        <div class="role-item">
+          <div class="role-bar"></div>
+          <div class="role-content">
+            <div class="role-label">Scope</div>
+            <p class="role-text">System architecture, UX/UI design, AI workflow design, implementation support</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ARCHITECTURE ANALYSIS ===================== -->
+<section class="cs-section shell cs-grid-background" data-screen-label="04 Architecture" id="architecture">
+  <div class="cs-centered-text">
+    <h2 class="cs-section-title">How the existing builder was structured</h2>
+    <p class="cs-lead centered">
+      Fieldproxy enables organisations to coordinate field teams through mobile apps used by field technicians and web apps used by operations managers.
+    </p>
+  </div>
+  
+  <div class="builder-toggle">
+    <div class="toggle-buttons">
+      <button class="toggle-btn active" data-target="mobile">
+        <span class="icon"><span class="material-symbols-outlined">smartphone</span></span>
+        <span>Mobile Builder</span>
+      </button>
+      <button class="toggle-btn" data-target="web">
+        <span class="icon"><span class="material-symbols-outlined">computer</span></span>
+        <span>Web Builder</span>
+      </button>
+    </div>
+  </div>
+  
+  <div class="builder-content">
+    <div class="builder-panel active" id="mobile-panel">
+      <div class="glassmorphism-frame">
+        <div class="panel-label">Node Based Builder Interface</div>
+        <div class="placeholder-box" data-ratio="16/9">
+          <img src="file:///C:/Users/hanashafika/OneDrive/Pictures/Documents/rebuilt/fp/image/oldbuilder.png" alt="Mobile Builder" style="width: 100%; height: 100%; object-fit: contain;">
+        </div>
+      </div>
+    </div>
+    
+    <div class="builder-panel" id="web-panel">
+      <div class="glassmorphism-frame">
+        <div class="panel-label">Admin Dashboard & Operations Web Portal</div>
+        <div class="placeholder-box" data-ratio="16/9">
+          <img src="file:///C:/Users/hanashafika/OneDrive/Pictures/Documents/rebuilt/fp/image/dragndrop.png" alt="Web Builder" style="width: 100%; height: 100%; object-fit: contain;">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cs-centered-text">
+    <p class="cs-body">
+      The platform used a drag-and-drop builder for web application creation, where implementation teams configured applications, dashboards, and reports using widgets. These were used by operations teams to manage field operations.
+    </p>
+    <p class="cs-body">
+      Each component required configuration across UI, data, and actions, forcing teams into rigid structures and limiting flexibility.
+    </p>
+  </div>
+</section>
+
+<!-- ===================== PROBLEM ===================== -->
+<section class="cs-section shell" data-screen-label="05 Problem" id="problem">
+  <div class="section-marker">§ 02 — PROBLEM</div>
+  
+  <h2 class="cs-section-title">What led to the platform rebuild</h2>
+  <p class="cs-lead">
+    As Fieldproxy scaled to support larger operations, the existing V3 workflow builder struggled with increasing complexity. Implementation teams found it difficult to configure, debug, and maintain workflows, exposing the key limitations outlined below.
+  </p>
+  
+  <div class="problem-cards">
+    <div class="problem-card dark-green">
+      <div class="problem-icon"><span class="material-symbols-outlined">warning</span></div>
+      <div class="problem-content">
+        <h3 class="problem-title">Rigid System Architecture</h3>
+        <p class="problem-desc">
+          Heavy reliance on manual configuration and predefined components made the system rigid, limiting flexibility and hard to scale across complex use cases.
+        </p>
+      </div>
+    </div>
+    
+    <div class="problem-card dark-orange">
+      <div class="problem-icon"><span class="material-symbols-outlined">bolt</span></div>
+      <div class="problem-content">
+        <h3 class="problem-title">Complex Workflow</h3>
+        <p class="problem-desc">
+          Multi-layered configuration across UI, data, and actions required navigating several steps, making even simple workflows complex to set up and deployment slower.
+        </p>
+      </div>
+    </div>
+
+    <div class="problem-card dark-purple">
+      <div class="problem-icon"><span class="material-symbols-outlined">sync</span></div>
+      <div class="problem-content">
+        <h3 class="problem-title">Inconsistent Builder Models</h3>
+        <p class="problem-desc">
+          Mobile used a node-based builder while web used a drag-and-drop interface, leading to inconsistent setups and making debugging and stability harder to manage.
+        </p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="cs-centered-text">
+    <p class="cs-callout">
+      This led to higher <strong>churn, increased support costs, and slower adoption, impacting end-user experience.</strong>
+    </p>
+  </div>
+</section>
+
+<!-- ===================== GOAL ===================== -->
+<section class="cs-section shell" data-screen-label="06 Goal" id="goal">
+  <div class="section-marker">§ 03 — GOAL</div>
+  
+  <h2 class="cs-section-title">Redefining How Applications Are Built</h2>
+  <div class="cs-text-block">
+    <p>
+      As we dug deeper, it became clear that fixing individual issues would only add complexity without solving the core problem. The system lacked a structured, machine-readable foundation, making it difficult to scale and limiting its ability to support AI-assisted workflows.
+    </p>
+    <p>
+      To address this, I focused on three key areas that redefined how applications are created.
+    </p>
+  </div>
+  
+  <div class="goal-features">
+    <div class="goal-card green-accent">
+      <div class="goal-icon"><span class="material-symbols-outlined">settings</span></div>
+      <div class="goal-content">
+        <h4 class="goal-title">Flexible Configuration</h4>
+        <p class="goal-desc">From rigid setup to Flexible configurable.</p>
+      </div>
+    </div>
+    
+    <div class="goal-card orange-accent">
+      <div class="goal-icon"><span class="material-symbols-outlined">auto_awesome</span></div>
+      <div class="goal-content">
+        <h4 class="goal-title">Built for Scale & AI</h4>
+        <p class="goal-desc">Machine-readable system enables scalable apps and AI.</p>
+      </div>
+    </div>
+    
+    <div class="goal-card purple-accent">
+      <div class="goal-icon"><span class="material-symbols-outlined">rocket_launch</span></div>
+      <div class="goal-content">
+        <h4 class="goal-title">Faster Deployment & Debugging</h4>
+        <p class="goal-desc">Unified mobile and web setup improves consistency.</p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="bracket-connector">
+    <svg viewBox="0 0 800 80" preserveAspectRatio="none">
+      <path d="M50,10 L50,40 L400,40 L400,70 M750,10 L750,40 L400,40" stroke="#3B3EF7" stroke-width="2" fill="none" opacity="0.3"/>
+    </svg>
+  </div>
+  
+  <div class="goal-result">
+    <p class="result-text">
+      Rebuilt the platform around a structured, JSON-based system with AI-assisted workflows
+    </p>
+  </div>
+  
+  <div class="cs-centered-text">
+    <p class="cs-body">
+      Applications are defined through structured, machine-readable configurations, unifying workflows, data, and UI across mobile and web.
+    </p>
+  </div>
+</section>
+
+<!-- ===================== PLATFORM TRANSFORMATION ===================== -->
+<section class="cs-section shell" data-screen-label="07 Platform Transformation" id="transformation">
+  <div class="section-marker">§ 04 — TRANSFORMATION</div>
+  
+  <h2 class="cs-section-title">How the scaling happened?</h2>
+  <p class="cs-lead">
+    The transition to a structured system evolved through iterative stages, starting with validation in mobile and scaling across the platform.
+  </p>
+  
+  <h3 class="cs-subsection-title">Validating the System (Mobile - first)</h3>
+  <p class="cs-body">
+    To transition the platform to a configuration-driven architecture, the system was first started with the technician mobile workflow, where most of the complexity, and usability issues existed. Application creation still involved partial manual configuration, including component selection and setup.
+  </p>
+  
+  <div class="feature-grid">
+    <div class="feature-card">
+      <h4 class="feature-title">Live preview while building</h4>
+      <p class="feature-desc">See changes instantly without switching between steps</p>
+    </div>
+    <div class="feature-card">
+      <h4 class="feature-title">Flexible components</h4>
+      <p class="feature-desc">Choose and customize components without rigid limits</p>
+    </div>
+    <div class="feature-card">
+      <h4 class="feature-title">AI-assisted data & queries</h4>
+      <p class="feature-desc">Generate data and queries faster with AI support</p>
+    </div>
+  </div>
+  
+<!-- ===================== PREMIUM BEFORE/AFTER COMPARISON SLIDER ===================== -->
+<section class="cs-section shell" data-screen-label="07 Platform Migration Results" id="comparison">
+  <div class="section-marker">§ 04 — RESULTS</div>
+  
+  <h2 class="cs-section-title">Mobile-First Platform Rebuild</h2>
+  <p class="cs-lead">
+    The transformation from legacy node-based builder to AI-assisted platform delivered significant improvements in developer experience, deployment speed, and system stability.
+  </p>
+  
+  <!-- NEW PREMIUM COMPARISON SLIDER -->
+  <div class="premium-comparison-wrapper">
+    <div class="premium-comparison-slider" id="premium-slider">
+      <!-- Before Image Layer -->
+      <div class="comparison-image comparison-before-img" id="before-image">
+        <img src="file:///C:/Users/hanashafika/OneDrive/Pictures/Documents/rebuilt/fp/image/builderv1.png" alt="Before - Legacy Node Builder" style="width: 100%; height: 100%; object-fit: cover;">
+      </div>
+      
+      <!-- After Image Layer (Base) -->
+      <div class="comparison-image comparison-after-img">
+        <img src="file:///C:/Users/hanashafika/OneDrive/Pictures/Documents/rebuilt/fp/image/oldbuilder.png" alt="After - AI-Assisted Platform" style="width: 100%; height: 100%; object-fit: cover;">
+      </div>
+      
+      <!-- Divider Line -->
+      <div class="comparison-divider" id="comparison-divider"></div>
+      
+      <!-- Draggable Handle -->
+      <div class="comparison-drag-handle" id="comparison-handle">
+        <div class="handle-inner">
+          <span class="handle-arrow left-arrow">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M12 4l-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <span class="handle-arrow right-arrow">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M8 4l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </div>
+      </div>
+      
+      <!-- Before Label -->
+      <div class="comparison-label before-label" id="before-label-el">
+        <span class="label-badge">
+          <span class="label-icon">◀</span>
+          <span class="label-text">BEFORE</span>
+        </span>
+      </div>
+      
+      <!-- After Label -->
+      <div class="comparison-label after-label" id="after-label-el">
+        <span class="label-badge">
+          <span class="label-text">AFTER</span>
+          <span class="label-icon">▶</span>
+        </span>
+      </div>
+    </div>
+  </div>
+  
+  <div class="cs-centered-text">
+    <p class="cs-body">
+      This mobile-first migration validated the new architecture in a real workflow before expanding the platform further.
+    </p>
+  </div>
+  
+  <div class="result-badges">
+    <div class="result-badge red">
+      <span class="badge-icon">↓</span>
+      <span class="badge-text">85% Support tickets reduced</span>
+    </div>
+    <div class="result-badge green">
+      <span class="badge-icon">↑</span>
+      <span class="badge-text">2× Faster deployment</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SCALING TO WEB & AI ===================== -->
+<section class="cs-section shell" data-screen-label="08 Scaling to Web & AI" id="scaling">
+  <div class="section-marker">§ 05 — SCALING</div>
+  
+  <h2 class="cs-section-title">Scaling to Web & Introducing AI</h2>
+  <p class="cs-lead">
+    After validating the new architecture with the mobile workflow, the next step was to scale the builder to support web applications, which required handling more greater layout complexity, larger screen structures, and deeper element hierarchies.
+  </p>
+  
+  <h3 class="cs-subsection-title">Constraints:</h3>
+  
+  <div class="constraint-cards">
+    <div class="constraint-card">
+      <div class="constraint-icon">
+        <span class="material-symbols-outlined">layers</span>
+      </div>
+      <div class="constraint-content">
+        <h4 class="constraint-title">Deep nesting</h4>
+        <p class="constraint-desc">Manual Screen creation became difficult with deep element, component, and layout nesting.</p>
+      </div>
+    </div>
+    
+    <div class="constraint-card">
+      <div class="constraint-icon">
+        <span class="material-symbols-outlined">grid_view</span>
+      </div>
+      <div class="constraint-content">
+        <h4 class="constraint-title">Complex Layouts</h4>
+        <p class="constraint-desc">Web application required flexible & Multi-layered layouts which increased effort and complexity in building.</p>
+      </div>
+    </div>
+    
+    <div class="constraint-card">
+      <div class="constraint-icon">
+        <span class="material-symbols-outlined">deployed_code</span>
+      </div>
+      <div class="constraint-content">
+        <h4 class="constraint-title">Slow Deployment</h4>
+        <p class="constraint-desc">Large workflows and deep nesting increased time and effort, reducing development velocity at web scale.</p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="cs-centered-text">
+    <p class="cs-callout">
+      These constraints <strong>increased effort, slowed deployment and harder to scale with manual workflows.</strong> To address this, we introduced an AI-assisted workflow.
+    </p>
+  </div>
+</section>
+
+<!-- ===================== AI WORKFLOW ===================== -->
+<section class="cs-ai-workflow" data-screen-label="09 AI Workflow" id="ai-workflow">
+  <div class="shell">
+    <div class="section-marker light">§ 06 — AI WORKFLOW</div>
+    <div class="ai-header">
+      <h2 class="ai-title">AI-assisted workflow</h2>
+      <p class="ai-subtitle">A structured generation approach to accelerate deployment and reduce manual effort.</p>
+    </div>
+    
+    <div class="ai-intro">
+      <p>
+        To make the workflow scalable, I defined a structured AI generation system that translated requirements into JSON configurations using reusable elements, layout rules, and screen-level instructions. This workflow was implemented using Cursor, where the design system and generation rules were provided as context. Based on structured prompts, the AI generated valid configurations, which were then integrated into the builder.
+      </p>
+    </div>
+    
+    <!-- ===================== FLOWCHART WITH CURVED LINES ===================== -->
+    <div class="flowchart-wrapper">
+      <!-- Row 1: Requirement Start -->
+      <div class="flow-row flow-start">
+        <div class="flow-node-item">
+          <div class="flow-dot"></div>
+          <div class="flow-label">Requirement</div>
+        </div>
+      </div>
+      
+      <!-- Connector Line -->
+      <div class="flow-connector">
+        <svg width="100" height="60" viewBox="0 0 100 60">
+          <path d="M 50,0 Q 50,30 50,60" stroke="#ef4444" stroke-width="2" fill="none" stroke-dasharray="6,6"/>
+        </svg>
+      </div>
+      
+      <!-- Row 2: Steps 01, 02, 03 -->
+      <div class="flow-row flow-horizontal">
+        <div class="flow-node-item">
+          <div class="flow-badge">01</div>
+          <div class="flow-card">
+            <h4 class="flow-card-title">Requirement Analysis.md</h4>
+            <ul class="flow-card-list">
+              <li>Requirement Extraction</li>
+              <li>Intent Parsing-App guidelines</li>
+              <li>Structured Requirement</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="flow-arrow-h">
+          <svg width="80" height="40" viewBox="0 0 80 40">
+            <path d="M 0,20 L 80,20" stroke="#ef4444" stroke-width="2" fill="none" stroke-dasharray="6,6"/>
+          </svg>
+        </div>
+        
+        <div class="flow-node-item">
+          <div class="flow-badge">02</div>
+          <div class="flow-card">
+            <h4 class="flow-card-title">Design Data.md</h4>
+            <ul class="flow-card-list">
+              <li>Element Library - Component</li>
+              <li>Library-Schema-UX guidelines</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="flow-arrow-h">
+          <svg width="80" height="40" viewBox="0 0 80 40">
+            <path d="M 0,20 L 80,20" stroke="#ef4444" stroke-width="2" fill="none" stroke-dasharray="6,6"/>
+          </svg>
+        </div>
+        
+        <div class="flow-node-item">
+          <div class="flow-badge">03</div>
+          <div class="flow-card">
+            <h4 class="flow-card-title">Mapping.md</h4>
+            <ul class="flow-card-list">
+              <li>Component Mapping</li>
+              <li>Schema Mapping</li>
+              <li>Layout Generation</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Connector Down -->
+      <div class="flow-connector flow-connector-right">
+        <svg width="100" height="80" viewBox="0 0 100 80">
+          <path d="M 80,0 Q 80,40 50,80" stroke="#ef4444" stroke-width="2" fill="none" stroke-dasharray="6,6"/>
+        </svg>
+      </div>
+      
+      <!-- Row 3: Step 04 -->
+      <div class="flow-row flow-center">
+        <div class="flow-node-item">
+          <div class="flow-badge">04</div>
+          <div class="flow-card">
+            <h4 class="flow-card-title">Validation.md</h4>
+            <ul class="flow-card-list">
+              <li>Rule check</li>
+              <li>Schema check</li>
+              <li>Missing data Check</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Connector Down -->
+      <div class="flow-connector">
+        <svg width="100" height="60" viewBox="0 0 100 60">
+          <path d="M 50,0 Q 50,30 50,60" stroke="#ef4444" stroke-width="2" fill="none" stroke-dasharray="6,6"/>
+        </svg>
+      </div>
+      
+      <!-- Row 4: Step 05 -->
+      <div class="flow-row flow-center">
+        <div class="flow-node-item">
+          <div class="flow-badge">05</div>
+          <div class="flow-card">
+            <h4 class="flow-card-title">Functions.md</h4>
+            <ul class="flow-card-list">
+              <li>Query Generation</li>
+              <li>Action Binding</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Connector Down -->
+      <div class="flow-connector">
+        <svg width="100" height="60" viewBox="0 0 100 60">
+          <path d="M 50,0 Q 50,30 50,60" stroke="#ef4444" stroke-width="2" fill="none" stroke-dasharray="6,6"/>
+        </svg>
+      </div>
+      
+      <!-- Row 5: Output -->
+      <div class="flow-row flow-end">
+        <div class="flow-node-item">
+          <div class="flow-label-large">Output Generation</div>
+          <div class="flow-dot"></div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="ai-summary">
+      <p>
+        With this structured generation workflow, the generator followed a fixed hierarchy to ensure UI, data, and queries were created in the correct order before the configuration was used in the builder. This reduced manual setup, deployment time and made the platform easier to scale for larger applications.
+      </p>
+    </div>
+    
+    <!-- ===================== CODE EDITOR MOCKUP ===================== -->
+    <div>
+      <div class="glassmorphism-frame">
+        <div class="placeholder-box" data-ratio="16/9">
+          <img src="file:///C:/Users/hanashafika/OneDrive/Pictures/Documents/rebuilt/fp/image/cursor.png" alt="Code Editor Screenshot" style="width: 100%; height: 100%; object-fit: contain;">
+        </div>
+      </div>
+      <div>
+        <p class="annotation-text">
+          I defined each component with rules, usage Guidelines, JSON Structure, and supported actions to guide.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===================== USER INTERFACE SHOWCASE ===================== -->
+<section class="cs-section shell" data-screen-label="08 UI Showcase" id="ui-showcase">
+  <div class="section-marker">§ 08 — USER INTERFACE SHOWCASE</div>
+  
+  <h2 class="cs-section-title">The rebuilt platform in action</h2>
+  <p class="cs-lead">
+    Every interaction was designed to simplify complex workflows. Below is a comprehensive look at the new system architecture and user experiences across the platform.
+  </p>
+</section>
+
+<!-- ===================== HERO MOCKUP ===================== -->
+<section class="showcase-hero">
+  <div class="shell showcase-content">
+    <div class="showcase-intro">
+      <h3 class="showcase-title">Unified Dashboard</h3>
+      <p class="showcase-desc">
+        A centralized operations hub that brings together workflow management, real-time monitoring, and team coordination in a single, intuitive interface. The SQL Editor provides a powerful, visual way to manage databases and workflows.
+      </p>
+    </div>
+
+    <div>
+      <div class="placeholder-box" data-ratio="16/9">
+        <img src="file:///C:/Users/hanashafika/OneDrive/Pictures/Documents/rebuilt/fp/image/sqlexplain.png" alt="Unified Dashboard - SQL Builder" style="width: 100%; height: 100%; object-fit: contain;">
+      </div>
+    </div>
+
+    <div class="sql-intro-after-dashboard">
+      <div class="showcase-sticky-intro">
+        <h3 class="showcase-title">Building Workflows: The SQL Builder Experience</h3>
+        <p class="showcase-desc">
+          Watch how the new builder system guides users through application creation step-by-step. Each step builds on the previous state.
+        </p>
+      </div>
+    </div>
+
+    <div id="sql-builder-showcase" class="sql-steps-stack showcase-sticky-container">
+
+      <!-- Layer 1: Empty State -->
+      <div class="showcase-sticky-layer">
+        <div class="showcase-sticky-content">
+          <div class="layer-header">
+            <h4 class="layer-title">Step 1: Empty State</h4>
+            <p class="layer-desc">
+              Users begin with a clean, intuitive interface. The builder presents a clear entry point with minimal cognitive load—ready to create their first table and define data structure.
+            </p>
+          </div>
+          <div>
+            <div class="placeholder-box" data-ratio="16/9">
+              <img src="file:///C:/Users/hanashafika/OneDrive/Pictures/Documents/rebuilt/fp/image/emptysttatesql.png" alt="Step 1: Empty State" style="width: 100%; height: 100%; object-fit: contain;">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Layer 2: With Table -->
+      <div class="showcase-sticky-layer">
+        <div class="showcase-sticky-content">
+          <div class="layer-header">
+            <h4 class="layer-title">Step 2: Table Added</h4>
+            <p class="layer-desc">
+              Once a table is created, the builder displays the structure. Users can see columns, data types, and available actions. The interface organizes complexity into digestible components.
+            </p>
+          </div>
+          <div>
+            <div class="placeholder-box" data-ratio="16/9">
+              <img src="file:///C:/Users/hanashafika/OneDrive/Pictures/Documents/rebuilt/fp/image/additionoftablesql.png" alt="Step 2: Table Added" style="width: 100%; height: 100%; object-fit: contain;">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Layer 3: With Values -->
+      <div class="showcase-sticky-layer">
+        <div class="showcase-sticky-content">
+          <div class="layer-header">
+            <h4 class="layer-title">Step 3: Data Inserted</h4>
+            <p class="layer-desc">
+              Values are populated into the table. The builder now shows a complete data structure with sample data, validating the design and giving users confidence in their workflow definition.
+            </p>
+          </div>
+          <div>
+            <div class="placeholder-box" data-ratio="16/9">
+              <img src="file:///C:/Users/hanashafika/OneDrive/Pictures/Documents/rebuilt/fp/image/insertvalue.png" alt="Step 3: Data Inserted" style="width: 100%; height: 100%; object-fit: contain;">
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /sql-steps-stack -->
+  </div>
+</section>
+
+<!-- ===================== ADDITIONAL SHOWCASE ===================== -->
+<section class="showcase-additional">
+  <div class="shell showcase-content">
+    <div class="showcase-intro">
+      <h3 class="showcase-title">Mobile Application Experience</h3>
+      <p class="showcase-desc">
+        Field technicians interact with the platform through mobile apps built with the new builder system. Workflows are executed seamlessly, with real-time updates and intuitive task management.
+      </p>
+    </div>
+
+    <div>
+      <div class="placeholder-box" data-ratio="16/9">
+        <img src="file:///C:/Users/hanashafika/OneDrive/Pictures/Documents/rebuilt/fp/image/builderexplain.png" alt="Mobile application builder" style="width: 100%; height: 100%; object-fit: contain;">
+      </div>
+    </div>
+  </div>
+
+  <div class="workflow-demo-flow">
+    <button type="button">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      Create New
+    </button>
+
+    <div style="margin: 20px 0; display:flex; flex-direction:column; align-items:center; gap:4px;">
+      <div style="width:1px; height:32px; background: linear-gradient(to bottom, #3B3EF7 0%, rgba(59,62,247,0.2) 100%);"></div>
+      <svg width="20" height="12" viewBox="0 0 20 12" fill="none" aria-hidden="true">
+        <path d="M1 1l9 9 9-9" stroke="#3B3EF7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+
+    <div class="premium-comparison-wrapper">
+      <div class="video-mockup-frame">
+        <div class="video-container">
+          <video autoplay muted loop playsinline controls>
+            <source src="file:///C:/Users/hanashafika/Documents/rebuilt/fp/image/cursorful-video-1773979051385.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== APPLICATIONS ECOSYSTEM SHOWCASE ===================== -->
+<section class="ecosystem-showcase" data-screen-label="12 Applications Ecosystem">
+  <div class="shell">
+    <div class="ecosystem-header">
+      <h2 class="ecosystem-title">Applications Built Through the Platform Builder</h2>
+      <p class="ecosystem-subtitle">
+        A complete operational ecosystem—web applications for operations teams and mobile apps for field technicians, all powered by one unified platform builder.
+      </p>
+    </div>
+
+    <!-- ===================== OPERATIONS WEB APPLICATIONS ===================== -->
+    <div class="ecosystem-section">
+      <div class="section-label">
+        <span class="label-badge">WEB</span>
+        <h3 class="section-heading">Operations Applications</h3>
+      </div>
+
+      <div class="modern-carousel">
+        <div class="carousel-container">
+          <div class="carousel-slides-track">
+            <!-- Slide 1 -->
+            <div class="carousel-item" data-index="0">
+              <div class="carousel-item-content">
+                <div class="carousel-slide-header">
+                  <h3 class="carousel-slide-title">Workflow Management</h3>
+                  <div class="carousel-slide-tags">
+                    <span class="carousel-tag">Assignment</span>
+                    <span class="carousel-tag">Tracking</span>
+                  </div>
+                </div>
+                <img src="file:///C:/Users/hanashafika/OneDrive/Pictures/Documents/rebuilt/fp/image/employedetail.png" alt="Workflow Management">
+              </div>
+            </div>
+            <!-- Slide 2 -->
+            <div class="carousel-item active" data-index="1">
+              <div class="carousel-item-content">
+                <div class="carousel-slide-header">
+                  <h3 class="carousel-slide-title">Dashboard Analytics</h3>
+                  <div class="carousel-slide-tags">
+                    <span class="carousel-tag">Real-time Monitoring</span>
+                    <span class="carousel-tag">Team Coordination</span>
+                  </div>
+                </div>
+                <img src="file:///C:/Users/hanashafika/OneDrive/Pictures/Documents/rebuilt/fp/image/dashboard.png" alt="Dashboard Analytics">
+              </div>
+            </div>
+            <!-- Slide 3 -->
+            <div class="carousel-item" data-index="2">
+              <div class="carousel-item-content">
+                <div class="carousel-slide-header">
+                  <h3 class="carousel-slide-title">Quality Control</h3>
+                  <div class="carousel-slide-tags">
+                    <span class="carousel-tag">Inspections</span>
+                    <span class="carousel-tag">Audit Trails</span>
+                  </div>
+                </div>
+                <img src="file:///C:/Users/hanashafika/OneDrive/Pictures/Documents/rebuilt/fp/image/customerdetail.png" alt="Quality Control">
+              </div>
+            </div>
+            <!-- Slide 4 -->
+            <div class="carousel-item" data-index="3">
+              <div class="carousel-item-content">
+                <div class="carousel-slide-header">
+                  <h3 class="carousel-slide-title">Resource Planning</h3>
+                  <div class="carousel-slide-tags">
+                    <span class="carousel-tag">Scheduling</span>
+                    <span class="carousel-tag">Optimization</span>
+                  </div>
+                </div>
+                <img src="file:///C:/Users/hanashafika/OneDrive/Pictures/Documents/rebuilt/fp/image/employedetail.png" alt="Resource Planning">
+              </div>
+            </div>
+            <!-- Slide 5 -->
+            <div class="carousel-item" data-index="4">
+              <div class="carousel-item-content">
+                <div class="carousel-slide-header">
+                  <h3 class="carousel-slide-title">Performance Analytics</h3>
+                  <div class="carousel-slide-tags">
+                    <span class="carousel-tag">Metrics</span>
+                    <span class="carousel-tag">Reporting</span>
+                  </div>
+                </div>
+                <img src="file:///C:/Users/hanashafika/OneDrive/Pictures/Documents/rebuilt/fp/image/dashboard.png" alt="Performance Analytics">
+              </div>
+            </div>
+          </div>
+
+          <!-- Navigation Arrows -->
+          <button class="carousel-arrow carousel-arrow-prev" id="web-prev" aria-label="Previous">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M15 19l-7-7 7-7"></path>
+            </svg>
+          </button>
+          <button class="carousel-arrow carousel-arrow-next" id="web-next" aria-label="Next">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 19l7-7-7-7"></path>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Pagination Dots -->
+        <div class="carousel-dots-container">
+          <button class="carousel-dot active" data-slide="0"></button>
+          <button class="carousel-dot" data-slide="1"></button>
+          <button class="carousel-dot" data-slide="2"></button>
+          <button class="carousel-dot" data-slide="3"></button>
+          <button class="carousel-dot" data-slide="4"></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== TECHNICIAN MOBILE APPLICATIONS ===================== -->
+    <div class="ecosystem-section mobile-section">
+      <div class="section-label">
+        <span class="label-badge">MOBILE</span>
+        <h3 class="section-heading">Technician Applications</h3>
+      </div>
+
+      <div class="premium-mobile-showcase">
+        <div class="mobile-showcase-header">
+          <h3 class="showcase-section-title">Technician Applications</h3>
+          <p class="showcase-section-subtitle">Field-optimized mobile apps built on the unified platform</p>
+        </div>
+
+        <div class="mobile-carousel-wrapper">
+          <!-- Mobile devices carousel -->
+          <div class="mobile-devices-stage">
+            <!-- Previous slide preview (left) -->
+            <div class="mobile-device-preview preview-left">
+              <div class="device-frame device-inactive">
+                <img src="file:///C:/Users/hanashafika/OneDrive/Pictures/Documents/rebuilt/fp/image/homwmob.png" alt="Previous">
+              </div>
+            </div>
+
+            <!-- Active slide (center) -->
+            <div class="mobile-device-active">
+              <div class="device-frame device-active">
+                <img src="file:///C:/Users/hanashafika/OneDrive/Pictures/Documents/rebuilt/fp/image/mobactivity.png" alt="Task Execution">
+              </div>
+              <div class="device-glow"></div>
+              <div class="active-screen-info">
+                <h4 class="screen-title">Task Execution</h4>
+                <p class="screen-subtitle">Activities</p>
+              </div>
+            </div>
+
+            <!-- Next slide preview (right) -->
+            <div class="mobile-device-preview preview-right">
+              <div class="device-frame device-inactive">
+                <img src="file:///C:/Users/hanashafika/OneDrive/Pictures/Documents/rebuilt/fp/image/moblog.png" alt="Next">
+              </div>
+            </div>
+
+            <!-- Navigation arrows -->
+            <button class="mobile-nav-arrow arrow-prev" id="mobile-prev-btn" aria-label="Previous screen">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M15 19l-7-7 7-7"></path>
+              </svg>
+            </button>
+            <button class="mobile-nav-arrow arrow-next" id="mobile-next-btn" aria-label="Next screen">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 19l7-7-7-7"></path>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Pagination dots -->
+          <div class="mobile-pagination">
+            <button class="mobile-dot active" data-screen="0"></button>
+            <button class="mobile-dot" data-screen="1"></button>
+            <button class="mobile-dot" data-screen="2"></button>
+            <button class="mobile-dot" data-screen="3"></button>
+            <button class="mobile-dot" data-screen="4"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ecosystem-footer">
+      <p class="ecosystem-note">
+        All applications share the same design system, data architecture, and workflow engine—enabling seamless cross-platform operations and unified user experience.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER / NEXT ===================== -->
+<section class="cs-footer shell">
+  <div class="cs-nav-next">
+    <a href="location-tracking.html" class="next-case">
+      <div class="next-label">Next Case Study</div>
+      <h3 class="next-title">Location Tracking System →</h3>
+    </a>
+  </div>
+  
+  <div class="cs-back">
+    <a href="../index.html#work" class="back-link">← Back to all work</a>
+  </div>
+</section>
+
+</main>
+  
+</div>
+
+<script>
+// Case Study Interactions
+
+// ===================== BUILDER TOGGLE =====================
+const toggleButtons = document.querySelectorAll('.toggle-btn');
+const mobilePan = document.getElementById('mobile-panel');
+const webPanel = document.getElementById('web-panel');
+
+toggleButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const target = btn.dataset.target;
+    
+    // Update active state
+    toggleButtons.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    
+    // Toggle panels
+    if (target === 'mobile') {
+      mobilePan?.classList.add('active');
+      webPanel?.classList.remove('active');
+    } else if (target === 'web') {
+      webPanel?.classList.add('active');
+      mobilePan?.classList.remove('active');
+    }
+  });
+});
+
+// ===================== PREMIUM COMPARISON SLIDER =====================
+const premiumSlider = document.getElementById('premium-slider');
+const premiumHandle = document.getElementById('comparison-handle');
+const beforeImage = document.getElementById('before-image');
+const divider = document.getElementById('comparison-divider');
+const beforeLabelEl = document.getElementById('before-label-el');
+const afterLabelEl = document.getElementById('after-label-el');
+
+if (premiumSlider && premiumHandle && beforeImage) {
+  let isDragging = false;
+  let currentPosition = 50;
+
+  const updateSliderPosition = (clientX) => {
+    const rect = premiumSlider.getBoundingClientRect();
+    let position = ((clientX - rect.left) / rect.width) * 100;
+    position = Math.max(0, Math.min(100, position));
+    
+    currentPosition = position;
+    
+    // Update CSS variables for smooth animation
+    premiumSlider.style.setProperty('--slider-position', position + '%');
+    premiumSlider.style.setProperty('--clip-width', position + '%');
+    beforeImage.style.setProperty('--clip-width', position + '%');
+    
+    // Update label visibility
+    updateLabelVisibility(position);
+  };
+
+  const updateLabelVisibility = (position) => {
+    // Before label: fade out when less than 12% visible
+    if (position < 12) {
+      beforeLabelEl.classList.add('fade-out');
+    } else {
+      beforeLabelEl.classList.remove('fade-out');
+    }
+    
+    // After label: fade out when more than 88% before
+    if (position > 88) {
+      afterLabelEl.classList.add('fade-out');
+    } else {
+      afterLabelEl.classList.remove('fade-out');
+    }
+  };
+
+  const startDragging = (e) => {
+    isDragging = true;
+    premiumHandle.classList.add('dragging');
+    e.preventDefault();
+  };
+
+  const stopDragging = () => {
+    isDragging = false;
+    premiumHandle.classList.remove('dragging');
+  };
+
+  const onMove = (e) => {
+    if (!isDragging) return;
+    const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+    updateSliderPosition(clientX);
+  };
+
+  // Mouse events
+  premiumHandle.addEventListener('mousedown', startDragging);
+  premiumSlider.addEventListener('mousedown', (e) => {
+    startDragging(e);
+    onMove(e);
+  });
+  window.addEventListener('mouseup', stopDragging);
+  window.addEventListener('mousemove', onMove);
+
+  // Touch events
+  premiumHandle.addEventListener('touchstart', startDragging, { passive: false });
+  premiumSlider.addEventListener('touchstart', (e) => {
+    startDragging(e);
+    onMove(e);
+  }, { passive: false });
+  window.addEventListener('touchend', stopDragging);
+  window.addEventListener('touchmove', onMove, { passive: false });
+
+  // Initialize at 50%
+  updateSliderPosition(premiumSlider.getBoundingClientRect().left + (premiumSlider.getBoundingClientRect().width * 0.5));
+}
+
+// ===================== SMOOTH SCROLL =====================
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    const href = this.getAttribute('href');
+    if (href === '#' || !href) return;
+    
+    e.preventDefault();
+    const target = document.querySelector(href);
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+
+// ===================== LAYOUT SWITCH (appears after impacts) =====================
+const impactsSection = document.getElementById('impacts');
+const csLayout = document.querySelector('.cs-layout');
+
+const checkLayoutSwitch = () => {
+  if (!impactsSection || !csLayout) return;
+  
+  const impactsBottom = impactsSection.offsetTop + impactsSection.offsetHeight;
+  const scrollPos = window.scrollY + 100;
+  
+  if (scrollPos > impactsBottom) {
+    csLayout.classList.add('with-toc');
+  } else {
+    csLayout.classList.remove('with-toc');
+  }
+};
+
+window.addEventListener('scroll', checkLayoutSwitch);
+checkLayoutSwitch();
+
+// ===================== TOC ACTIVE STATE =====================
+const sections = document.querySelectorAll('[id]');
+const tocItems = document.querySelectorAll('.toc-item');
+
+const updateTocActive = () => {
+  const scrollPos = window.scrollY + window.innerHeight / 3;
+  
+  sections.forEach((section) => {
+    const top = section.offsetTop;
+    const bottom = top + section.offsetHeight;
+    
+    if (scrollPos >= top && scrollPos < bottom) {
+      tocItems.forEach(item => item.classList.remove('active'));
+      const activeItem = document.querySelector(`.toc-item[href="#${section.id}"]`);
+      if (activeItem) {
+        activeItem.classList.add('active');
+      }
+    }
+  });
+};
+
+window.addEventListener('scroll', updateTocActive);
+updateTocActive();
+
+// ===================== DESKTOP CAROUSEL =====================
+// ===================== MODERN CAROUSEL - WEB =====================
+const webCarousel = {
+  container: document.querySelector('.modern-carousel:not(.mobile-carousel)'),
+  slidesTrack: null,
+  items: null,
+  prevBtn: null,
+  nextBtn: null,
+  dots: null,
+  currentIndex: 1,
+  isTransitioning: false,
+  touchStart: 0,
+  touchEnd: 0,
+  autoplayInterval: null,
+
+  init() {
+    this.slidesTrack = this.container?.querySelector('.carousel-slides-track');
+    this.items = this.container?.querySelectorAll('.carousel-item');
+    this.prevBtn = document.getElementById('web-prev');
+    this.nextBtn = document.getElementById('web-next');
+    this.dots = this.container?.querySelectorAll('.carousel-dot');
+
+    if (!this.items || this.items.length === 0) return;
+    
+    // Set active on second slide initially (index 1)
+    this.items[this.currentIndex].classList.add('active');
+    this.dots[this.currentIndex].classList.add('active');
+    
+    this.attachEventListeners();
+    this.startAutoplay();
+  },
+
+  attachEventListeners() {
+    // Arrow buttons
+    this.prevBtn?.addEventListener('click', () => this.prev());
+    this.nextBtn?.addEventListener('click', () => this.next());
+
+    // Dot navigation
+    this.dots?.forEach((dot, idx) => {
+      dot.addEventListener('click', () => this.goToSlide(idx));
+    });
+
+    // Touch/Swipe support
+    this.container?.addEventListener('touchstart', (e) => {
+      this.touchStart = e.changedTouches[0].screenX;
+      this.pauseAutoplay();
+    });
+
+    this.container?.addEventListener('touchend', (e) => {
+      this.touchEnd = e.changedTouches[0].screenX;
+      this.handleSwipe();
+      this.resumeAutoplay();
+    });
+
+    // Pause autoplay on hover
+    this.container?.addEventListener('mouseenter', () => this.pauseAutoplay());
+    this.container?.addEventListener('mouseleave', () => this.resumeAutoplay());
+
+    // Keyboard support
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') this.prev();
+      if (e.key === 'ArrowRight') this.next();
+    });
+  },
+
+  goToSlide(index) {
+    if (this.isTransitioning || index === this.currentIndex) return;
+    this.isTransitioning = true;
+
+    // Remove active from all
+    this.items?.forEach(item => item.classList.remove('active', 'prev'));
+    this.dots?.forEach(dot => dot.classList.remove('active'));
+
+    // Determine direction for smooth animation
+    const direction = index > this.currentIndex ? 'next' : 'prev';
+    
+    // Mark previous slide for exit animation
+    if (direction === 'next') {
+      this.items[this.currentIndex].classList.add('prev');
+    }
+
+    // Set new active
+    this.items[index].classList.add('active');
+    this.dots[index].classList.add('active');
+    this.currentIndex = index;
+
+    setTimeout(() => {
+      this.items?.forEach(item => item.classList.remove('prev'));
+      this.isTransitioning = false;
+    }, 800);
+
+    this.restartAutoplay();
+  },
+
+  next() {
+    const nextIndex = (this.currentIndex + 1) % this.items.length;
+    this.goToSlide(nextIndex);
+  },
+
+  prev() {
+    const prevIndex = (this.currentIndex - 1 + this.items.length) % this.items.length;
+    this.goToSlide(prevIndex);
+  },
+
+  handleSwipe() {
+    const threshold = 50;
+    const diff = this.touchStart - this.touchEnd;
+
+    if (Math.abs(diff) > threshold) {
+      if (diff > 0) {
+        this.next(); // Swiped left
+      } else {
+        this.prev(); // Swiped right
+      }
+    }
+  },
+
+  startAutoplay() {
+    this.autoplayInterval = setInterval(() => this.next(), 6000);
+  },
+
+  pauseAutoplay() {
+    if (this.autoplayInterval) clearInterval(this.autoplayInterval);
+  },
+
+  resumeAutoplay() {
+    this.pauseAutoplay();
+    this.startAutoplay();
+  },
+
+  restartAutoplay() {
+    this.resumeAutoplay();
+  }
+};
+
+webCarousel.init();
+
+// ===================== PREMIUM MOBILE SHOWCASE =====================
+const premiumMobileShowcase = {
+  screens: [
+    { image: 'homwmob.png', title: 'Home Dashboard', subtitle: 'Overview' },
+    { image: 'mobactivity.png', title: 'Task Execution', subtitle: 'Activities' },
+    { image: 'moblog.png', title: 'Safety Compliance', subtitle: 'Logging' },
+    { image: 'mobvisit.png', title: 'Visit Scheduling', subtitle: 'Planning' },
+    { image: 'visistinfomob.png', title: 'Visit Information', subtitle: 'Details' }
+  ],
+  
+  currentIndex: 1,
+  isTransitioning: false,
+  touchStart: 0,
+  touchEnd: 0,
+  touchStartTime: 0,
+  autoplayInterval: null,
+  momentum: 0,
+  lastDirection: null,
+
+  init() {
+    this.prevBtn = document.getElementById('mobile-prev-btn');
+    this.nextBtn = document.getElementById('mobile-next-btn');
+    this.dots = document.querySelectorAll('.mobile-dot');
+    this.stage = document.querySelector('.mobile-devices-stage');
+    this.wrapper = document.querySelector('.mobile-carousel-wrapper');
+    this.deviceActive = document.querySelector('.device-active');
+
+    if (!this.prevBtn || !this.nextBtn) return;
+    
+    this.attachEventListeners();
+    this.updateShowcase();
+    this.startAutoplay();
+  },
+
+  attachEventListeners() {
+    this.prevBtn.addEventListener('click', () => this.handlePrevClick());
+    this.nextBtn.addEventListener('click', () => this.handleNextClick());
+
+    this.dots.forEach((dot, idx) => {
+      dot.addEventListener('click', () => this.goToScreen(idx));
+    });
+
+    // Touch/Swipe with momentum
+    this.wrapper?.addEventListener('touchstart', (e) => {
+      this.touchStart = e.changedTouches[0].screenX;
+      this.touchStartTime = Date.now();
+      this.pauseAutoplay();
+    });
+
+    this.wrapper?.addEventListener('touchend', (e) => {
+      this.touchEnd = e.changedTouches[0].screenX;
+      this.handleSwipeWithMomentum();
+      this.resumeAutoplay();
+    });
+
+    // Pause on hover
+    this.wrapper?.addEventListener('mouseenter', () => this.pauseAutoplay());
+    this.wrapper?.addEventListener('mouseleave', () => this.resumeAutoplay());
+
+    // Keyboard
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') this.handlePrevClick();
+      if (e.key === 'ArrowRight') this.handleNextClick();
+    });
+  },
+
+  handlePrevClick() {
+    this.prevBtn.classList.add('clicked');
+    setTimeout(() => this.prevBtn.classList.remove('clicked'), 500);
+    this.prev();
+  },
+
+  handleNextClick() {
+    this.nextBtn.classList.add('clicked');
+    setTimeout(() => this.nextBtn.classList.remove('clicked'), 500);
+    this.next();
+  },
+
+  goToScreen(index) {
+    if (this.isTransitioning || index === this.currentIndex) return;
+    this.isTransitioning = true;
+
+    // Determine direction for appropriate animation
+    const direction = index > this.currentIndex ? 'next' : 'prev';
+    this.lastDirection = direction;
+
+    // Add directional animation classes
+    this.animateScreenTransition(direction);
+
+    // Update dot with smooth animation
+    this.dots.forEach((dot, idx) => {
+      dot.classList.toggle('active', idx === index);
+    });
+
+    this.currentIndex = index;
+
+    setTimeout(() => {
+      this.updateShowcase();
+      this.isTransitioning = false;
+    }, 350);
+
+    this.restartAutoplay();
+  },
+
+  animateScreenTransition(direction) {
+    if (!this.deviceActive) return;
+
+    // Remove any existing animation classes
+    this.deviceActive.classList.remove('sliding-out-left', 'sliding-out-right', 'sliding-in-left', 'sliding-in-right');
+    
+    // Trigger reflow to restart animation
+    void this.deviceActive.offsetWidth;
+    
+    if (direction === 'next') {
+      this.deviceActive.classList.add('sliding-out-left');
+      setTimeout(() => {
+        this.deviceActive.classList.remove('sliding-out-left');
+        this.deviceActive.classList.add('sliding-in-left');
+      }, 350);
+    } else {
+      this.deviceActive.classList.add('sliding-out-right');
+      setTimeout(() => {
+        this.deviceActive.classList.remove('sliding-out-right');
+        this.deviceActive.classList.add('sliding-in-right');
+      }, 350);
+    }
+
+    // Animate preview screens with blur and scale
+    this.animatePreviewScreens(direction);
+  },
+
+  animatePreviewScreens(direction) {
+    const previewLeft = document.querySelector('.preview-left');
+    const previewRight = document.querySelector('.preview-right');
+
+    if (direction === 'next') {
+      previewLeft?.classList.add('sliding-out');
+      previewRight?.classList.add('sliding-in');
+      
+      setTimeout(() => {
+        previewLeft?.classList.remove('sliding-out');
+        previewRight?.classList.remove('sliding-in');
+      }, 700);
+    } else {
+      previewRight?.classList.add('sliding-out');
+      previewLeft?.classList.add('sliding-in');
+      
+      setTimeout(() => {
+        previewRight?.classList.remove('sliding-out');
+        previewLeft?.classList.remove('sliding-in');
+      }, 700);
+    }
+  },
+
+  next() {
+    const nextIndex = (this.currentIndex + 1) % this.screens.length;
+    this.goToScreen(nextIndex);
+  },
+
+  prev() {
+    const prevIndex = (this.currentIndex - 1 + this.screens.length) % this.screens.length;
+    this.goToScreen(prevIndex);
+  },
+
+  updateShowcase() {
+    const prevIdx = (this.currentIndex - 1 + this.screens.length) % this.screens.length;
+    const nextIdx = (this.currentIndex + 1) % this.screens.length;
+
+    const prevScreen = this.screens[prevIdx];
+    const activeScreen = this.screens[this.currentIndex];
+    const nextScreen = this.screens[nextIdx];
+
+    // Update preview phones and active phone
+    const previewLeft = this.stage.querySelector('.preview-left .device-frame');
+    const deviceActive = this.stage.querySelector('.device-active');
+    const previewRight = this.stage.querySelector('.preview-right .device-frame');
+    const screenInfo = this.stage.querySelector('.active-screen-info');
+
+    if (previewLeft) previewLeft.querySelector('img').src = `file:///C:/Users/hanashafika/OneDrive/Pictures/Documents/rebuilt/fp/image/${prevScreen.image}`;
+    if (deviceActive) deviceActive.querySelector('img').src = `file:///C:/Users/hanashafika/OneDrive/Pictures/Documents/rebuilt/fp/image/${activeScreen.image}`;
+    if (previewRight) previewRight.querySelector('img').src = `file:///C:/Users/hanashafika/OneDrive/Pictures/Documents/rebuilt/fp/image/${nextScreen.image}`;
+    
+    if (screenInfo) {
+      screenInfo.querySelector('.screen-title').textContent = activeScreen.title;
+      screenInfo.querySelector('.screen-subtitle').textContent = activeScreen.subtitle;
+    }
+  },
+
+  handleSwipeWithMomentum() {
+    const threshold = 50;
+    const diff = this.touchStart - this.touchEnd;
+    const timeDiff = Date.now() - this.touchStartTime;
+    
+    // Calculate momentum velocity (pixels per millisecond)
+    const velocity = Math.abs(diff) / timeDiff;
+    
+    if (Math.abs(diff) > threshold || velocity > 0.5) {
+      if (diff > 0) {
+        this.next();
+      } else {
+        this.prev();
+      }
+    }
+  },
+
+  startAutoplay() {
+    this.autoplayInterval = setInterval(() => this.next(), 6000);
+  },
+
+  pauseAutoplay() {
+    if (this.autoplayInterval) clearInterval(this.autoplayInterval);
+  },
+
+  resumeAutoplay() {
+    this.pauseAutoplay();
+    this.startAutoplay();
+  },
+
+  restartAutoplay() {
+    this.resumeAutoplay();
+  }
+};
+
+premiumMobileShowcase.init();
+
+// ===================== OLD MOBILE CAROUSEL (REMOVED) =====================
+
+</script>
+</body>
+</html>
