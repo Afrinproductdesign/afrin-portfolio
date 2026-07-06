@@ -5,6 +5,16 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Field Proxy Platform Rebuild — Afrin Portfolio</title>
 <meta name="description" content="Transformed a fragile builder into a scalable AI-assisted platform for field apps" />
+
+<!-- Bundler thumbnail -->
+<template id="__bundler_thumbnail">
+  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <rect width="100" height="100" fill="#0a0a0a"/>
+    <rect x="10" y="10" width="80" height="80" fill="#1f2937" rx="8"/>
+    <circle cx="35" cy="35" r="12" fill="#3b82f6"/>
+    <circle cx="65" cy="65" r="12" fill="#10b981"/>
+  </svg>
+</template>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -6830,6 +6840,194 @@ li {
     --mc-phone-h: 278px !important;
   }
 }
+
+/* ===================== RESEARCH & VALIDATION ===================== */
+.research-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-6);
+  margin-top: var(--spacing-8);
+  align-items: stretch;
+}
+.research-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: var(--spacing-2) 0;
+  font-size: var(--size-sm);
+}
+.research-table th {
+  text-align: left;
+  font-size: var(--size-xs);
+  font-weight: 700;
+  letter-spacing: var(--track-wide);
+  text-transform: uppercase;
+  color: var(--color-accent);
+  padding: var(--spacing-3) var(--spacing-4);
+  border-bottom: 2px solid var(--color-gray-200);
+  vertical-align: bottom;
+  white-space: nowrap;
+}
+.research-table td {
+  padding: var(--spacing-4);
+  border-bottom: 1px solid var(--color-gray-200);
+  color: var(--color-gray-700);
+  line-height: var(--leading-snug);
+  vertical-align: top;
+}
+.research-table tr:last-child td {
+  border-bottom: none;
+}
+.research-table td:first-child {
+  font-weight: 700;
+  color: var(--color-black);
+  width: 20%;
+  white-space: nowrap;
+}
+.research-table td:nth-child(2) {
+  width: 42%;
+}
+@media (max-width: 640px) {
+  .research-table th,
+  .research-table td {
+    display: block;
+    width: auto !important;
+    white-space: normal;
+    padding: var(--spacing-2) 0;
+    border: none;
+  }
+  .research-table thead {
+    display: none;
+  }
+  .research-table tr {
+    display: block;
+    padding: var(--spacing-4) 0;
+    border-bottom: 1px solid var(--color-gray-200);
+  }
+  .research-table td::before {
+    content: attr(data-label);
+    display: block;
+    font-size: var(--size-xs);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: var(--track-wide);
+    color: var(--color-accent);
+    margin-bottom: 2px;
+  }
+}
+.research-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+  padding: var(--spacing-8);
+}
+.research-card .tag {
+  align-self: flex-start;
+}
+.research-card-title {
+  font-size: var(--size-xl);
+  font-weight: 700;
+  color: var(--color-black);
+  margin: 0;
+}
+.research-body {
+  font-size: var(--size-sm);
+  line-height: var(--leading-relaxed);
+  color: var(--color-gray-700);
+  margin: 0;
+}
+.research-quote {
+  padding: var(--spacing-4) var(--spacing-6);
+  background: var(--color-white);
+  border: 1px solid var(--color-gray-200);
+  border-left: 3px solid var(--color-accent);
+  border-radius: var(--radius-md);
+  font-size: var(--size-sm);
+  font-style: italic;
+  color: var(--color-gray-600);
+  line-height: var(--leading-relaxed);
+}
+.research-quote cite {
+  display: block;
+  margin-top: var(--spacing-2);
+  font-style: normal;
+  font-size: var(--size-xs);
+  font-weight: 600;
+  color: var(--color-gray-400);
+}
+.research-takeaway {
+  font-size: var(--size-sm);
+  font-weight: 700;
+  color: var(--color-black);
+  margin: auto 0 0 0;
+  padding-top: var(--spacing-2);
+}
+.research-strip {
+  margin-top: var(--spacing-6);
+  background: var(--color-accent-light);
+  border-color: rgba(59, 62, 247, 0.25);
+}
+.research-strip:hover {
+  background: var(--color-accent-light);
+  border-color: rgba(59, 62, 247, 0.4);
+}
+@media (max-width: 768px) {
+  .research-card {
+    padding: var(--spacing-6);
+  }
+}
+
+/* ===================== DESIGN SYSTEM ===================== */
+.ds-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-6);
+  margin-top: var(--spacing-10);
+}
+.ds-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+  padding: var(--spacing-8);
+}
+.ds-card-icon {
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  background: var(--color-accent-light);
+  color: var(--color-accent);
+  margin-bottom: var(--spacing-2);
+}
+.ds-card-icon .material-symbols-outlined {
+  font-size: 26px;
+  font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+}
+.ds-card-title {
+  font-size: var(--size-lg);
+  font-weight: 700;
+  color: var(--color-black);
+  margin: 0;
+}
+.ds-card-desc {
+  font-size: var(--size-sm);
+  line-height: var(--leading-relaxed);
+  color: var(--color-gray-700);
+  margin: 0;
+}
+.ds-card-foundation {
+  background: var(--color-accent-light);
+  border-color: rgba(59, 62, 247, 0.25);
+}
+.ds-card-foundation:hover {
+  border-color: rgba(59, 62, 247, 0.45);
+}
+@media (max-width: 768px) {
+  .ds-grid {
+    grid-template-columns: 1fr;
+  }
+}
 </style>
 </head>
 <body data-screen-label="00 Field Proxy Case Study">
@@ -6866,17 +7064,17 @@ li {
 <!-- ===================== NAV (matches home page) ===================== -->
 <header class="nav">
   <div class="shell nav-row">
-    <a href="../index.html" class="brand">
+    <a href="../Afrin-Portfolio.html" class="brand">
       <span class="mark"></span>
       <span class="nm">Afrin</span>
       <small>PRODUCT DESIGNER</small>
     </a>
     <span class="nav-spacer"></span>
     <nav class="nav-links" aria-label="Primary">
-      <a href="../index.html#work">Work</a>
-      <a href="../index.html#about">About</a>
-      <a href="../index.html#approach">Approach</a>
-      <a href="../index.html#contact">Contact</a>
+      <a href="../Afrin-Portfolio.html#work">Work</a>
+      <a href="../Afrin-Portfolio.html#about">About</a>
+      <a href="../Afrin-Portfolio.html#approach">Approach</a>
+      <a href="../Afrin-Portfolio.html#contact">Contact</a>
     </nav>
     <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle navigation" aria-expanded="false">
       <span class="hb"></span><span class="hb"></span><span class="hb"></span>
@@ -6886,17 +7084,17 @@ li {
 
 <!-- ===================== MOBILE NAV ===================== -->
 <nav class="mobile-nav-drawer" id="mobile-nav-drawer" aria-label="Mobile navigation">
-  <a href="../index.html#work">Work</a>
-  <a href="../index.html#about">About</a>
-  <a href="../index.html#approach">Approach</a>
-  <a href="../index.html#contact">Contact</a>
-  <a href="mailto:afrinshariff9@gmail.com?subject=Senior%20Product%20Designer%20role" class="mobile-nav-cta"><span class="pulse"></span> Available · Relocating to UAE</a>
+  <a href="../Afrin-Portfolio.html#work">Work</a>
+  <a href="../Afrin-Portfolio.html#about">About</a>
+  <a href="../Afrin-Portfolio.html#approach">Approach</a>
+  <a href="../Afrin-Portfolio.html#contact">Contact</a>
+  <a href="mailto:afrinshariff99@gmail.com?subject=Senior%20Product%20Designer%20role" class="mobile-nav-cta"><span class="pulse"></span> Available · Relocating to UAE</a>
 </nav>
 
 <!-- ===================== HERO ===================== -->
 <section class="cs-hero" data-screen-label="01 Hero" id="hero" style="padding: 80px 64px; color: rgb(255, 255, 255); width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw;">
   <div style="max-width: 1280px; margin: 0 auto; width: 100%; padding: 0 32px; box-sizing: border-box;">
-  <div class="cs-tags" data-reveal data-comment-anchor="d447fde9a3-div">
+  <div class="cs-tags" data-reveal>
     <span class="tag" style="background: rgba(255, 255, 255, 0); border-color: rgba(194,65,12,0.3); color: #c2410c">B2B</span>
     <span class="tag accent" style="background:rgba(194,65,12,0.12);border-color:#c2410c;color:#c2410c;">AI-Assisted System</span>
     <span class="tag" style="background: rgba(194, 65, 12, 0); border-color: rgba(194,65,12,0.3); color: #c2410c">System Design</span>
@@ -6907,7 +7105,7 @@ li {
   </h1>
   
   <p class="cs-lead" data-reveal style="transition-delay:0.2s">
-    Transformed a complex, manual builder into a structured AI-assisted system, enabling 2× faster application creation.
+    Transformed a complex, manual builder into a structured AI-assisted system, enabling 3× faster application creation.
   </p>
   
   <div class="cs-hero-image" data-reveal style="transition-delay:0.3s">
@@ -6927,7 +7125,7 @@ li {
         <div class="hero-phone-device" style="border: none; box-shadow: none; background: none; border-radius: 0; padding: 0;">
           <div class="phone-screen" style="border-radius: 16px; overflow: hidden;">
             <div class="hero-ph"><span>Mobile</span></div>
-            <img src="image/homwmob.png" alt="Field Proxy Mobile" loading="eager" onerror="this.style.display='none'">
+            <img src="image/home-mobile.png" alt="Field Proxy Mobile" loading="eager" onerror="this.style.display='none'">
           </div>
         </div>
       </div>
@@ -7012,32 +7210,40 @@ li {
         <span class="toc-num">03</span>
         <span class="toc-label">EXISTING STRUCTURE</span>
       </a>
-      <a href="#problem" class="toc-item">
+      <a href="#research" class="toc-item">
         <span class="toc-num">04</span>
+        <span class="toc-label">RESEARCH & VALIDATION</span>
+      </a>
+      <a href="#problem" class="toc-item">
+        <span class="toc-num">05</span>
         <span class="toc-label">PROBLEM</span>
       </a>
       <a href="#goal" class="toc-item">
-        <span class="toc-num">05</span>
+        <span class="toc-num">06</span>
         <span class="toc-label">GOAL</span>
       </a>
+      <a href="#design-system" class="toc-item">
+        <span class="toc-num">07</span>
+        <span class="toc-label">DESIGN SYSTEM</span>
+      </a>
       <a href="#transformation" class="toc-item">
-        <span class="toc-num">06</span>
+        <span class="toc-num">08</span>
         <span class="toc-label">TRANSFORMATION</span>
       </a>
       <a href="#scaling" class="toc-item">
-        <span class="toc-num">07</span>
+        <span class="toc-num">09</span>
         <span class="toc-label">SCALING</span>
       </a>
       <a href="#ai-workflow" class="toc-item">
-        <span class="toc-num">08</span>
+        <span class="toc-num">10</span>
         <span class="toc-label">AI WORKFLOW</span>
       </a>
       <a href="#ui-showcase" class="toc-item">
-        <span class="toc-num">09</span>
+        <span class="toc-num">11</span>
         <span class="toc-label">UI SHOWCASE</span>
       </a>
       <a href="#results-learnings" class="toc-item">
-        <span class="toc-num">10</span>
+        <span class="toc-num">12</span>
         <span class="toc-label">RESULTS & LEARNINGS</span>
       </a>
     </nav>
@@ -7095,7 +7301,7 @@ li {
         <div class="role-bar"></div>
         <div class="role-content">
           <div class="role-label">Duration</div>
-          <p class="role-text">2 Quarters</p>
+          <p class="role-text">3 Quarters</p>
         </div>
       </div>
       
@@ -7111,7 +7317,7 @@ li {
         <div class="role-bar"></div>
         <div class="role-content">
           <div class="role-label">Scope</div>
-          <p class="role-text">System architecture, UX/UI design, AI workflow design, implementation support</p>
+          <p class="role-text">System architecture, UX/UI design, design system for web and mobile, AI workflow design, implementation support</p>
         </div>
       </div>
     </div>
@@ -7181,7 +7387,7 @@ li {
     </div>
   </div>
 
-  <div class="cs-centered-text" style="max-width: 900px; margin-left: auto; margin-right: auto;">
+  <div class="cs-centered-text" id="builder-desc-mobile" style="max-width: 900px; margin-left: auto; margin-right: auto;">
     <p class="cs-body" style="margin-left: auto; margin-right: auto;">
       Mobile workflows were created using a node-based builder, where implementation teams configured applications by linking task and action nodes across multiple layers. Even simple setups required navigating multiple steps across settings, task definitions, and action triggers.
     </p>
@@ -7189,15 +7395,108 @@ li {
       The lack of real-time preview made it difficult to understand the final experience during configuration.
     </p>
   </div>
+  <div class="cs-centered-text" id="builder-desc-web" style="max-width: 900px; margin-left: auto; margin-right: auto; display: none;">
+    <p class="cs-body" style="margin-left: auto; margin-right: auto;">
+      The platform used a drag-and-drop builder for web application creation, where implementation teams configured applications, dashboards, and reports using widgets. These were used by operations teams to manage field operations.
+    </p>
+    <p class="cs-body" style="margin-left: auto; margin-right: auto;">
+      Each component required configuration across UI, data, and actions, forcing teams into rigid structures and limiting flexibility.
+    </p>
+  </div>
+</section>
+
+<!-- ===================== RESEARCH & VALIDATION ===================== -->
+<section class="cs-section shell" data-screen-label="04b Research & Validation" id="research" style="background: #ffffff; padding: 60px 32px 48px">
+  <div class="section-marker" data-reveal style="margin: 0px 0px 20px">04 — RESEARCH &amp; VALIDATION</div>
+
+  <h2 class="cs-section-title" data-reveal>How we defined and validated the problem</h2>
+  <p class="cs-lead" style="font-size: 16px">
+    Mixed-methods research: qualitative input from everyone who touched the product, validated against quantitative business data.
+  </p>
+
+  <div class="research-grid" data-stagger>
+    <div class="feature-card research-card">
+      <span class="tag accent">QUALITATIVE</span>
+      <h3 class="research-card-title">Listening to the people</h3>
+      <table class="research-table">
+        <thead>
+          <tr>
+            <th>Source</th>
+            <th>How</th>
+            <th>What it revealed</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="Source">Solution architects</td>
+            <td data-label="How">Contextual inquiry — interviewing the internal builders while observing them configure real apps.</td>
+            <td data-label="What it revealed">Builder pain — manual multi-layer setup, no preview, no path to customization.</td>
+          </tr>
+          <tr>
+            <td data-label="Source">Customers</td>
+            <td data-label="How">Direct calls to hear expectations first-hand.</td>
+            <td data-label="What it revealed">Client trust breaking between promised timelines and delivered reality.</td>
+          </tr>
+          <tr>
+            <td data-label="Source">Field teams</td>
+            <td data-label="How">Issue feedback from using the generated apps.</td>
+            <td data-label="What it revealed">Field-side breakages in the delivered apps.</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="research-takeaway">→ The builder was the bottleneck, on both sides of the product.</p>
+    </div>
+
+    <div class="feature-card research-card">
+      <span class="tag accent">QUANTITATIVE</span>
+      <h3 class="research-card-title">Validating with the data</h3>
+      <table class="research-table">
+        <thead>
+          <tr>
+            <th>Source</th>
+            <th>How</th>
+            <th>What it revealed</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="Source">Product analytics</td>
+            <td data-label="How">Review of usage across the builder flow.</td>
+            <td data-label="What it revealed">Issues clustering on the same configuration steps.</td>
+          </tr>
+          <tr>
+            <td data-label="Source">Support tickets</td>
+            <td data-label="How">Ticket mining as secondary research.</td>
+            <td data-label="What it revealed">Escalations reaching the CTO and CEO directly.</td>
+          </tr>
+          <tr>
+            <td data-label="Source">Win-loss analysis</td>
+            <td data-label="How">Analysis on blocked enterprise deals.</td>
+            <td data-label="What it revealed">Deals lost to customization asks and timelines we couldn't commit to; mobile apps took ~2 weeks to configure, web ~3, large accounts ran past 6 months.</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="research-takeaway">→ It was costing revenue, not just time.</p>
+    </div>
+  </div>
+
+  <div class="feature-card research-card research-strip" data-reveal>
+    <span class="tag">HEURISTIC EVALUATION</span>
+    <h3 class="research-card-title">Testing it myself</h3>
+    <p class="research-body">
+      I worked through the builder end to end and shipped UX patches for the worst friction. Builds didn't get faster, and customization still hit walls. What surprised me most: the solution architects had normalized the pain — they'd built personal workaround checklists just to survive the tool.
+    </p>
+    <p class="research-takeaway">→ UX patches couldn't fix it. The blocker was architectural.</p>
+  </div>
 </section>
 
 <!-- ===================== PROBLEM ===================== -->
 <section class="cs-section shell" data-screen-label="05 Problem" id="problem" style="background: rgb(255, 255, 255); padding: 60px 32px 48px">
-  <div class="section-marker" data-reveal style="margin: 0px 0px 20px">04 — PROBLEM</div>
+  <div class="section-marker" data-reveal style="margin: 0px 0px 20px">05 — PROBLEM</div>
   
   <h2 class="cs-section-title" data-reveal>What led to the platform rebuild</h2>
   <p class="cs-lead" style="font-size: 16px">
-    As Fieldproxy scaled to support larger operations, the existing V3 workflow builder struggled with increasing complexity. Implementation teams found it difficult to configure, debug, and maintain workflows, exposing the key limitations outlined below.
+    The research converged on three core limitations of the V3 builder — each one architectural, none fixable at the surface:
   </p>
   
   <div class="problem-cards" data-stagger>
@@ -7234,14 +7533,14 @@ li {
   
   <div class="cs-centered-text" style="display: flex; justify-content: center; align-items: center; padding: 40px 0; margin: 40px auto; width: 100%;">
     <p class="cs-callout" style="margin: 0; max-width: 800px; text-align: center; padding: 12px 40px">
-      This led to higher <strong>churn, increased support costs, and slower adoption, impacting end-user experience.</strong>
+      This led to higher <strong>churn, increased support tickets, and slower adoption, impacting end-user experience.</strong>
     </p>
   </div>
 </section>
 
 <!-- ===================== GOAL ===================== -->
 <section class="cs-section shell" data-screen-label="06 Goal" id="goal" style="background: #ffffff; padding: 60px 32px 48px">
-  <div class="section-marker" data-reveal style="margin: 0px 0px 20px">04 — GOAL</div>
+  <div class="section-marker" data-reveal style="margin: 0px 0px 20px">06 — GOAL</div>
   
   <h2 class="cs-section-title" data-reveal>Redefining How Applications Are Built</h2>
   <div class="cs-text-block">
@@ -7297,9 +7596,42 @@ AI-assisted workflows</p>
   </div>
 </section>
 
+<!-- ===================== DESIGN SYSTEM ===================== -->
+<section class="cs-section shell" data-screen-label="07 Design System" id="design-system" style="background: #ffffff; padding: 60px 32px 48px">
+  <div class="section-marker" data-reveal style="margin: 0px 0px 20px">07 — DESIGN SYSTEM</div>
+
+  <h2 class="cs-section-title" data-reveal>I introduced a new design system</h2>
+  <div class="cs-text-block">
+    <p style="font-size: 16px">
+      I developed two core component libraries — one for web apps, one for mobile apps — each with its own components, sharing one brand foundation.
+    </p>
+    <p style="font-size: 16px">
+      Every component was built from the element level up, making the system machine-readable and highly customizable.
+    </p>
+  </div>
+
+  <div class="ds-grid" data-stagger>
+    <div class="feature-card ds-card">
+      <div class="ds-card-icon"><span class="material-symbols-outlined">computer</span></div>
+      <h3 class="ds-card-title">Web app library</h3>
+      <p class="ds-card-desc">Components for building operations dashboards and web portals.</p>
+    </div>
+    <div class="feature-card ds-card">
+      <div class="ds-card-icon"><span class="material-symbols-outlined">smartphone</span></div>
+      <h3 class="ds-card-title">Mobile app library</h3>
+      <p class="ds-card-desc">Components for building field technician mobile apps.</p>
+    </div>
+    <div class="feature-card ds-card ds-card-foundation">
+      <div class="ds-card-icon"><span class="material-symbols-outlined">palette</span></div>
+      <h3 class="ds-card-title">One brand foundation</h3>
+      <p class="ds-card-desc">Shared tokens — color, type, spacing — keep both libraries consistent.</p>
+    </div>
+  </div>
+</section>
+
 <!-- ===================== PLATFORM TRANSFORMATION ===================== -->
-<section class="cs-section shell" data-screen-label="07 Platform Transformation" id="transformation" style="background: rgba(147, 197, 253, 0.05); border-radius: 16px; margin: 60px 0px 0px">
-  <div class="section-marker" data-reveal style="margin: 0px 0px 20px">04 — TRANSFORMATION</div>
+<section class="cs-section shell" data-screen-label="08 Platform Transformation" id="transformation" style="background: rgba(147, 197, 253, 0.05); border-radius: 16px; margin: 60px 0px 0px">
+  <div class="section-marker" data-reveal style="margin: 0px 0px 20px">08 — TRANSFORMATION</div>
   
   <h2 class="cs-section-title" data-reveal>How the Scaling Happened</h2>
   <p class="cs-lead" style="font-size: 16px">
@@ -7378,8 +7710,8 @@ AI-assisted workflows</p>
       </div>
     </div>
     
-    <div class="cs-centered-text">
-      <p class="cs-body">
+    <div class="cs-centered-text" style="text-align: center; margin-left: auto; margin-right: auto;">
+      <p class="cs-body" style="text-align: center; margin-left: auto; margin-right: auto;">
         This mobile-first migration validated the new architecture in a real workflow before expanding the platform further.
       </p>
     </div>
@@ -7391,13 +7723,13 @@ AI-assisted workflows</p>
       </div>
       <div class="result-badge green" style="width: 360px">
         <span class="badge-icon">↑</span>
-        <span class="badge-text">2× Faster deployment</span>
+        <span class="badge-text">3× Faster deployment</span>
       </div>
     </div>
   </div>
 </section>
 <section class="cs-section shell" data-screen-label="08 Scaling to Web & AI" id="scaling" style="padding: 64px 32px 40px; margin: 60px 0px 0px">
-  <div class="section-marker" data-reveal style="margin: 0px 0px 22px">05 — SCALING</div>
+  <div class="section-marker" data-reveal style="margin: 0px 0px 22px">09 — SCALING</div>
   
   <h2 class="cs-section-title" data-reveal>Scaling to Web & Introducing AI</h2>
   <p class="cs-lead" style="font-size: 16px">
@@ -7438,8 +7770,8 @@ AI-assisted workflows</p>
     </div>
   </div>
   
-  <div class="cs-centered-text">
-    <p class="cs-callout" style="margin: 80px 70px 0px; background: linear-gradient(135deg, rgba(245,158,11,0.1) 0%, rgba(245,158,11,0.05) 100%); border-left-color: #f59e0b">
+  <div class="cs-centered-text" style="text-align: center;">
+    <p class="cs-callout" style="margin: 80px auto 0px; max-width: 800px; text-align: center; background: linear-gradient(135deg, rgba(245,158,11,0.1) 0%, rgba(245,158,11,0.05) 100%); border-left-color: #f59e0b">
       These constraints <strong>increased effort, slowed deployment, and made it harder to scale with manual workflows.</strong> To address this, we introduced an AI-assisted workflow.
     </p>
   </div>
@@ -7448,7 +7780,7 @@ AI-assisted workflows</p>
 <!-- ===================== AI WORKFLOW ===================== -->
 <section class="cs-ai-workflow" data-screen-label="09 AI Workflow" id="ai-workflow">
   <div class="shell">
-    <div class="section-marker light" data-reveal style="color: rgb(91, 60, 242)"> 07 — AI WORKFLOW</div>
+    <div class="section-marker light" data-reveal style="color: rgb(91, 60, 242)"> 10 — AI WORKFLOW</div>
     <div class="ai-header" data-reveal>
       <h2 class="ai-title">AI-assisted workflow</h2>
       <p class="ai-subtitle">A structured generation approach to accelerate deployment and reduce manual effort.</p>
@@ -7611,7 +7943,7 @@ AI-assisted workflows</p>
 
 <!-- ===================== USER INTERFACE SHOWCASE ===================== -->
 <section class="cs-section shell" data-screen-label="08 UI Showcase" id="ui-showcase" style="padding: 60px 32px 48px">
-  <div class="section-marker" style="margin: 0px 0px 20px">08 — USER INTERFACE </div>
+  <div class="section-marker" style="margin: 0px 0px 20px">11 — USER INTERFACE </div>
   
   <h2 class="cs-section-title">The rebuilt platform in action</h2>
   <p class="cs-lead" style="font-size: 16px">
@@ -7662,12 +7994,12 @@ AI-assisted workflows</p>
   <div class="shell showcase-content">
     <div class="showcase-intro">
       <h3 class="showcase-title" style="text-align: left; font-size: 20px">SQL Editor - Addition of data source</h3>
-      <p class="showcase-desc" style="font-size: 16px; text-align: left; margin: 0px 38px 0px 0px">The workflow begins with the addition of a data source, through schema creation in the SQL Builder, where tables are defined directly using queries. By adopting a data-first workflow, queries and relationships are configured upfront, allowing screens to be generated from structured data rather than manual setup.</p>
+      <p class="showcase-desc" style="font-size: 16px; text-align: left; margin: 0px 38px 0px 0px">The workflow begins with the addition of a data source, through schema creation in the PSQL Builder, where tables are defined directly using queries. By adopting a data-first workflow, queries and relationships are configured upfront, allowing screens to be generated from structured data rather than manual setup.</p>
     </div>
 
     <div>
       <div class="placeholder-box" data-ratio="16/9">
-        <img src="image/sqlexplain.png" alt="Unified Dashboard - SQL Builder" style="width: 100%; height: 100%; object-fit: contain;">
+        <img src="image/sqlexplain-new.jpg" alt="Unified Dashboard - SQL Builder" style="width: 100%; height: 100%; object-fit: contain;">
       </div>
     </div>
     <p class="showcase-desc" style="margin-top: var(--spacing-8); margin: 32px 58px 0px 0px">
@@ -7711,7 +8043,7 @@ AI-assisted workflows</p>
           </div>
           <div>
             <div class="placeholder-box" data-ratio="16/9">
-              <img src="image/additionoftablesql.png" alt="Step 2: Table Added" style="width: 100%; height: 100%; object-fit: contain;">
+              <img src="image/insertvalue.png" alt="Step 2: Table Added" style="width: 100%; height: 100%; object-fit: contain;">
             </div>
           </div>
         </div>
@@ -7729,7 +8061,7 @@ AI-assisted workflows</p>
           </div>
           <div>
             <div class="placeholder-box" data-ratio="16/9">
-              <img src="image/insertvalue.png" alt="Step 3: Data Inserted" style="width: 100%; height: 100%; object-fit: contain;">
+              <img src="image/additionoftablesql.png" alt="Step 3: Data Inserted" style="width: 100%; height: 100%; object-fit: contain;">
             </div>
           </div>
         </div>
@@ -7748,7 +8080,7 @@ AI-assisted workflows</p>
 
     <div>
       <div class="placeholder-box" data-ratio="16/9">
-        <img src="image/builderexplain.png" alt="Mobile application builder" style="width: 100%; height: 100%; object-fit: contain;">
+        <img src="image/builderexplain-new.png" alt="Mobile application builder" style="width: 100%; height: 100%; object-fit: contain;">
       </div>
     </div>
     <p class="showcase-desc" style="margin-top: 48px; font-size: 16px; text-align: left; margin-right: 38px; margin: 48px 38px 0px 0px">
@@ -7858,20 +8190,7 @@ AI-assisted workflows</p>
                     <span class="carousel-tag">Optimization</span>
                   </div>
                 </div>
-                <img src="image/employedetail.png" alt="Resource Planning" style="height: 460px; width: 100%; object-fit: contain;">
-              </div>
-            </div>
-            <!-- Slide 5 -->
-            <div class="carousel-item" data-index="4" style="padding: 60px 24px">
-              <div class="carousel-item-content" style="justify-content: flex-start; height: 520px">
-                <div class="carousel-slide-header">
-                  <h3 class="carousel-slide-title" style="font-size: 18px">Performance Analytics</h3>
-                  <div class="carousel-slide-tags">
-                    <span class="carousel-tag">Metrics</span>
-                    <span class="carousel-tag">Reporting</span>
-                  </div>
-                </div>
-                <img src="image/dashboard.png" alt="Performance Analytics" style="height: 460px; width: 100%; object-fit: contain;">
+                <img src="image/schedule-calendar.png" alt="Resource Planning" style="height: 460px; width: 100%; object-fit: contain;">
               </div>
             </div>
           </div>
@@ -7914,12 +8233,12 @@ AI-assisted workflows</p>
           <div class="mc-track" id="mc-track-2" role="group" aria-live="polite">
             <figure class="mc-slide" data-index="0" aria-label="Home Dashboard, 1 of 5">
               <div class="mc-phone">
-                <img src="image/homwmob.png" alt="Home Dashboard" loading="lazy">
+                <img src="image/home-mobile.png" alt="Home Dashboard" loading="lazy">
               </div>
             </figure>
-            <figure class="mc-slide" data-index="1" aria-label="Task Execution, 2 of 5">
+            <figure class="mc-slide" data-index="1" aria-label="Activity Done, 2 of 5">
               <div class="mc-phone">
-                <img src="image/mobactivity.png" alt="Task Execution" loading="lazy">
+                <img src="image/mobactivity.png" alt="Activity Done" loading="lazy">
               </div>
             </figure>
             <figure class="mc-slide" data-index="2" aria-label="Safety Compliance, 3 of 5">
@@ -7927,14 +8246,14 @@ AI-assisted workflows</p>
                 <img src="image/moblog.png" alt="Safety Compliance" loading="lazy">
               </div>
             </figure>
-            <figure class="mc-slide" data-index="3" aria-label="Visit Scheduling, 4 of 5">
+            <figure class="mc-slide" data-index="3" aria-label="Visit Information, 4 of 5">
               <div class="mc-phone">
-                <img src="image/mobvisit.png" alt="Visit Scheduling" loading="lazy">
+                <img src="image/mobvisit.png" alt="Visit Information" loading="lazy">
               </div>
             </figure>
-            <figure class="mc-slide" data-index="4" aria-label="Visit Information, 5 of 5">
+            <figure class="mc-slide" data-index="4" aria-label="Task Details & Job Acceptance, 5 of 5">
               <div class="mc-phone">
-                <img src="image/visistinfomob.png" alt="Visit Information" loading="lazy">
+                <img src="image/visistinfomob.png" alt="Task Details & Job Acceptance" loading="lazy">
               </div>
             </figure>
           </div>
@@ -7975,7 +8294,7 @@ AI-assisted workflows</p>
   
   <!-- RESULTS -->
   <div style="margin-bottom: 80px">
-    <div class="section-marker" data-reveal>10— RESULTS</div>
+    <div class="section-marker" data-reveal>12 — RESULTS</div>
     <h2 class="cs-section-title" style="margin-bottom: 40px">Measurable impact & adoption</h2>
     
     <!-- Result Cards Grid -->
@@ -8054,7 +8373,7 @@ AI-assisted workflows</p>
 <!-- ===================== FOOTER / NEXT CASE STUDY ===================== -->
 <section class="cs-footer shell" data-screen-label="19 Next Case Study" style="padding: 96px 32px 0px">
   <div class="cs-nav-next">
-    <a href="Location tracking v2.html" class="next-case">
+    <a href="location-tracking.html" class="next-case">
       <div class="next-label">Next Case Study</div>
       <h3 class="next-title">Location Tracking System →</h3>
     </a>
@@ -8064,7 +8383,7 @@ AI-assisted workflows</p>
 <!-- ===================== FOOTER / BACK TO WORK ===================== -->
 <section class="cs-footer shell" data-screen-label="19 Back to Work">
   <div class="cs-back">
-    <a href="../index.html" class="back-link">← Back to all work</a>
+    <a href="../Afrin-Portfolio.html" class="back-link">← Back to all work</a>
   </div>
 </section>
 
@@ -8088,9 +8407,17 @@ toggleButtons.forEach(btn => {
     if (target === 'mobile') {
       mobilePan?.classList.add('active');
       webPanel?.classList.remove('active');
+      const dm = document.getElementById('builder-desc-mobile');
+      const dw = document.getElementById('builder-desc-web');
+      if (dm) dm.style.display = '';
+      if (dw) dw.style.display = 'none';
     } else if (target === 'web') {
       webPanel?.classList.add('active');
       mobilePan?.classList.remove('active');
+      const dm = document.getElementById('builder-desc-mobile');
+      const dw = document.getElementById('builder-desc-web');
+      if (dm) dm.style.display = 'none';
+      if (dw) dw.style.display = '';
     }
   });
 });
@@ -8329,11 +8656,11 @@ webCarousel.init();
 // ===================== PREMIUM MOBILE SHOWCASE =====================
 const premiumMobileShowcase = {
   screens: [
-    { image: 'image/homwmob.png', title: 'Home Dashboard', subtitle: 'Overview' },
-    { image: 'image/mobactivity.png', title: 'Task Execution', subtitle: 'Activities' },
+    { image: 'image/home-mobile.png', title: 'Home Dashboard', subtitle: 'Overview' },
+    { image: 'image/mobactivity.png', title: 'Activity Done', subtitle: 'Activities' },
     { image: 'image/moblog.png', title: 'Safety Compliance', subtitle: 'Logging' },
-    { image: 'image/mobvisit.png', title: 'Visit Scheduling', subtitle: 'Planning' },
-    { image: 'image/visistinfomob.png', title: 'Visit Information', subtitle: 'Details' }
+    { image: 'image/mobvisit.png', title: 'Visit Information', subtitle: 'Details' },
+    { image: 'image/visistinfomob.png', title: 'Task Details & Job Acceptance', subtitle: 'Details' }
   ],
   
   currentIndex: 1,
@@ -8540,13 +8867,15 @@ document.addEventListener('DOMContentLoaded', () => {
     { id: 'hero', label: '01 CONTEXT' },
     { id: 'users', label: '02 USERS & ROLE' },
     { id: 'architecture', label: '03 EXISTING STRUCTURE' },
-    { id: 'problem', label: '04 PROBLEM' },
-    { id: 'goal', label: '05 GOAL' },
-    { id: 'transformation', label: '06 TRANSFORMATION' },
-    { id: 'scaling', label: '07 SCALING' },
-    { id: 'ai-workflow', label: '08 AI WORKFLOW' },
-    { id: 'ui-showcase', label: '09 UI SHOWCASE' },
-    { id: 'results-learnings', label: '10 RESULTS & LEARNINGS' }
+    { id: 'research', label: '04 RESEARCH & VALIDATION' },
+    { id: 'problem', label: '05 PROBLEM' },
+    { id: 'goal', label: '06 GOAL' },
+    { id: 'design-system', label: '07 DESIGN SYSTEM' },
+    { id: 'transformation', label: '08 TRANSFORMATION' },
+    { id: 'scaling', label: '09 SCALING' },
+    { id: 'ai-workflow', label: '10 AI WORKFLOW' },
+    { id: 'ui-showcase', label: '11 UI SHOWCASE' },
+    { id: 'results-learnings', label: '12 RESULTS & LEARNINGS' }
   ];
 
   function updateActiveItem() {
@@ -8676,6 +9005,18 @@ document.addEventListener('DOMContentLoaded', () => {
       });
       ticking = true;
     }
+  }, { passive: true });
+
+  // Fallback driver: html/body use `overflow: clip`, which suppresses window
+  // 'scroll' events in some browsers. An IntersectionObserver on each section
+  // fires independently of scroll events, keeping the active TOC item in sync.
+  const spyObserver = new IntersectionObserver(() => {
+    updateActiveItem();
+    updateTocStickyBehavior();
+  }, { rootMargin: '-149px 0px -60% 0px', threshold: [0, 0.01, 0.25, 0.5] });
+  tocTargets.forEach(t => {
+    const el = document.getElementById(t.id);
+    if (el) spyObserver.observe(el);
   });
 
   // Initial update
@@ -8781,10 +9122,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const SCREENS = [
     { title: 'Home Dashboard',     desc: "At-a-glance snapshot of the technician's day — visits, tasks, alerts." },
-    { title: 'Task Execution',     desc: 'Step-through activities with real-time sync back to the office.' },
+    { title: 'Activity Done',      desc: 'Step-through activities with real-time sync back to the office.' },
     { title: 'Safety Compliance',  desc: 'Required checklists and logs captured before, during, and after each job.' },
-    { title: 'Visit Scheduling',   desc: "Today's route, planned visits, and quick reschedule from the field." },
-    { title: 'Visit Information',  desc: 'Asset history, customer context, and prior notes — all in one place.' }
+    { title: 'Visit Information', desc: 'Asset history, customer context, and prior notes — all in one place.' },
+    { title: 'Task Details & Job Acceptance',  desc: 'Full task details with the option to accept or decline the job.' }
   ];
 
   const track       = root.querySelector('#mc-track-2');
@@ -8985,13 +9326,15 @@ document.addEventListener('DOMContentLoaded', () => {
     { id: 'hero',             num: '01', label: 'Context' },
     { id: 'users',            num: '02', label: 'Users & Role' },
     { id: 'architecture',     num: '03', label: 'Existing Structure' },
-    { id: 'problem',          num: '04', label: 'Problem' },
-    { id: 'goal',             num: '05', label: 'Goal' },
-    { id: 'transformation',   num: '06', label: 'Transformation' },
-    { id: 'scaling',          num: '07', label: 'Scaling' },
-    { id: 'ai-workflow',      num: '08', label: 'AI Workflow' },
-    { id: 'ui-showcase',      num: '09', label: 'UI Showcase' },
-    { id: 'results-learnings',num: '10', label: 'Results & Learnings' }
+    { id: 'research',         num: '04', label: 'Research & Validation' },
+    { id: 'problem',          num: '05', label: 'Problem' },
+    { id: 'goal',             num: '06', label: 'Goal' },
+    { id: 'design-system',    num: '07', label: 'Design System' },
+    { id: 'transformation',   num: '08', label: 'Transformation' },
+    { id: 'scaling',          num: '09', label: 'Scaling' },
+    { id: 'ai-workflow',      num: '10', label: 'AI Workflow' },
+    { id: 'ui-showcase',      num: '11', label: 'UI Showcase' },
+    { id: 'results-learnings',num: '12', label: 'Results & Learnings' }
   ];
 
   // Build the list

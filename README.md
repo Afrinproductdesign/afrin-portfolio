@@ -1,25 +1,82 @@
-# CODING AGENTS: READ THIS FIRST
+# Afrin Shariff — Senior Product Designer Portfolio
 
-This is a **handoff bundle** from Claude Design (claude.ai/design).
+A modern, interactive portfolio showcasing enterprise SaaS and AI product design work.
 
-A user mocked up designs in HTML/CSS/JS using an AI design tool, then exported this bundle so a coding agent can implement the designs for real.
+## Deployed Sites
 
-## What you should do — IMPORTANT
+- **Portfolio Home:** https://afrin-shariff-senior-product-designer-ebd7be74-7ganvv6fn.vercel.app
+- **Location Tracking Case Study:** https://location-tracking-print-61ac67fa-b86x2m4jg.vercel.app
 
-**Read the chat transcripts first.** There are 51 chat transcript(s) in `chats/`. The transcripts show the full back-and-forth between the user and the design assistant — they tell you **what the user actually wants** and **where they landed** after iterating. Don't skip them. The final HTML files are the output, but the chat is where the intent lives.
+## Project Structure
 
-**Read `project/Afrin-Portfolio.html` in full.** The user had this file open when they triggered the handoff, so it's almost certainly the primary design they want built. Read it top to bottom — don't skim. Then **follow its imports**: open every file it pulls in (shared components, CSS, scripts) so you understand how the pieces fit together before you start implementing.
+```
+afrin-portfolio/
+├── Afrin-Portfolio.html          # Main portfolio page
+├── case-studies/
+│   ├── field-proxy-v2.html       # Field Proxy case study
+│   ├── location-tracking.html    # Location tracking case study
+│   ├── location-tracking-print.html
+│   ├── image/                    # Case study images
+│   └── video/                    # Case study videos
+├── css/
+│   ├── home2.css                 # Main styles
+│   └── liquid-glass.css          # Glass morphism effects
+├── js/
+│   ├── home2.js                  # Main script
+│   └── home2-tweaks.jsx          # Design tweaks
+├── images/                       # Portfolio images
+├── resume/                       # CV files
+└── package.json
+```
 
-**If anything is ambiguous, ask the user to confirm before you start implementing.** It's much cheaper to clarify scope up front than to build the wrong thing.
+## Setup & Deployment
 
-## About the design files
+### Deploy to Vercel
 
-The design medium is **HTML/CSS/JS** — these are prototypes, not production code. Your job is to **recreate them pixel-perfectly** in whatever technology makes sense for the target codebase (React, Vue, native, whatever fits). Match the visual output; don't copy the prototype's internal structure unless it happens to fit.
+**Step-by-step:**
 
-**Don't render these files in a browser or take screenshots unless the user asks you to.** Everything you need — dimensions, colors, layout rules — is spelled out in the source. Read the HTML and CSS directly; a screenshot won't tell you anything they don't.
+1. Create a GitHub repo at github.com/new (name it `afrin-portfolio`)
 
-## Bundle contents
+2. Clone it locally and add your files:
+   ```bash
+   git clone https://github.com/YOUR-USERNAME/afrin-portfolio.git
+   cd afrin-portfolio
+   ```
 
-- `README.md` — this file
-- `chats/` — conversation transcripts (read these!)
-- `project/` — the `af design (Copy` project files (HTML prototypes, assets, components)
+3. Copy all your project files into this folder:
+   - Afrin-Portfolio.html
+   - case-studies/
+   - css/
+   - js/
+   - images/
+   - resume/
+
+4. Push to GitHub:
+   ```bash
+   git add .
+   git commit -m "Initial portfolio"
+   git push -u origin main
+   ```
+
+5. Go to **vercel.com** and click "Add New" → "Project"
+   - Import your GitHub repo
+   - Click "Deploy"
+   - Done! Your site is live.
+
+Vercel auto-detects static HTML files and deploys with zero config.
+
+## Features
+
+- Responsive design
+- Liquid glass morphism effects
+- Interactive case studies
+- Embedded media
+- Light/dark mode support
+
+## Browser Support
+
+Modern browsers (Chrome, Safari, Firefox, Edge). No build step required — pure HTML/CSS/JS.
+
+## License
+
+© Afrin Shariff. All rights reserved.

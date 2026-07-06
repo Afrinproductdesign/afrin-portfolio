@@ -47,6 +47,20 @@
       paint(); setInterval(paint, 30000);
     }
 
+    // ---- Nav transparent-over-dark-hero toggle ----
+    var darkHero = document.querySelector('.hero-dark');
+    var navEl = document.querySelector('.nav');
+    if (darkHero && navEl && 'IntersectionObserver' in window) {
+      var sentinel = document.createElement('div');
+      sentinel.setAttribute('aria-hidden', 'true');
+      sentinel.style.cssText = 'position:absolute;top:0;left:0;width:1px;height:110px;pointer-events:none;';
+      darkHero.appendChild(sentinel);
+      var navIo = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) { navEl.classList.toggle('over-hero', en.isIntersecting); });
+      }, { threshold: 0 });
+      navIo.observe(sentinel);
+    }
+
     // ---- Smooth anchor scroll with sticky-nav offset ----
     document.addEventListener('click', function (e) {
       var a = e.target.closest && e.target.closest('a[href^="#"]');
