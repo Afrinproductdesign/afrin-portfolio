@@ -1,22 +1,82 @@
-# CODING AGENTS: READ THIS FIRST
+# Afrin Shariff — Senior Product Designer Portfolio
 
-This is a **handoff bundle** from Claude Design (claude.ai/design).
+A modern, interactive portfolio showcasing enterprise SaaS and AI product design work.
 
-A user mocked up designs in HTML/CSS/JS using an AI design tool, then exported this bundle so a coding agent can implement the designs for real.
+## Deployed Sites
 
-## What you should do — IMPORTANT
+- **Portfolio Home:** https://afrin-shariff-senior-product-designer-ebd7be74-7ganvv6fn.vercel.app
+- **Location Tracking Case Study:** https://location-tracking-print-61ac67fa-b86x2m4jg.vercel.app
 
-**Read `copy-of-copy-of-copy-of-af-design/project/Portfolio.html` in full.** The user had this file open when they triggered the handoff, so it's almost certainly the primary design they want built. Read it top to bottom — don't skim. Then **follow its imports**: open every file it pulls in (shared components, CSS, scripts) so you understand how the pieces fit together before you start implementing.
+## Project Structure
 
-**If anything is ambiguous, ask the user to confirm before you start implementing.** It's much cheaper to clarify scope up front than to build the wrong thing.
+```
+afrin-portfolio/
+├── Afrin-Portfolio.html          # Main portfolio page
+├── case-studies/
+│   ├── field-proxy-v2.html       # Field Proxy case study
+│   ├── location-tracking.html    # Location tracking case study
+│   ├── location-tracking-print.html
+│   ├── image/                    # Case study images
+│   └── video/                    # Case study videos
+├── css/
+│   ├── home2.css                 # Main styles
+│   └── liquid-glass.css          # Glass morphism effects
+├── js/
+│   ├── home2.js                  # Main script
+│   └── home2-tweaks.jsx          # Design tweaks
+├── images/                       # Portfolio images
+├── resume/                       # CV files
+└── package.json
+```
 
-## About the design files
+## Setup & Deployment
 
-The design medium is **HTML/CSS/JS** — these are prototypes, not production code. Your job is to **recreate them pixel-perfectly** in whatever technology makes sense for the target codebase (React, Vue, native, whatever fits). Match the visual output; don't copy the prototype's internal structure unless it happens to fit.
+### Deploy to Vercel
 
-**Don't render these files in a browser or take screenshots unless the user asks you to.** Everything you need — dimensions, colors, layout rules — is spelled out in the source. Read the HTML and CSS directly; a screenshot won't tell you anything they don't.
+**Step-by-step:**
 
-## Bundle contents
+1. Create a GitHub repo at github.com/new (name it `afrin-portfolio`)
 
-- `copy-of-copy-of-copy-of-af-design/README.md` — this file
-- `copy-of-copy-of-copy-of-af-design/project/` — the `Copy of Copy of Copy of Af Design` project files (HTML prototypes, assets, components)
+2. Clone it locally and add your files:
+   ```bash
+   git clone https://github.com/YOUR-USERNAME/afrin-portfolio.git
+   cd afrin-portfolio
+   ```
+
+3. Copy all your project files into this folder:
+   - Afrin-Portfolio.html
+   - case-studies/
+   - css/
+   - js/
+   - images/
+   - resume/
+
+4. Push to GitHub:
+   ```bash
+   git add .
+   git commit -m "Initial portfolio"
+   git push -u origin main
+   ```
+
+5. Go to **vercel.com** and click "Add New" → "Project"
+   - Import your GitHub repo
+   - Click "Deploy"
+   - Done! Your site is live.
+
+Vercel auto-detects static HTML files and deploys with zero config.
+
+## Features
+
+- Responsive design
+- Liquid glass morphism effects
+- Interactive case studies
+- Embedded media
+- Light/dark mode support
+
+## Browser Support
+
+Modern browsers (Chrome, Safari, Firefox, Edge). No build step required — pure HTML/CSS/JS.
+
+## License
+
+© Afrin Shariff. All rights reserved.
